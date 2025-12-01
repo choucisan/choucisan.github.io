@@ -60,6 +60,27 @@ function initLogo() {
     brand.style.opacity = "1";
 }
 
+function titleController() {
+    const subtitleWrap = document.getElementById('subtitle-wrap');
+    if (!subtitleWrap) return;
+
+    // 判断逻辑：当前路径
+    const path = location.pathname;
+    const isHomePage = path === '/' || path === '/index.html';
+
+    // 默认 CSS 是 display: none (隐藏状态)
+    
+    // 只有在“非首页”时，我们才把它显示出来
+    if (!isHomePage) {
+        // 强制显示
+        subtitleWrap.style.setProperty('display', 'block', 'important');
+        subtitleWrap.style.setProperty('visibility', 'visible', 'important');
+        subtitleWrap.style.setProperty('opacity', '1', 'important');
+    }
+    // 首页不需要做任何事，因为默认就是隐藏的
+}
+
+
 document.addEventListener("DOMContentLoaded", function () {
     // 初始化背景
     const banner = document.getElementById('banner');
@@ -81,8 +102,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 5000);
     }
 
-    // 初始化 Logo (延迟一点点确保覆盖 Fluid 默认行为)
+    // 初始化 Logo
     setTimeout(initLogo, 50);
+    
+    // 执行标题控制
+    titleController();
 });
-
-

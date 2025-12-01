@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&family=Playfair+Display:ital,wght@0,400;0,600;1,600&family=Cormorant+Garamond:ital,wght@1,500&display=swap');
 
 
+
+/* --- 导航栏布局 --- */
 .navbar .container {
     max-width: 100% !important; 
     width: 100% !important;
@@ -30,6 +32,9 @@
 }
 
 
+
+
+/* 创意 Logo */
 .navbar-brand {
     padding: 0 !important;
     margin: 0 !important;
@@ -75,6 +80,8 @@
 
 
 
+
+/* 菜单样式 */
 .navbar-collapse {
     justify-content: flex-end !important;
     margin-top: 8px !important; 
@@ -111,50 +118,10 @@
 }
 
 
-.navbar-brand::after, .navbar-brand::before {
-    display: none !important;
-}
-
-.navbar-brand img,
-.navbar i,
-#subtitle-wrap,
-.banner .h2,
-.scroll-down-bar {
-    display: none !important;
-}
 
 
-#banner, .banner, .full-bg-img {
-    transition: none !important;
-    animation: none !important;
-    transform: none !important;
-}
 
-
-#board {
-    display: block !important;
-    background-color: #fff;
-    z-index: 1;
-}
-
-@media (max-width: 992px) {
-    .navbar .container {
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-    }
-    .brand-num, .brand-log {
-        font-size: 42px; 
-    }
-    .brand-slogan {
-        font-size: 12px;
-        white-space: normal;
-    }
-    .navbar .nav-link {
-        font-size: 13px !important;
-        padding: 0 14px !important;
-    }
-}
-
+/* 透明下拉菜单*/
 .navbar .dropdown-menu {
     background-color: transparent !important;
     border: none !important;
@@ -249,7 +216,56 @@
 
 
 
+/* 文章标题 */
+.navbar-brand::after, .navbar-brand::before, .navbar-brand img, .navbar i,
+.scroll-down-bar { 
+    display: none !important; 
+}
 
+#subtitle-wrap {
+    display: block !important; 
+    margin-top: 80px; 
+    position: relative;
+    z-index: 50; 
+}
+
+.banner .h2 {
+    display: block !important;
+}
+
+body.index #subtitle-wrap,
+body.home #subtitle-wrap {
+    display: none !important;
+}
+
+/* 标题文字美化 */
+#subtitle {
+    font-family: 'Playfair Display', serif !important; 
+    font-weight: 600 !important;
+    font-size: 3.8rem !important;
+    color: #ffffff !important;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.8) !important;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+
+/* 文章信息美化 */
+.meta__item, .meta__item a {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-style: italic;
+    font-size: 1.3rem !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+}
+
+/* 强制关闭背景动画 */
+#banner, .banner, .full-bg-img { transition: none !important; animation: none !important; transform: none !important; }
+#board { display: block !important; background-color: #fff; z-index: 1; }
+
+
+
+
+/* mac形式代码块 */
 .highlight {
     background: #ffffff !important;
     border-radius: 8px !important;
