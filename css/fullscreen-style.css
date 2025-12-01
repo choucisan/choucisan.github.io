@@ -246,3 +246,82 @@
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.2) transparent; 
 }
+
+
+
+
+.highlight {
+    background: #ffffff !important;
+    border-radius: 8px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important;
+    padding-top: 38px !important; 
+    position: relative !important;
+    margin: 30px 0 !important;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+
+.highlight::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 38px;
+    background: #ffffff !important; /* 纯白顶栏 */
+    border-bottom: 1px solid #e1e4e8;
+    border-radius: 8px 8px 0 0 !important;
+    z-index: 10;
+}
+
+
+.highlight::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    z-index: 15;
+    top: 13px; left: 15px; /* 位置 */
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #ff5f56; /* 红点 */
+    box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #27c93f; /* 黄点和绿点 */
+}
+
+
+.highlight .copy-btn {
+    display: block !important;
+    position: absolute !important;
+    top: 7px !important;  
+    right: 12px !important;
+    z-index: 20 !important; 
+    color: #666 !important;
+    background: transparent !important;
+    font-size: 1.1rem !important;
+    opacity: 0.7;
+    transition: all 0.2s;
+}
+
+.highlight .copy-btn:hover {
+    color: #000 !important; 
+    opacity: 1;
+}
+
+
+.highlight .copy-btn.success {
+    color: #28a745 !important;
+    border-color: transparent !important;
+}
+
+
+.highlight table { margin: 0 !important; border: none !important; width: 100% !important; }
+.highlight td { border: none !important; padding: 0 !important; }
+
+.highlight::-webkit-scrollbar { height: 6px; }
+.highlight::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+
+
+@media (max-width: 992px) {
+    .navbar .container { padding-left: 20px !important; padding-right: 20px !important; }
+    .brand-num { font-size: 52px; } .brand-log { font-size: 42px; }
+    .brand-slogan { font-size: 12px; white-space: normal; }
+    .navbar .dropdown-menu { background-color: rgba(0,0,0,0.8) !important; }
+}
