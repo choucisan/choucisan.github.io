@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://choucisan.xyz/baidu_verify_codeva-FLgzJsvXvH.html</loc>
+    
+    <lastmod>2025-12-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://choucisan.xyz/AlphaGo.html</loc>
     
     <lastmod>2025-12-07</lastmod>
@@ -32,15 +41,6 @@
     <loc>https://choucisan.xyz/hello-world.html</loc>
     
     <lastmod>2025-12-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://choucisan.xyz/baidu_verify_codeva-FLgzJsvXvH.html</loc>
-    
-    <lastmod>2025-12-03</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -86,7 +86,7 @@
   </url>
   
   <url>
-    <loc>https://choucisan.xyz/tags/Project/</loc>
+    <loc>https://choucisan.xyz/tags/blog/</loc>
     <lastmod>2025-12-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -121,7 +121,7 @@
   </url>
   
   <url>
-    <loc>https://choucisan.xyz/tags/blog/</loc>
+    <loc>https://choucisan.xyz/tags/Project/</loc>
     <lastmod>2025-12-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -144,7 +144,7 @@
   </url>
   
   <url>
-    <loc>https://choucisan.xyz/categories/Tech/Reinforcement-Learning/</loc>
+    <loc>https://choucisan.xyz/categories/Tech/Web/</loc>
     <lastmod>2025-12-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -158,7 +158,7 @@
   </url>
   
   <url>
-    <loc>https://choucisan.xyz/categories/Tech/Web/</loc>
+    <loc>https://choucisan.xyz/categories/Tech/Reinforcement-Learning/</loc>
     <lastmod>2025-12-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
