@@ -74,7 +74,7 @@ function initLogo() {
     if (!brand) return;
     brand.innerHTML = `
         <div class="brand-wrapper">
-            <span class="brand-num">13</span><span class="brand-log">log</span>
+            <span class="brand-num">Choucisan's Blogs</span>
         </div>
     `;
     brand.style.display = "flex";
