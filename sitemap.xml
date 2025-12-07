@@ -107,13 +107,6 @@
   </url>
   
   <url>
-    <loc>https://choucisan.xyz/tags/blog/</loc>
-    <lastmod>2025-12-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://choucisan.xyz/tags/Tools/</loc>
     <lastmod>2025-12-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -122,6 +115,13 @@
   
   <url>
     <loc>https://choucisan.xyz/tags/Productivity/</loc>
+    <lastmod>2025-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://choucisan.xyz/tags/blog/</loc>
     <lastmod>2025-12-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -137,14 +137,14 @@
   </url>
   
   <url>
-    <loc>https://choucisan.xyz/categories/Tech/Web/</loc>
+    <loc>https://choucisan.xyz/categories/Tech/Paper/</loc>
     <lastmod>2025-12-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://choucisan.xyz/categories/Tech/Paper/</loc>
+    <loc>https://choucisan.xyz/categories/Tech/Reinforcement-Learning/</loc>
     <lastmod>2025-12-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -158,7 +158,7 @@
   </url>
   
   <url>
-    <loc>https://choucisan.xyz/categories/Tech/Reinforcement-Learning/</loc>
+    <loc>https://choucisan.xyz/categories/Tech/Web/</loc>
     <lastmod>2025-12-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
