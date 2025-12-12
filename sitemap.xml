@@ -136,13 +136,6 @@
   </url>
   
   <url>
-    <loc>https://choucisan.xyz/tags/DPO/</loc>
-    <lastmod>2025-12-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://choucisan.xyz/tags/Blog/</loc>
     <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -157,6 +150,13 @@
   </url>
   
   <url>
+    <loc>https://choucisan.xyz/tags/DPO/</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://choucisan.xyz/tags/DQN/</loc>
     <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -165,6 +165,20 @@
   
   <url>
     <loc>https://choucisan.xyz/tags/GRPO/</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://choucisan.xyz/tags/Tools/</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://choucisan.xyz/tags/Productivity/</loc>
     <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -200,20 +214,6 @@
   
   <url>
     <loc>https://choucisan.xyz/tags/blog/</loc>
-    <lastmod>2025-12-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://choucisan.xyz/tags/Tools/</loc>
-    <lastmod>2025-12-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://choucisan.xyz/tags/Productivity/</loc>
     <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
