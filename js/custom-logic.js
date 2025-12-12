@@ -23,7 +23,8 @@ const unsplashSportsIds = [
 ];
 
 const unsplashArtIds = [
-     '1764123861344-0aad2673213c', "1516737488405-7b6d6868fad3", 
+     '1764123861344-0aad2673213c', "1516737488405-7b6d6868fad3",
+     "1763718678099-fdb5c2f9cc50", 
 ];
 
 const unsplashIds = [
