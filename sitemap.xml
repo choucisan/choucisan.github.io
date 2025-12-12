@@ -11,16 +11,7 @@
   </url>
   
   <url>
-    <loc>https://choucisan.xyz/GRPO.html</loc>
-    
-    <lastmod>2025-12-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://choucisan.xyz/DPO.html</loc>
+    <loc>https://choucisan.xyz/Q-Learning.html</loc>
     
     <lastmod>2025-12-12</lastmod>
     
@@ -38,9 +29,9 @@
   </url>
   
   <url>
-    <loc>https://choucisan.xyz/AlphaGomoku.html</loc>
+    <loc>https://choucisan.xyz/GRPO.html</loc>
     
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-12</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -49,16 +40,25 @@
   <url>
     <loc>https://choucisan.xyz/DQN.html</loc>
     
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-12</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://choucisan.xyz/Q-Learning.html</loc>
+    <loc>https://choucisan.xyz/DPO.html</loc>
     
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://choucisan.xyz/AlphaGomoku.html</loc>
+    
+    <lastmod>2025-12-12</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -136,13 +136,6 @@
   </url>
   
   <url>
-    <loc>https://choucisan.xyz/tags/DPO/</loc>
-    <lastmod>2025-12-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://choucisan.xyz/tags/Blog/</loc>
     <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -157,7 +150,7 @@
   </url>
   
   <url>
-    <loc>https://choucisan.xyz/tags/GRPO/</loc>
+    <loc>https://choucisan.xyz/tags/DPO/</loc>
     <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -165,6 +158,27 @@
   
   <url>
     <loc>https://choucisan.xyz/tags/DQN/</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://choucisan.xyz/tags/GRPO/</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://choucisan.xyz/tags/Tools/</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://choucisan.xyz/tags/Productivity/</loc>
     <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -205,24 +219,10 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>https://choucisan.xyz/tags/Tools/</loc>
-    <lastmod>2025-12-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://choucisan.xyz/tags/Productivity/</loc>
-    <lastmod>2025-12-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
   
   <url>
-    <loc>https://choucisan.xyz/categories/Paper/</loc>
+    <loc>https://choucisan.xyz/categories/Notes/</loc>
     <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -236,7 +236,7 @@
   </url>
   
   <url>
-    <loc>https://choucisan.xyz/categories/Paper/Reinforcement-Learning/</loc>
+    <loc>https://choucisan.xyz/categories/Notes/Reinforcement-Learning/</loc>
     <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
