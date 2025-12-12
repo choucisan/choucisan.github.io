@@ -101,6 +101,20 @@
 
   
   <url>
+    <loc>https://choucisan.xyz/tags/Blog/</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://choucisan.xyz/tags/Tool/</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://choucisan.xyz/tags/Research/</loc>
     <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -130,20 +144,6 @@
   
   <url>
     <loc>https://choucisan.xyz/tags/AlphaGo/</loc>
-    <lastmod>2025-12-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://choucisan.xyz/tags/Blog/</loc>
-    <lastmod>2025-12-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://choucisan.xyz/tags/Tool/</loc>
     <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -222,13 +222,6 @@
 
   
   <url>
-    <loc>https://choucisan.xyz/categories/Notes/</loc>
-    <lastmod>2025-12-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://choucisan.xyz/categories/Tech/</loc>
     <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -236,7 +229,7 @@
   </url>
   
   <url>
-    <loc>https://choucisan.xyz/categories/Notes/Reinforcement-Learning/</loc>
+    <loc>https://choucisan.xyz/categories/Notes/</loc>
     <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -244,6 +237,13 @@
   
   <url>
     <loc>https://choucisan.xyz/categories/Tech/Info/</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://choucisan.xyz/categories/Notes/Reinforcement-Learning/</loc>
     <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
