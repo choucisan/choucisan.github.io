@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+
+const {
+  title = 'OneThree',
+  description = 'Personal website and writing archive.',
+  headerMode = 'auto',
+  bodyClass = ''
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body class={bodyClass}>
+    <header class={`site-header ${headerMode === 'glass' ? 'is-visible' : ''}`} data-scroll-header data-header-mode={headerMode}>
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="/">
+          <img class="brand-logo" src="/assets/logo/title.png" alt="OneThree" />
+        </a>
+        <div class="nav-links">
+          <a href="/publications/">Publications</a>
+          <a href="/collections/">Collections</a>
+          <a href="/blogs/">Blogs</a>
+          <a href="/about/">About</a>
+        </div>
+        <a class="nav-button" href="https://github.com/choucisan" target="_blank" rel="noreferrer">
+          <svg class="github-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12 2C6.48 2 2 6.59 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.22-3.37-1.22-.45-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.35 9.35 0 0 1 12 6.98c.85 0 1.71.12 2.51.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.81 0 .27.18.59.69.49A10.16 10.16 0 0 0 22 12.25C22 6.59 17.52 2 12 2Z" />
+          </svg>
+          <span>GitHub</span>
+        </a>
+      </nav>
+    </header>
+    <slot />
+    <footer class="footer">
+      <div class="footer-illustration" aria-hidden="true">
+        <img class="footer-illustration-image" src="/assets/footer/footer.png" alt="" loading="lazy" />
+      </div>
+      <div class="container footer-inner">
+        <span>@2026 OneThree</span>
+        <span class="footer-note">
+          This site is visually inspired by <a href="https://www.callbaba.com/" target="_blank" rel="noreferrer">callbaba.com</a>. With thanks and respect; no affiliation is implied. This is a non-commercial, non-profit personal website.
+        </span>
+      </div>
+    </footer>
+    <script>
+      const header = document.querySelector('[data-scroll-header]');
+      const hero = document.querySelector('.hero');
+
+      const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+      const updateScene = () => {
+        const fixedGlass = header?.dataset.headerMode === 'glass';
+        header?.classList.toggle('is-visible', fixedGlass || window.scrollY > 80);
+
+        if (!hero) return;
+
+        const progress = clamp(window.scrollY / Math.min(hero.clientHeight * 0.34, 420), 0, 1);
+        const cloudDriftX = -progress * Math.min(window.innerWidth * 0.22, 360);
+        const cloudDriftY = -progress * Math.min(window.innerHeight * 0.18, 150);
+        const geeseDriftX = progress * Math.min(window.innerWidth * 0.16, 260);
+        const geeseDriftY = -progress * Math.min(window.innerHeight * 0.06, 54);
+
+        hero.style.setProperty('--hero-cloud-drift-x', `${cloudDriftX}px`);
+        hero.style.setProperty('--hero-cloud-drift-y', `${cloudDriftY}px`);
+        hero.style.setProperty('--hero-geese-drift-x', `${geeseDriftX}px`);
+        hero.style.setProperty('--hero-geese-drift-y', `${geeseDriftY}px`);
+      };
+
+      updateScene();
+      window.addEventListener('scroll', updateScene, { passive: true });
+      window.addEventListener('resize', updateScene);
+
+      const revealScenes = document.querySelectorAll('[data-reveal-scene]');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('is-visible');
+        });
+      }, { threshold: 0.28 });
+
+      revealScenes.forEach((scene) => revealObserver.observe(scene));
+    </script>
+  </body>
+</html>

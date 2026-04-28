@@ -1,0 +1,111 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PublicationCard from '../components/PublicationCard.astro';
+import CollectionCard from '../components/CollectionCard.astro';
+import BlogCard from '../components/BlogCard.astro';
+
+const publications = (await getCollection('publications'))
+  .filter((item) => !item.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const collectionItems = (await getCollection('collections'))
+  .filter((item) => !item.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const blogItems = (await getCollection('blogs'))
+  .filter((item) => !item.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+<BaseLayout title="OneThree'Web" description="Personal website, writing, and work archive.">
+  <main>
+    <section class="hero">
+      <div class="hero-art" aria-hidden="true">
+        <div class="hero-cloud">
+          <img class="hero-cloud-image" src="/assets/hero/cloud-large.png" alt="" />
+        </div>
+        <div class="geese">
+          <img class="goose goose-1" src="/assets/hero/goose-left.png" alt="" />
+          <img class="goose goose-2" src="/assets/hero/goose-main.png" alt="" />
+          <img class="goose goose-3" src="/assets/hero/goose-right.png" alt="" />
+          <img class="goose goose-4" src="/assets/hero/goose-main.png" alt="" />
+          <img class="goose goose-5" src="/assets/hero/goose-small.png" alt="" />
+        </div>
+      </div>
+      <div class="container hero-grid">
+        <div class="hero-copy-block">
+          <h1 class="hero-title">Keeping imagination<br />is <em>hard.</em></h1>
+          <p class="hero-copy">Find my publications, projects, essays, and personal information.</p>
+          <div class="hero-actions">
+            <a class="hero-explore-button" href="/publications/">
+              <span>Explore my publications</span>
+              <img src="/assets/hero/bird-button.svg" alt="" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="publications">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">What’s <em>new</em> on my publication</h2>
+            <p class="section-copy">All papers are accepted by international conferences or journals.</p>
+          </div>
+          <a class="button section-cta" href="/publications/">All Publications <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="card-grid">
+          {publications.map((item) => <PublicationCard item={item} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="pink-cloud-transition" data-reveal-scene aria-hidden="true">
+      <img class="pink-cloud pink-cloud-left" src="/assets/scene/pink-cloud.png" alt="" loading="lazy" />
+      <img class="pink-cloud pink-cloud-right" src="/assets/scene/pink-cloud.png" alt="" loading="lazy" />
+      <img class="pink-cloud-bird pink-cloud-bird-large" src="/assets/hero/goose-main.png" alt="" loading="lazy" />
+      <img class="pink-cloud-bird pink-cloud-bird-small" src="/assets/hero/goose-left.png" alt="" loading="lazy" />
+    </section>
+
+    <section class="section" id="collections">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">What’s <em>new</em> on my Collection</h2>
+            <p class="section-copy">Projects, datasets, and related resources are open-sourced on GitHub and Hugging Face.</p>
+          </div>
+          <a class="button section-cta" href="/collections/">All Collections <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="card-grid">
+          {collectionItems.map((item) => <CollectionCard item={item} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="garden-transition" data-reveal-scene aria-hidden="true">
+      <img class="transition-branch transition-branch-left" src="/assets/scene/branch-left.png" alt="" loading="lazy" />
+      <img class="transition-branch transition-branch-right" src="/assets/scene/branch-right.png" alt="" loading="lazy" />
+      <img class="transition-dove transition-dove-large" src="/assets/scene/dove-large.png" alt="" loading="lazy" />
+      <img class="transition-dove transition-dove-small" src="/assets/scene/dove-small.png" alt="" loading="lazy" />
+    </section>
+
+    <section class="section" id="blogs">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">What’s <em>new</em> on my Blog</h2>
+            <p class="section-copy">Notes on computer vision, natural language processing, multimodal learning, and research practice.</p>
+          </div>
+          <a class="button section-cta" href="/blogs/">All Blogs <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="card-grid">
+          {blogItems.map((item) => <BlogCard item={item} />)}
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
