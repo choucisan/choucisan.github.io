@@ -1385,6 +1385,7 @@ img { max-width: 100%; display: block; }
 
 .about-story {
   position: relative;
+  z-index: 2;
   min-height: 138vh;
   padding: 220px 0 38vh;
   overflow: hidden;
@@ -1486,6 +1487,62 @@ img { max-width: 100%; display: block; }
   right: -42vw;
   width: min(1360px, 88vw);
   transform: translateX(var(--about-cloud-right-x)) translateY(var(--about-cloud-right-y));
+}
+
+.about-contact {
+  position: relative;
+  z-index: 1;
+  margin: -6vh 0 0;
+  padding: 13vh 0 8vh;
+  color: var(--cream);
+}
+
+.about-contact-grid {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.48fr) minmax(0, 1.8fr);
+  gap: clamp(42px, 6vw, 112px);
+  align-items: center;
+}
+
+.contact-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 1.35vw, 24px);
+}
+
+.contact-card {
+  width: clamp(62px, 5vw, 78px);
+  height: clamp(62px, 5vw, 78px);
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid rgba(30, 31, 30, 0.08);
+  border-radius: clamp(18px, 1.55vw, 23px);
+  color: var(--ink);
+  background: rgba(250, 249, 241, 0.96);
+  box-shadow: 0 16px 34px rgba(30, 31, 30, 0.12);
+  overflow: hidden;
+  transition: transform 260ms ease, background 260ms ease, box-shadow 260ms ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-3px);
+  background: var(--cream);
+  box-shadow: 0 20px 44px rgba(30, 31, 30, 0.18);
+}
+
+.contact-icon {
+  width: clamp(32px, 2.6vw, 42px);
+  height: clamp(32px, 2.6vw, 42px);
+  object-fit: contain;
+}
+
+.contact-icon-gmail {
+  width: clamp(38px, 3.15vw, 50px);
+}
+
+.contact-icon-hf {
+  width: clamp(40px, 3.3vw, 54px);
+  height: clamp(40px, 3.3vw, 54px);
 }
 
 .about-garden-transition {
@@ -1639,6 +1696,10 @@ img { max-width: 100%; display: block; }
   .about-cloud { width: 150vw; bottom: -12vh; }
   .about-cloud-left { left: -92vw; bottom: 0; width: 176vw; }
   .about-cloud-right { right: -88vw; }
+  .about-contact { margin-top: -5vh; padding: 9vh 0 5vh; }
+  .about-contact-grid { grid-template-columns: 1fr; gap: 24px; align-items: start; }
+  .contact-links { gap: 14px; }
+  .contact-card { width: 62px; height: 62px; }
   .about-garden-transition { height: 340px; margin-top: 3vh; }
   .about-pink-cloud-transition { height: 310px; margin: 8vh 0 0; }
   .about-pink-cloud-transition .pink-cloud-bird-large { left: 30vw; top: 152px; }
@@ -1660,4 +1721,5 @@ img { max-width: 100%; display: block; }
   .about-story { min-height: 168vh; padding-top: 132px; }
   .about-label { font-size: clamp(30px, 11vw, 48px); }
   .about-columns p { font-size: 16px; }
+  .about-contact { margin-top: -10vh; }
 }
