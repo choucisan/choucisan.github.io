@@ -106,7 +106,7 @@ with zipfile.ZipFile(zip_path, 'r') as z:
     z.extractall("Dog100K")
 ```
 
-You can also load a local copy from the JSONL annotation file:
+You can also load the JSONL annotation file:
 
 ```python
 import json
