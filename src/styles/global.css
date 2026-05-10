@@ -1014,12 +1014,6 @@ img { max-width: 100%; display: block; }
   font-weight: 620;
 }
 
-.detail-meta-link.is-huggingface {
-  color: #07395f;
-  border: 1px solid rgba(7, 57, 95, 0.22);
-  background: rgba(255, 255, 255, 0.72);
-}
-
 .detail-cover {
   overflow: hidden;
   border-radius: 28px;
@@ -1227,19 +1221,27 @@ img { max-width: 100%; display: block; }
   margin: 30px 0 42px;
   padding: 24px 26px;
   overflow-x: auto;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(7, 57, 95, 0.12);
   border-radius: 22px;
-  background: #20262c !important;
-  box-shadow: 0 22px 60px rgba(30, 31, 30, 0.13);
+  color: #07395f;
+  background: rgba(255, 255, 255, 0.72) !important;
+  box-shadow: 0 18px 48px rgba(30, 31, 30, 0.07);
 }
 
 .prose pre code {
   display: block;
   min-width: max-content;
-  color: inherit;
+  color: #07395f;
   background: transparent;
   font-size: 15px;
   line-height: 1.55;
+}
+
+.prose pre code span[style*="color:#E1E4E8"],
+.prose pre code span[style*="color: #E1E4E8"],
+.prose pre code span[style*="color:#e1e4e8"],
+.prose pre code span[style*="color: #e1e4e8"] {
+  color: #07395f !important;
 }
 
 .prose :not(pre) > code {
