@@ -37,10 +37,10 @@ If your gateway does not handle CORS correctly, the Office plugin will refuse to
 ## Step 1: Install the Claude for Microsoft 365 Plugin
 
 1. Visit https://claude.com/claude-for-microsoft-365
-![Claude for Microsoft 365](/public/assets/blogs/claude4office/office365.png) 
+![Claude for Microsoft 365](/assets/blogs/claude4office/office365.png) 
 2. Download and install the Office add-in
 3. Open Word, Excel, or PowerPoint and confirm the plugin appears in the ribbon
-![Open Microsoft 365](/public/assets/blogs/claude4office/ppt.png)
+![Open Microsoft 365](/assets/blogs/claude4office/ppt.png)
 
 
 
@@ -181,7 +181,7 @@ curl -k -X POST https://13.29.90.133:8317/v1/messages \
 5. Once connected, the plugin is ready to use
 
 
-![Open Microsoft 365](/public/assets/blogs/claude4office/getclaude.png)
+![Open Microsoft 365](/assets/blogs/claude4office/getclaude.png)
 
 
 ## Frequently Asked Questions
