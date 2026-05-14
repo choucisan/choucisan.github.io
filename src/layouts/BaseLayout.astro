@@ -5,7 +5,8 @@ const {
   title = 'OneThree',
   description = 'Personal website and writing archive.',
   headerMode = 'auto',
-  bodyClass = ''
+  bodyClass = '',
+  showSiteCounter = false
 } = Astro.props;
 ---
 <!doctype html>
@@ -42,7 +43,10 @@ const {
         <img class="footer-illustration-image" src="/assets/footer/footer.png" alt="" loading="lazy" />
       </div>
       <div class="container footer-inner">
-        <span>@2026 OneThree</span>
+        <span class="footer-brand-line">
+          <span>@2026 OneThree</span>
+          {showSiteCounter && <span class="footer-site-counter" data-site-views>Site views — · Visitors —</span>}
+        </span>
         <span class="footer-note">
           This site is visually inspired by <a href="https://www.callbaba.com/" target="_blank" rel="noreferrer">callbaba.com</a>. With thanks and respect; no affiliation is implied. This is a non-commercial, non-profit personal website.
         </span>
@@ -85,5 +89,6 @@ const {
 
       revealScenes.forEach((scene) => revealObserver.observe(scene));
     </script>
+    <script src="/assets/scripts/supabase-counter.js" defer></script>
   </body>
 </html>

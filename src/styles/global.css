@@ -1345,6 +1345,30 @@ img { max-width: 100%; display: block; }
   font-size: 13px;
 }
 
+.footer-brand-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.footer-site-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(30, 31, 30, 0.54);
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.footer-site-counter::before {
+  content: "";
+  width: 1px;
+  height: 12px;
+  background: rgba(30, 31, 30, 0.18);
+}
+
 .footer-note {
   max-width: none;
   font-size: 10px;

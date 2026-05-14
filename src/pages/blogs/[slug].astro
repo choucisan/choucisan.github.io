@@ -26,6 +26,7 @@ const date = item.data.pubDate.toLocaleDateString('en-US', {
         <div class="detail-meta">
           <span>{date}</span>
           {item.data.tags.map((tag) => <span>{tag}</span>)}
+          <span class="detail-view-counter" data-page-views hidden>views —</span>
         </div>
         <div class="detail-cover detail-cover-wide">
           <img src={item.data.image} alt="" />
