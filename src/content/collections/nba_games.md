@@ -5,7 +5,7 @@ pubDate: 2026-05-19
 platform: "Hugging Face"
 tags: ["Dataset", "NBA", "Sports Video", "Long-Video Understanding", "Multimodal"]
 image: /assets/collections/nba_games/nba.jpeg
-githubUrl: "https://github.com/choucisan/nab_games"
+githubUrl: "https://github.com/choucisan/nba_games"
 huggingfaceUrl: "https://huggingface.co/datasets/choucsan/NBA_Games"
 ---
 
