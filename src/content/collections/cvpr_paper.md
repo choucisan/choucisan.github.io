@@ -1,7 +1,7 @@
 ---
 title: "CVPR Papers"
 description: "A comprehensive CVPR paper dataset from 2013 to present, including metadata, abstracts, BibTeX records, download links, and full-paper PDFs for computer vision research."
-pubDate: 2026-05-16
+pubDate: 2026-05-06
 platform: "Hugging Face"
 tags: ["Dataset", "Computer Vision", "Research Papers", "CVPR", "OCR"]
 image: /assets/collections/cvpr_paper/cvpr.jpeg
