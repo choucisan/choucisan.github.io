@@ -325,7 +325,7 @@ NBA Games can be used in several research and development settings.
 
 ## Links
 
-- **GitHub:** [github.com/choucisan/nba_games](https://github.com/choucisan/nab_games)
+- **GitHub:** [github.com/choucisan/nba_games](https://github.com/choucisan/nba_games)
 - **Hugging Face:** [huggingface.co/datasets/choucsan/NBA_Games](https://huggingface.co/datasets/choucsan/NBA_Games)
 - **YouTube Playlist:** [PLNbBj4TorBWerlzB1A5iM3XjwigqFG8sY](https://www.youtube.com/playlist?list=PLNbBj4TorBWerlzB1A5iM3XjwigqFG8sY)
 
