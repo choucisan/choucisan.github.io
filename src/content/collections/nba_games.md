@@ -3,7 +3,7 @@ title: "NBA Games"
 description: "A full-game NBA video metadata dataset with 189 verified YouTube games linked to official NBA.com box scores and play-by-play annotations for long-video and multimodal sports research."
 pubDate: 2026-05-19
 platform: "Hugging Face"
-tags: ["Dataset", "NBA", "Sports Video", "Long-Video Understanding", "Multimodal"]
+tags: ["Dataset", "NBA", "Sports", "Long-Video Understanding", "Multimodal", "Computer Vision"]
 image: /assets/collections/nba_games/nba.jpeg
 githubUrl: "https://github.com/choucisan/nba_games"
 huggingfaceUrl: "https://huggingface.co/datasets/choucsan/NBA_Games"
