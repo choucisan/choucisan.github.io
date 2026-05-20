@@ -4,7 +4,7 @@ import '../styles/global.css';
 const {
   title = 'OneThree',
   description = 'Personal website for publications, datasets, projects, and research notes of choucisan.',
-  image = '/assets/logo/avatar.jpeg',
+  image = '/assets/logo/avatar-rounded.png',
   headerMode = 'auto',
   bodyClass = '',
   showSiteCounter = false
@@ -26,7 +26,8 @@ const previewImage = new URL(image, siteUrl).toString();
     <meta name="google-site-verification" content="kDuimJ6Kx59N7ZBwPgPk0l4SM5_rn7Pwb71CpM4w5SM" />
     <meta name="theme-color" content="#315f56" />
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="512x512" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta property="og:site_name" content="OneThree" />
