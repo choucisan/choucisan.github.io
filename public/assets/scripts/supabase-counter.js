@@ -1,4 +1,7 @@
 (() => {
+  if (window.__onethreeCounterStarted) return;
+  window.__onethreeCounterStarted = true;
+
   const config = {
     supabaseUrl: 'https://owdsphmfgxptpinffufn.supabase.co',
     supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im93ZHNwaG1mZ3hwdHBpbmZmdWZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg3MjI5NjYsImV4cCI6MjA5NDI5ODk2Nn0.TXYVtvjdYrMYluKOiWJTbY9j0KhecOGiTfzfed8kx6A',
@@ -34,7 +37,10 @@
 
   const updatePageDisplay = (counter) => {
     pageTargets.forEach((target) => {
-      target.textContent = `views ${formatNumber(counter?.pv ?? 0)}`;
+      const label = target.dataset.pageViewsLabel;
+      target.textContent = label
+        ? `${label} ${formatNumber(counter?.pv ?? 0)}`
+        : `views ${formatNumber(counter?.pv ?? 0)}`;
       target.hidden = false;
     });
   };

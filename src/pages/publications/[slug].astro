@@ -30,11 +30,13 @@ const rewriteAssetPaths = (html) => html
 
 const renderedHead = rewriteAssetPaths(headContent);
 const renderedBody = rewriteAssetPaths(bodyContent);
+const hasMetaDescription = /<meta\s+[^>]*name=["']description["']/i.test(headContent);
 ---
 <!doctype html>
 <html lang="en" class="light">
   <head>
     <Fragment set:html={renderedHead} />
+    {!hasMetaDescription && <meta name="description" content={item.data.description} />}
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/favicon.png" type="image/png" sizes="512x512" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

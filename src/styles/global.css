@@ -1348,7 +1348,7 @@ img { max-width: 100%; display: block; }
 .footer-brand-line {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   white-space: nowrap;
 }
 
@@ -1363,10 +1363,11 @@ img { max-width: 100%; display: block; }
 }
 
 .footer-site-counter::before {
-  content: "";
-  width: 1px;
-  height: 12px;
-  background: rgba(30, 31, 30, 0.18);
+  content: "｜";
+  width: auto;
+  height: auto;
+  background: none;
+  color: rgba(30, 31, 30, 0.36);
 }
 
 .footer-note {
@@ -1384,10 +1385,6 @@ img { max-width: 100%; display: block; }
 
 .about-body {
   background: rgb(56, 97, 150);
-}
-
-.about-body .footer {
-  display: none;
 }
 
 .about-page {
