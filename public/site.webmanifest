@@ -1,0 +1,21 @@
+{
+  "name": "OneThree",
+  "short_name": "OneThree",
+  "description": "Personal website for publications, datasets, projects, and research notes on computer vision, multimodal learning, NLP, and AI tools.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbf1d8",
+  "theme_color": "#315f56",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

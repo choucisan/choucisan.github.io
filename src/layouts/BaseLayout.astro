@@ -3,11 +3,16 @@ import '../styles/global.css';
 
 const {
   title = 'OneThree',
-  description = 'Personal website and writing archive.',
+  description = 'Personal website for publications, datasets, projects, and research notes of choucisan.',
+  image = '/assets/logo/avatar.jpeg',
   headerMode = 'auto',
   bodyClass = '',
   showSiteCounter = false
 } = Astro.props;
+
+const siteUrl = 'https://choucisan.github.io';
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const previewImage = new URL(image, siteUrl).toString();
 ---
 <!doctype html>
 <html lang="en">
@@ -15,6 +20,23 @@ const {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="author" content="OneThree" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#315f56" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:site_name" content="OneThree" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={previewImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={previewImage} />
     <title>{title}</title>
   </head>
   <body class={bodyClass}>

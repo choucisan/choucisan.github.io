@@ -15,7 +15,7 @@ const date = item.data.pubDate.toLocaleDateString('en-US', {
   day: 'numeric'
 });
 ---
-<BaseLayout title={`${item.data.title} | Collections`} description={item.data.description} headerMode="glass">
+<BaseLayout title={`${item.data.title} | Collections`} description={item.data.description} image={item.data.image} headerMode="glass">
   <main class="collection-detail">
     <section class="detail-hero">
       <div class="container detail-hero-stack">

@@ -20,7 +20,7 @@ const blogItems = (await getCollection('blogs'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 ---
-<BaseLayout title="OneThree'Web" description="Personal website, writing, and work archive." showSiteCounter={true}>
+<BaseLayout title="OneThree | Research, Datasets, and Notes" description="OneThree is a personal website for publications, open-source datasets, projects, essays, and research notes on computer vision, multimodal learning, NLP, and AI tools." showSiteCounter={true}>
   <main>
     <section class="hero">
       <div class="hero-art" aria-hidden="true">

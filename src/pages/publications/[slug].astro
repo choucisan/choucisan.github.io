@@ -35,6 +35,10 @@ const renderedBody = rewriteAssetPaths(bodyContent);
 <html lang="en" class="light">
   <head>
     <Fragment set:html={renderedHead} />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#315f56" />
     <style>
       .theme-toggle,
       .back-to-top {
