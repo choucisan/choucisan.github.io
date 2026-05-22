@@ -7,7 +7,8 @@ const {
   image = '/assets/logo/avatar-rounded.png',
   headerMode = 'auto',
   bodyClass = '',
-  showSiteCounter = false
+  showSiteCounter = false,
+  showFooterIllustration = true
 } = Astro.props;
 
 const siteUrl = 'https://choucisan.github.io';
@@ -64,9 +65,11 @@ const previewImage = new URL(image, siteUrl).toString();
     </header>
     <slot />
     <footer class="footer">
-      <div class="footer-illustration" aria-hidden="true">
-        <img class="footer-illustration-image" src="/assets/footer/footer.png" alt="" loading="lazy" />
-      </div>
+      {showFooterIllustration && (
+        <div class="footer-illustration" aria-hidden="true">
+          <img class="footer-illustration-image" src="/assets/footer/footer.png" alt="" loading="lazy" />
+        </div>
+      )}
       <div class="container footer-inner">
         <span class="footer-brand-line">
           <span>@2026 OneThree</span>

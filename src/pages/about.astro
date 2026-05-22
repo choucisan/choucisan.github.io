@@ -1,7 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import aboutStats from '../data/about-stats.json';
+
+const formatNumber = (value: number | null | undefined) =>
+  typeof value === 'number' ? new Intl.NumberFormat('en-US').format(value) : 'Updating';
+
+const githubStars = formatNumber(aboutStats.github?.stars);
+const huggingFaceDownloads = formatNumber(aboutStats.huggingface?.downloads);
+const xiaohongshuLikes =
+  aboutStats.xiaohongshu?.display ?? formatNumber(aboutStats.xiaohongshu?.likesAndCollects);
 ---
-<BaseLayout title="About | OneThree" description="A short note about the belief behind this personal website." bodyClass="about-body">
+<BaseLayout title="About | OneThree" description="A short note about the belief behind this personal website." bodyClass="about-body" showFooterIllustration={false}>
   <main class="about-page" data-about-page>
     <section class="about-story">
       <div class="container about-story-grid">
@@ -23,13 +32,40 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p class="about-label">Contact Me</p>
         <div class="contact-links" aria-label="Contact links">
           <a class="contact-card" href="mailto:choucisan@gmail.com" aria-label="Email choucisan@gmail.com" title="choucisan@gmail.com">
-            <img class="contact-icon contact-icon-gmail" src="/assets/icons/gmail.svg" alt="" loading="lazy" />
+            <span class="contact-icon-wrap">
+              <img class="contact-icon contact-icon-gmail" src="/assets/icons/gmail.svg" alt="" loading="lazy" />
+            </span>
+            <span class="contact-copy">
+              <span class="contact-name">Email</span>
+              <span class="contact-stat">choucisan@gmail.com</span>
+            </span>
           </a>
           <a class="contact-card" href="https://github.com/choucisan" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub">
-            <img class="contact-icon contact-icon-github" src="/assets/icons/github.svg" alt="" loading="lazy" />
+            <span class="contact-icon-wrap">
+              <img class="contact-icon contact-icon-github" src="/assets/icons/github.svg" alt="" loading="lazy" />
+            </span>
+            <span class="contact-copy">
+              <span class="contact-name">GitHub</span>
+              <span class="contact-stat">{githubStars} total stars</span>
+            </span>
           </a>
           <a class="contact-card" href="https://huggingface.co/choucsan" target="_blank" rel="noreferrer" aria-label="Hugging Face" title="Hugging Face">
-            <img class="contact-icon contact-icon-hf" src="https://huggingface.co/datasets/huggingface/brand-assets/resolve/main/hf-logo.svg" alt="" loading="lazy" />
+            <span class="contact-icon-wrap">
+              <img class="contact-icon contact-icon-hf" src="https://huggingface.co/datasets/huggingface/brand-assets/resolve/main/hf-logo.svg" alt="" loading="lazy" />
+            </span>
+            <span class="contact-copy">
+              <span class="contact-name">Hugging Face</span>
+              <span class="contact-stat">{huggingFaceDownloads} total downloads</span>
+            </span>
+          </a>
+          <a class="contact-card" href="https://www.xiaohongshu.com/user/profile/624aab39000000001000d3bc" target="_blank" rel="noreferrer" aria-label="Xiaohongshu" title="Xiaohongshu">
+            <span class="contact-icon-wrap">
+              <img class="contact-icon contact-icon-xhs" src="/assets/icons/xiaohongshu.svg" alt="" loading="lazy" />
+            </span>
+            <span class="contact-copy">
+              <span class="contact-name">Xiaohongshu</span>
+              <span class="contact-stat">{xiaohongshuLikes} likes & collects</span>
+            </span>
           </a>
         </div>
       </div>

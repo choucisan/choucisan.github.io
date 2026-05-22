@@ -1,0 +1,24 @@
+{
+  "updatedAt": "2026-05-22T12:25:45.165Z",
+  "github": {
+    "stars": 44,
+    "repos": 17,
+    "source": "https://github.com/choucisan?tab=repositories"
+  },
+  "huggingface": {
+    "downloads": 1396,
+    "projects": 4,
+    "source": "https://huggingface.co/choucsan"
+  },
+  "xiaohongshu": {
+    "likes": 247,
+    "collects": null,
+    "likesAndCollects": 247,
+    "visiblePosts": 5,
+    "countedPosts": 5,
+    "hasCompleteCollects": false,
+    "display": "534",
+    "source": "https://www.xiaohongshu.com/user/profile/624aab39000000001000d3bc",
+    "strategy": "cached-post-sum"
+  }
+}
