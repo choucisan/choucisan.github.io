@@ -28,6 +28,7 @@ const date = item.data.pubDate.toLocaleDateString('en-US', {
           {item.data.tags.map((tag) => <span>{tag}</span>)}
           {item.data.githubUrl && <a class="detail-meta-link is-github" href={item.data.githubUrl} target="_blank" rel="noreferrer">GitHub</a>}
           {item.data.huggingfaceUrl && <a class="detail-meta-link is-huggingface" href={item.data.huggingfaceUrl} target="_blank" rel="noreferrer">Hugging Face</a>}
+          {item.data.bilibiliUrl && <a class="detail-meta-link is-bilibili" href={item.data.bilibiliUrl} target="_blank" rel="noreferrer">Bilibili</a>}
           <span class="detail-view-counter" data-page-views hidden>views —</span>
         </div>
         <div class="detail-cover detail-cover-wide">

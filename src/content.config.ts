@@ -37,6 +37,7 @@ const collectionItems = defineCollection({
     image: z.string(),
     githubUrl: z.string().url().optional(),
     huggingfaceUrl: z.string().url().optional(),
+    bilibiliUrl: z.string().url().optional(),
     draft: z.boolean().default(false)
   })
 });
