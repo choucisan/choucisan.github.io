@@ -3,7 +3,7 @@ title: "Air Minecraft"
 description: "A 6-DOF free-flight drone simulator built on the Luanti voxel engine, reimagining Minecraft-style worlds for aerial robotics research, spatial intelligence, and reinforcement learning."
 pubDate: 2026-05-25
 platform: "GitHub"
-tags: ["Spatial Intelligence", "Minecraft", "Drone", "Reinforcement Learning", "Simulation", "UAV",]
+tags: ["Simulation","Spatial Intelligence", "Minecraft", "Drone", "Reinforcement Learning",  "UAV",]
 image: /assets/collections/airminecraft/Minecraft.jpeg
 githubUrl: "https://github.com/choucisan/AirMinecraft"
 bilibiliUrl: "https://www.bilibili.com/video/BV1Z6Gs6NEyH/?vd_source=5d23cf5cb25f82b0c4c15e1666a63f46"
