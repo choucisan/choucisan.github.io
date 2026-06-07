@@ -1419,6 +1419,10 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   border-radius: 11px;
   color: rgba(30, 31, 30, 0.7);
   background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 760;
+  line-height: 1;
   cursor: pointer;
 }
 
@@ -1592,6 +1596,7 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   border: 0;
   color: #07395f;
   background: transparent;
+  font-family: inherit;
   font-size: 12px;
   font-weight: 780;
   cursor: pointer;
@@ -1614,7 +1619,10 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   border-radius: 14px;
   color: rgba(30, 31, 30, 0.84);
   background: rgba(250, 249, 241, 0.72);
+  font-family: inherit;
+  font-size: 14px;
   font-weight: 760;
+  line-height: 1.25;
   letter-spacing: -0.03em;
 }
 
@@ -1660,7 +1668,8 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   flex: 0 0 auto;
   color: inherit;
   opacity: 0.64;
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 760;
 }
 
 .cvpr-paper-results {
@@ -1824,7 +1833,11 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   border-radius: 13px;
   color: var(--cream);
   background: var(--ink);
+  font-family: inherit;
+  font-size: 14px;
   font-weight: 720;
+  line-height: 1;
+  letter-spacing: -0.01em;
   cursor: pointer;
 }
 
