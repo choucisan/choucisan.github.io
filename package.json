@@ -9,7 +9,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "indexnow": "node scripts/submit-indexnow.mjs",
-    "prebuild": "node scripts/update-about-stats.mjs"
+    "prebuild": "node scripts/update-about-stats.mjs && node scripts/sync-cvpr2026-data.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "latest",
