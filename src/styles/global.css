@@ -1514,7 +1514,10 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   color: rgba(30, 31, 30, 0.78);
   background: rgba(255, 255, 255, 0.82);
   box-shadow: 0 24px 80px rgba(30, 31, 30, 0.08);
+  font-family: inherit;
+  font-size: 14px;
   font-weight: 760;
+  line-height: 1;
   letter-spacing: -0.03em;
   cursor: pointer;
 }
