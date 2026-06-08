@@ -105,6 +105,10 @@ img { max-width: 100%; display: block; }
   opacity: 0.86;
 }
 
+.site-header.is-visible .brand-mark {
+  opacity: 0.94;
+}
+
 .site-header.is-visible .nav-links {
   color: rgba(30, 31, 30, 0.78);
 }
@@ -123,7 +127,15 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   display: inline-flex;
   align-items: center;
   justify-self: start;
+  gap: 5px;
   color: var(--cream);
+}
+
+.brand-mark {
+  width: clamp(36px, 2.75vw, 46px);
+  height: clamp(36px, 2.75vw, 46px);
+  object-fit: contain;
+  transition: filter 320ms ease, opacity 320ms ease;
 }
 
 .brand-logo {
