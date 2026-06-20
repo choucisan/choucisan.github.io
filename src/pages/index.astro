@@ -15,6 +15,11 @@ const collectionItems = (await getCollection('collections'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
+const workshopItems = (await getCollection('workshops'))
+  .filter((item) => !item.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
 const blogItems = (await getCollection('blogs'))
   .filter((item) => !item.data.draft)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -82,6 +87,26 @@ const blogItems = (await getCollection('blogs'))
         </div>
         <div class="card-grid">
           {collectionItems.map((item) => <CollectionCard item={item} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="collection-cloud-transition" data-reveal-scene aria-hidden="true">
+      <img class="collection-transition-cloud collection-transition-cloud-left" src="/assets/hero/cloud-large.png" alt="" loading="lazy" />
+      <img class="collection-transition-cloud collection-transition-cloud-right" src="/assets/hero/cloud-large.png" alt="" loading="lazy" />
+    </section>
+
+    <section class="section" id="workshops">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">What’s <em>live</em> in my Workshop</h2>
+            <p class="section-copy">Interactive visualizations, live explorers, and hands-on research interfaces.</p>
+          </div>
+          <a class="button section-cta" href="/workshops/">All Workshops <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="card-grid">
+          {workshopItems.map((item) => <CollectionCard item={item} basePath="/workshops" />)}
         </div>
       </div>
     </section>

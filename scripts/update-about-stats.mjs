@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 const outputPath = path.join(process.cwd(), 'src', 'data', 'about-stats.json');
+const envLocalPath = path.join(process.cwd(), '.env.local');
 
 const config = {
   githubUser: 'choucisan',
@@ -19,6 +20,23 @@ const readExisting = async () => {
     return JSON.parse(await fs.readFile(outputPath, 'utf8'));
   } catch {
     return {};
+  }
+};
+
+const loadLocalEnv = async () => {
+  try {
+    const content = await fs.readFile(envLocalPath, 'utf8');
+    for (const line of content.split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#')) continue;
+      const match = trimmed.match(/^([A-Za-z_][A-Za-z0-9_]*)=(.*)$/);
+      if (!match) continue;
+      const [, key, rawValue] = match;
+      if (process.env[key] !== undefined) continue;
+      process.env[key] = rawValue.trim().replace(/^['"]|['"]$/g, '');
+    }
+  } catch {
+    // Optional local secrets file.
   }
 };
 
@@ -79,6 +97,16 @@ const compactNumber = (value) => {
   return new Intl.NumberFormat('en-US').format(value);
 };
 
+const envNumber = (name) => {
+  const raw = process.env[name];
+  if (!raw) return null;
+  const value = formatMaybeNumber(raw);
+  if (value === null) {
+    console.warn(`[about-stats] Ignored invalid ${name}: ${raw}`);
+  }
+  return value;
+};
+
 const fetchGitHubStats = async () => {
   let page = 1;
   let stars = 0;
@@ -104,6 +132,37 @@ const fetchGitHubStats = async () => {
   };
 };
 
+const extractHuggingFaceTotalDownloads = (html) => {
+  const patterns = [
+    /"totalDownloads"\s*:\s*(\d+)/i,
+    /"total_downloads"\s*:\s*(\d+)/i,
+    /"allTimeDownloads"\s*:\s*(\d+)/i,
+    /"downloadsAllTime"\s*:\s*(\d+)/i,
+    /Total\s+downloads[\s\S]{0,600}?([0-9][0-9,.\s]*[kKmM万千]?)/i,
+    /All[-\s]time\s+downloads[\s\S]{0,600}?([0-9][0-9,.\s]*[kKmM万千]?)/i
+  ];
+
+  for (const pattern of patterns) {
+    const match = html.match(pattern);
+    const value = match ? formatMaybeNumber(match[1]) : null;
+    if (value !== null) return value;
+  }
+
+  return null;
+};
+
+const fetchHuggingFaceSettingsDownloads = async (repoId, kind) => {
+  if (!process.env.HF_TOKEN) return null;
+  const prefix = kind === 'datasets' ? 'datasets/' : '';
+  const html = await fetchText(`https://huggingface.co/${prefix}${repoId}/settings`, {
+    timeout: 25000,
+    headers: {
+      Authorization: `Bearer ${process.env.HF_TOKEN}`
+    }
+  });
+  return extractHuggingFaceTotalDownloads(html);
+};
+
 const fetchHuggingFaceCollection = async (kind) => {
   const endpoint = kind === 'models' ? 'models' : 'datasets';
   const urls = [
@@ -123,9 +182,28 @@ const fetchHuggingFaceCollection = async (kind) => {
   }
 
   if (!data) throw lastError ?? new Error(`Unable to fetch Hugging Face ${endpoint}.`);
-  if (!Array.isArray(data)) return { downloads: 0, projects: 0 };
+  if (!Array.isArray(data)) return { monthlyDownloads: 0, totalDownloads: null, projects: 0 };
+
+  let totalDownloads = null;
+  if (process.env.HF_TOKEN) {
+    const repoIds = data.map((item) => item.id ?? item.modelId ?? item.datasetId).filter(Boolean);
+    const settingsDownloads = await mapWithConcurrency(repoIds, 3, async (repoId) => {
+      try {
+        return await fetchHuggingFaceSettingsDownloads(repoId, endpoint);
+      } catch (error) {
+        console.warn(`[about-stats] Hugging Face settings fetch failed for ${repoId}: ${error.message}`);
+        return null;
+      }
+    });
+    const knownDownloads = settingsDownloads.filter((value) => typeof value === 'number');
+    if (knownDownloads.length > 0) {
+      totalDownloads = knownDownloads.reduce((sum, value) => sum + value, 0);
+    }
+  }
+
   return {
-    downloads: data.reduce((sum, item) => sum + (item.downloads || 0), 0),
+    monthlyDownloads: data.reduce((sum, item) => sum + (item.downloads || 0), 0),
+    totalDownloads,
     projects: data.length
   };
 };
@@ -135,11 +213,20 @@ const fetchHuggingFaceStats = async () => {
     fetchHuggingFaceCollection('models'),
     fetchHuggingFaceCollection('datasets')
   ]);
+  const monthlyDownloads = models.monthlyDownloads + datasets.monthlyDownloads;
+  const totalDownloads = envNumber('HF_TOTAL_DOWNLOADS') ?? (
+    typeof models.totalDownloads === 'number' || typeof datasets.totalDownloads === 'number'
+      ? (models.totalDownloads ?? 0) + (datasets.totalDownloads ?? 0)
+      : null
+  );
 
   return {
-    downloads: models.downloads + datasets.downloads,
+    downloads: totalDownloads,
+    totalDownloads,
+    monthlyDownloads,
     projects: models.projects + datasets.projects,
-    source: `https://huggingface.co/${config.huggingFaceUser}`
+    source: `https://huggingface.co/${config.huggingFaceUser}`,
+    monthlySource: `https://huggingface.co/api/datasets?author=${config.huggingFaceUser}&limit=1000&full=true`
   };
 };
 
@@ -394,7 +481,22 @@ const keepManualDisplay = (nextValue, existingValue) => {
   };
 };
 
+const keepManualHuggingFaceTotal = (nextValue, existingValue) => {
+  const merged = keepOrDefault(nextValue, existingValue);
+  if (!merged || typeof merged !== 'object') return merged;
+
+  const existingTotal = existingValue?.totalDownloads ?? existingValue?.downloads ?? null;
+  const totalDownloads = merged.totalDownloads ?? existingTotal;
+
+  return {
+    ...merged,
+    downloads: totalDownloads,
+    totalDownloads
+  };
+};
+
 const run = async () => {
+  await loadLocalEnv();
   const existing = await readExisting();
   const [githubResult, huggingFaceResult, xiaohongshuResult] = await Promise.allSettled([
     fetchGitHubStats(),
@@ -408,7 +510,7 @@ const run = async () => {
       githubResult.status === 'fulfilled' ? githubResult.value : undefined,
       existing.github ?? { stars: null, repos: null, source: `https://github.com/${config.githubUser}?tab=repositories` }
     ),
-    huggingface: keepOrDefault(
+    huggingface: keepManualHuggingFaceTotal(
       huggingFaceResult.status === 'fulfilled' ? huggingFaceResult.value : undefined,
       existing.huggingface ?? { downloads: null, projects: null, source: `https://huggingface.co/${config.huggingFaceUser}` }
     ),

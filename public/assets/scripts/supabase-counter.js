@@ -18,7 +18,10 @@
   if (config.ignoreLocal && isLocalHost) return;
 
   const formatNumber = (value) => new Intl.NumberFormat('en-US').format(value || 0);
-  const normalizePath = () => window.location.pathname || '/';
+  const normalizePath = () => {
+    const explicitPath = pageTargets.find((target) => target.dataset.pageViewsPath)?.dataset.pageViewsPath;
+    return explicitPath || window.location.pathname || '/';
+  };
 
   const getVisitorId = () => {
     const key = 'onethree_visitor_id';

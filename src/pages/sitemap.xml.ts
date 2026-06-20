@@ -1,6 +1,6 @@
 import { getCollection } from 'astro:content';
 
-const staticRoutes = ['/', '/about/', '/blogs/', '/collections/', '/publications/'];
+const staticRoutes = ['/', '/about/', '/blogs/', '/collections/', '/publications/', '/workshops/'];
 
 const escapeXml = (value: string) =>
   value
@@ -11,17 +11,19 @@ const escapeXml = (value: string) =>
     .replace(/'/g, '&apos;');
 
 export async function GET({ site }: { site: URL }) {
-  const [blogs, collections, publications] = await Promise.all([
+  const [blogs, collections, publications, workshops] = await Promise.all([
     getCollection('blogs', (item) => !item.data.draft),
     getCollection('collections', (item) => !item.data.draft),
-    getCollection('publications', (item) => !item.data.draft)
+    getCollection('publications', (item) => !item.data.draft),
+    getCollection('workshops', (item) => !item.data.draft)
   ]);
 
   const entries = [
     ...staticRoutes.map((path) => ({ path })),
     ...blogs.map((item) => ({ path: `/blogs/${item.id}/`, lastmod: item.data.pubDate })),
     ...collections.map((item) => ({ path: `/collections/${item.id}/`, lastmod: item.data.pubDate })),
-    ...publications.map((item) => ({ path: `/publications/${item.id}/`, lastmod: item.data.pubDate }))
+    ...publications.map((item) => ({ path: `/publications/${item.id}/`, lastmod: item.data.pubDate })),
+    ...workshops.map((item) => ({ path: `/workshops/${item.id}/`, lastmod: item.data.pubDate }))
   ];
 
   const urls = entries

@@ -1,0 +1,87 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CollectionCard from '../../components/CollectionCard.astro';
+
+const workshopItems = (await getCollection('workshops'))
+  .filter((item) => !item.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const filterLabels = Array.from(
+  new Set(workshopItems.flatMap((item) => [item.data.platform, ...item.data.tags]))
+).filter(Boolean);
+---
+<BaseLayout title="Workshops | OneThree" description="Interactive visualizations, live tools, and real-time research interfaces." headerMode="glass" bodyClass="archive-body">
+  <main class="collection-archive">
+    <section class="collection-hero">
+      <img class="collection-cloud collection-cloud-left" src="/assets/hero/cloud-large.png" alt="" aria-hidden="true" />
+      <img class="collection-cloud collection-cloud-right" src="/assets/hero/cloud-large.png" alt="" aria-hidden="true" />
+      <div class="container collection-hero-inner">
+        <h1 class="collection-title">Workshops, visual tools, and live interfaces</h1>
+        <p class="collection-lede">Search interactive visualizations, real-time explorers, and hands-on research tools.</p>
+        <div class="collection-birds" aria-hidden="true">
+          <img src="/assets/hero/goose-left.png" alt="" />
+          <img src="/assets/hero/goose-main.png" alt="" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section collection-results">
+      <div class="container">
+        <div class="collection-search-panel">
+          <label class="collection-search" for="workshop-search">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10.8 18.1a7.3 7.3 0 1 1 0-14.6 7.3 7.3 0 0 1 0 14.6Zm5.2-2.1 4.5 4.5" />
+            </svg>
+            <input id="workshop-search" type="search" placeholder={`Search ${workshopItems.length} workshops...`} autocomplete="off" data-collection-search />
+          </label>
+          <div class="filter-pills" aria-label="Workshop filters">
+            <button class="filter-pill is-active" type="button" data-filter="all">All</button>
+            {filterLabels.map((label) => (
+              <button class="filter-pill" type="button" data-filter={label.toLowerCase()}>{label}</button>
+            ))}
+          </div>
+        </div>
+
+        <div class="card-grid collection-grid" data-collection-grid>
+          {workshopItems.map((item) => <CollectionCard item={item} basePath="/workshops" />)}
+        </div>
+        <p class="empty-results" data-empty-results hidden>No workshops match your search yet.</p>
+      </div>
+    </section>
+  </main>
+  <script>
+    const searchInput = document.querySelector('[data-collection-search]');
+    const filterButtons = Array.from(document.querySelectorAll('[data-filter]'));
+    const cards = Array.from(document.querySelectorAll('[data-collection-card]'));
+    const empty = document.querySelector('[data-empty-results]');
+    let activeFilter = 'all';
+
+    const applyFilters = () => {
+      const query = searchInput?.value.trim().toLowerCase() ?? '';
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const text = card.dataset.search ?? '';
+        const filters = card.dataset.filters ?? '';
+        const matchesQuery = !query || text.includes(query);
+        const matchesFilter = activeFilter === 'all' || filters.includes(activeFilter);
+        const isVisible = matchesQuery && matchesFilter;
+
+        card.toggleAttribute('hidden', !isVisible);
+        if (isVisible) visibleCount += 1;
+      });
+
+      if (empty) empty.hidden = visibleCount !== 0;
+    };
+
+    searchInput?.addEventListener('input', applyFilters);
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        activeFilter = button.dataset.filter ?? 'all';
+        filterButtons.forEach((item) => item.classList.toggle('is-active', item === button));
+        applyFilters();
+      });
+    });
+  </script>
+</BaseLayout>

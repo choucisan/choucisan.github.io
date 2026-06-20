@@ -1,0 +1,106 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const workshopItems = (await getCollection('workshops')).filter((item) => !item.data.draft);
+  return workshopItems.map((item) => ({ params: { slug: item.id }, props: { item } }));
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+const isCvpr2026Intro = item.id === 'cvpr2026intro';
+const date = item.data.pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+<BaseLayout title={`${item.data.title} | Workshops`} description={item.data.description} image={item.data.image} headerMode="glass" bodyClass={isCvpr2026Intro ? 'archive-body cvpr-explorer-body' : ''}>
+  {isCvpr2026Intro ? (
+    <main class="cvpr-explorer-page">
+      <section class="cvpr-explorer-hero">
+        <img class="publication-cloud publication-cloud-left" src="/assets/hero/cloud-large.png" alt="" aria-hidden="true" />
+        <img class="publication-cloud publication-cloud-right" src="/assets/hero/cloud-large.png" alt="" aria-hidden="true" />
+        <div class="container cvpr-explorer-hero-inner">
+          <a class="detail-back" href="/workshops/">← Workshops</a>
+          <h1>CVPR 2026 Paper Explorer</h1>
+          <p class="cvpr-explorer-lede" data-i18n="heroText">Search, classify, and read bilingual structured summaries for CVPR 2026 papers.</p>
+          <div class="cvpr-explorer-toolbar">
+            <span class="cvpr-paper-count" data-paper-count>Loading papers...</span>
+            <span class="cvpr-resource-link cvpr-resource-note">Summarized by MiMo-V2.5-Pro</span>
+            <a class="cvpr-resource-link" href="https://huggingface.co/datasets/choucsan/CVPR_Papers" target="_blank" rel="noreferrer">Hugging Face</a>
+            <a class="cvpr-resource-link" href="https://openaccess.thecvf.com/CVPR2026" target="_blank" rel="noreferrer">Source Data</a>
+            <div class="cvpr-lang-switch" role="group" aria-label="Language">
+              <button class="cvpr-lang-button is-active" type="button" data-lang="en">EN</button>
+              <button class="cvpr-lang-button" type="button" data-lang="zh">中文</button>
+            </div>
+            <span class="cvpr-resource-link cvpr-view-counter" data-page-views data-page-views-label="View" data-page-views-path="/collections/cvpr2026intro/" hidden>View —</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="cvpr-explorer-shell" id="cvpr-paper-explorer">
+        <div class="cvpr-control-bar">
+          <label class="cvpr-paper-search" for="cvpr-paper-search">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10.8 18.1a7.3 7.3 0 1 1 0-14.6 7.3 7.3 0 0 1 0 14.6Zm5.2-2.1 4.5 4.5" />
+            </svg>
+            <input id="cvpr-paper-search" type="search" autocomplete="off" data-search />
+          </label>
+          <div class="cvpr-category-dropdown">
+            <button class="cvpr-category-toggle" type="button" data-category-toggle>
+              <span data-category-toggle-label>Categories</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m7 10 5 5 5-5" />
+              </svg>
+            </button>
+            <div class="cvpr-category-popover" data-category-popover hidden>
+              <div class="cvpr-category-column">
+                <div class="cvpr-category-heading">
+                  <span data-i18n="categories">Categories</span>
+                  <button type="button" data-reset-filter>All</button>
+                </div>
+                <div class="cvpr-primary-list" data-primary-list></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <section class="cvpr-paper-results" aria-live="polite">
+          <div class="cvpr-results-head">
+            <p data-result-summary>Loading...</p>
+            <div class="cvpr-active-filter" data-active-filter></div>
+          </div>
+          <div class="cvpr-paper-grid" data-paper-grid></div>
+          <p class="empty-results" data-empty-state hidden>No matching papers.</p>
+        </section>
+      </section>
+    </main>
+    <script src="/assets/cvpr2026/app.js" defer></script>
+  ) : (
+    <main class="collection-detail">
+      <section class="detail-hero">
+        <div class="container detail-hero-stack">
+          <a class="detail-back" href="/workshops/">← Workshops</a>
+          <p class="detail-kicker-pill">{item.data.platform}</p>
+          <h1>{item.data.title}</h1>
+          <p class="detail-description">{item.data.description}</p>
+          <div class="detail-meta">
+            <span>{date}</span>
+            {item.data.tags.map((tag) => <span>{tag}</span>)}
+            {item.data.githubUrl && <a class="detail-meta-link is-github" href={item.data.githubUrl} target="_blank" rel="noreferrer">GitHub</a>}
+            {item.data.huggingfaceUrl && <a class="detail-meta-link is-huggingface" href={item.data.huggingfaceUrl} target="_blank" rel="noreferrer">Hugging Face</a>}
+            {item.data.bilibiliUrl && <a class="detail-meta-link is-bilibili" href={item.data.bilibiliUrl} target="_blank" rel="noreferrer">Bilibili</a>}
+            <span class="detail-view-counter" data-page-views hidden>views —</span>
+          </div>
+          <div class="detail-cover detail-cover-wide">
+            <img src={item.data.image} alt="" />
+          </div>
+        </div>
+      </section>
+      <article class="prose detail-page">
+        <Content />
+      </article>
+    </main>
+  )}
+</BaseLayout>

@@ -1,7 +1,8 @@
 ---
 const { item } = Astro.props;
 const tag = item.data.tags?.[0] ?? item.data.platform;
-const href = `/collections/${item.id}/`;
+const basePath = Astro.props.basePath ?? '/collections';
+const href = `${basePath.replace(/\/$/, '')}/${item.id}/`;
 const searchText = [
   item.data.title,
   item.data.description,

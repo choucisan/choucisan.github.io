@@ -1,24 +1,27 @@
 {
-  "updatedAt": "2026-06-09T15:16:09.749Z",
+  "updatedAt": "2026-06-20T08:10:18.064Z",
   "github": {
-    "stars": 44,
-    "repos": 17,
+    "stars": 54,
+    "repos": 20,
     "source": "https://github.com/choucisan?tab=repositories"
   },
   "huggingface": {
-    "downloads": 1396,
-    "projects": 4,
-    "source": "https://huggingface.co/choucsan"
+    "downloads": 2574,
+    "totalDownloads": 2574,
+    "monthlyDownloads": 1338,
+    "projects": 5,
+    "source": "https://huggingface.co/choucsan",
+    "monthlySource": "https://huggingface.co/api/datasets?author=choucsan&limit=1000&full=true"
   },
   "xiaohongshu": {
-    "likes": 247,
+    "likes": 343,
     "collects": null,
-    "likesAndCollects": 247,
-    "visiblePosts": 5,
-    "countedPosts": 5,
+    "likesAndCollects": 343,
+    "visiblePosts": 11,
+    "countedPosts": 11,
     "hasCompleteCollects": false,
-    "display": "660",
+    "display": "762",
     "source": "https://www.xiaohongshu.com/user/profile/624aab39000000001000d3bc",
-    "strategy": "cached-post-sum"
+    "strategy": "post-sum"
   }
 }

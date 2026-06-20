@@ -6,7 +6,9 @@ const formatNumber = (value: number | null | undefined) =>
   typeof value === 'number' ? new Intl.NumberFormat('en-US').format(value) : 'Updating';
 
 const githubStars = formatNumber(aboutStats.github?.stars);
-const huggingFaceDownloads = formatNumber(aboutStats.huggingface?.downloads);
+const huggingFaceDownloads = formatNumber(
+  aboutStats.huggingface?.totalDownloads ?? aboutStats.huggingface?.downloads
+);
 const xiaohongshuLikes =
   aboutStats.xiaohongshu?.display ?? formatNumber(aboutStats.xiaohongshu?.likesAndCollects);
 ---
@@ -83,7 +85,7 @@ const xiaohongshuLikes =
       <img class="transition-dove transition-dove-small" src="/assets/scene/dove-small.png" alt="" loading="lazy" />
     </section>
     <section class="about-footer-garden" data-reveal-scene aria-hidden="true">
-      <img class="about-bottom-logo" src="/assets/logo/title.png" alt="" loading="lazy" />
+      <img class="about-bottom-logo" src="/assets/logo/title-large.png" alt="" loading="lazy" />
       <img class="about-footer-flower" src="/assets/footer/footer.png" alt="" loading="lazy" />
     </section>
   </main>

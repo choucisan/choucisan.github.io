@@ -42,6 +42,26 @@ const collectionItems = defineCollection({
   })
 });
 
+const workshopItems = defineCollection({
+  loader: glob({
+    pattern: '**/*.{md,mdx}',
+    base: './src/content/workshops',
+    generateId: ({ entry }) => entry.replace(/\.(md|mdx)$/, '')
+  }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.coerce.date(),
+    platform: z.string(),
+    tags: z.array(z.string()).default([]),
+    image: z.string(),
+    githubUrl: z.string().url().optional(),
+    huggingfaceUrl: z.string().url().optional(),
+    bilibiliUrl: z.string().url().optional(),
+    draft: z.boolean().default(false)
+  })
+});
+
 const blogs = defineCollection({
   loader: glob({
     pattern: '**/*.{md,mdx}',
@@ -59,4 +79,4 @@ const blogs = defineCollection({
   })
 });
 
-export const collections = { publications, collections: collectionItems, blogs };
+export const collections = { publications, collections: collectionItems, workshops: workshopItems, blogs };

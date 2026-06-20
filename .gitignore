@@ -3,3 +3,5 @@ dist/
 .astro/
 .DS_Store
 www.callbaba.com/
+.env
+.env.local
