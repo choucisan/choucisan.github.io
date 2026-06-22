@@ -404,7 +404,7 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
 .geese {
   position: absolute;
   left: 60%;
-  bottom: 240px;
+  bottom: 270px;
   width: min(900px, 88vw);
   aspect-ratio: 867 / 616;
   transform: translateX(calc(-50% + var(--hero-geese-drift-x, 0px))) translateY(var(--hero-geese-drift-y, 0px));
@@ -704,14 +704,14 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   top: 22px;
   left: -330px;
   width: min(720px, 45vw);
-  transform: translateX(-160px) translateY(18px) scaleX(-1);
+  transform: translateX(-520px) translateY(18px) scaleX(-1);
 }
 
 .collection-transition-cloud-right {
   top: 8px;
   right: -235px;
   width: min(590px, 35vw);
-  transform: translateX(92px) translateY(-6px);
+  transform: translateX(440px) translateY(-6px);
 }
 
 .collection-cloud-transition.is-visible .collection-transition-cloud-left {
@@ -2346,7 +2346,7 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   .hero-explore-button { min-height: 50px; padding: 0 20px 0 22px; gap: 14px; border-radius: 15px; }
   .hero-note { min-height: 190px; }
   .hero-cloud { width: 220vw; bottom: -14vw; }
-  .geese { width: 720px; max-width: none; left: 54%; bottom: 48px; transform: translateX(calc(-50% + var(--hero-geese-drift-x, 0px))) translateY(var(--hero-geese-drift-y, 0px)) scale(0.78); transform-origin: center bottom; }
+  .geese { width: 720px; max-width: none; left: 54%; bottom: 72px; transform: translateX(calc(-50% + var(--hero-geese-drift-x, 0px))) translateY(var(--hero-geese-drift-y, 0px)) scale(0.78); transform-origin: center bottom; }
   .section-head { display: block; }
   .button.section-cta { margin-top: 18px; }
   .card-grid { grid-template-columns: 1fr; }
@@ -2394,8 +2394,8 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   .pink-cloud-bird-large { left: 32vw; top: 92px; width: 150px; }
   .pink-cloud-bird-small { left: 64vw; top: 128px; width: 108px; }
   .collection-cloud-transition { height: 250px; margin: -4px 0; }
-  .collection-transition-cloud-left { top: 44px; left: -58vw; width: 96vw; }
-  .collection-transition-cloud-right { top: 24px; right: -46vw; width: 72vw; }
+  .collection-transition-cloud-left { top: 44px; left: -96vw; width: 96vw; }
+  .collection-transition-cloud-right { top: 24px; right: -76vw; width: 72vw; }
   .footer-inner { align-items: flex-start; flex-wrap: wrap; }
   .footer-note { white-space: normal; }
   .about-story { padding-top: 150px; }
@@ -2430,7 +2430,7 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   .hero { min-height: 820px; padding-top: 118px; }
   .hero-title { font-size: clamp(50px, 16vw, 76px); }
   .hero-cloud { width: 250vw; bottom: -18vw; }
-  .geese { transform: translateX(calc(-50% + var(--hero-geese-drift-x, 0px))) translateY(var(--hero-geese-drift-y, 0px)) scale(0.62); bottom: 8px; }
+  .geese { transform: translateX(calc(-50% + var(--hero-geese-drift-x, 0px))) translateY(var(--hero-geese-drift-y, 0px)) scale(0.62); bottom: 30px; }
   .cvpr-explorer-shell { width: min(calc(100% - 28px), var(--max)); margin-top: -54px; }
   .cvpr-explorer-hero { min-height: 430px; }
   .cvpr-explorer-hero-inner { justify-items: center; }
