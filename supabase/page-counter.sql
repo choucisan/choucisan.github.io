@@ -161,24 +161,52 @@ language sql
 security definer
 set search_path = public
 as $$
+  with normalized as (
+    select
+      location.country_code,
+      location.country_name,
+      case
+        when upper(coalesce(location.country_code, '')) = 'SG' then 'Singapore'
+        when upper(coalesce(location.country_code, '')) = 'JP'
+          and lower(coalesce(location.city, '')) = 'osaka' then 'Osaka'
+        when upper(coalesce(location.country_code, '')) = 'CN'
+          and lower(coalesce(location.region, '')) = 'beijing'
+          and lower(coalesce(location.city, '')) in ('beijing', 'chaowai') then 'Beijing'
+        else location.region
+      end as region,
+      case
+        when upper(coalesce(location.country_code, '')) = 'SG' then 'Singapore'
+        when upper(coalesce(location.country_code, '')) = 'JP'
+          and lower(coalesce(location.city, '')) = 'osaka' then 'Osaka'
+        when upper(coalesce(location.country_code, '')) = 'CN'
+          and lower(coalesce(location.region, '')) = 'beijing'
+          and lower(coalesce(location.city, '')) in ('beijing', 'chaowai') then 'Beijing'
+        else location.city
+      end as city,
+      location.latitude,
+      location.longitude,
+      location.visits,
+      location.last_seen_at
+    from public.visitor_locations as location
+    where location.latitude is not null
+      and location.longitude is not null
+  )
   select
-    location.country_code,
-    location.country_name,
-    location.region,
-    location.city,
-    avg(location.latitude) as latitude,
-    avg(location.longitude) as longitude,
+    normalized.country_code,
+    normalized.country_name,
+    normalized.region,
+    normalized.city,
+    avg(normalized.latitude) as latitude,
+    avg(normalized.longitude) as longitude,
     count(*)::bigint as visitors,
-    sum(location.visits)::bigint as visits,
-    max(location.last_seen_at) as last_seen_at
-  from public.visitor_locations as location
-  where location.latitude is not null
-    and location.longitude is not null
+    sum(normalized.visits)::bigint as visits,
+    max(normalized.last_seen_at) as last_seen_at
+  from normalized
   group by
-    location.country_code,
-    location.country_name,
-    location.region,
-    location.city
+    normalized.country_code,
+    normalized.country_name,
+    normalized.region,
+    normalized.city
   order by visitors desc, visits desc, last_seen_at desc
   limit greatest(1, least(coalesce(p_limit, 250), 500));
 $$;
