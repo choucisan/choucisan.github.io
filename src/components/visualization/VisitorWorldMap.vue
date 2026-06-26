@@ -18,8 +18,8 @@
       map-bg-color="transparent"
     />
 
-    <ol v-if="isDetailsOpen && topLocations.length" class="about-visitor-map-list" aria-label="Top visitor cities">
-      <li v-for="item in topLocations" :key="item.key">
+    <ol v-if="isDetailsOpen && allLocations.length" class="about-visitor-map-list" aria-label="Visitor cities">
+      <li v-for="item in allLocations" :key="item.key">
         <span>{{ item.place }}</span>
         <strong>{{ formatNumber(item.visitors) }}</strong>
       </li>
@@ -65,7 +65,7 @@ const rpc = async (name, body) => {
 };
 
 const loadLocations = async () => {
-  const data = await rpc('get_visitor_locations', { p_limit: 250 });
+  const data = await rpc('get_visitor_locations', { p_limit: 500 });
   locations.value = Array.isArray(data) ? data : [];
   const totalVisitors = locations.value.reduce((sum, item) => sum + Number(item.visitors || 0), 0);
   summary.value = locations.value.length
@@ -75,8 +75,7 @@ const loadLocations = async () => {
 
 const normalizedLocations = computed(() => {
   const valid = locations.value
-    .filter((item) => Number.isFinite(Number(item.latitude)) && Number.isFinite(Number(item.longitude)))
-    .slice(0, 120);
+    .filter((item) => Number.isFinite(Number(item.latitude)) && Number.isFinite(Number(item.longitude)));
 
   return valid.map((item, index) => {
     const place = [item.city, item.country_name].filter(Boolean).join(', ') || 'Unknown location';
@@ -93,20 +92,20 @@ const normalizedLocations = computed(() => {
   });
 });
 
-const mapPoints = computed(() => normalizedLocations.value.slice(0, 120));
+const mapPoints = computed(() => normalizedLocations.value);
 
 const mapDots = computed(() => {
   const points = normalizedLocations.value;
   const hub = points[0];
   if (!hub || points.length < 2) return [];
 
-  return points.slice(1, 11).map((point) => ({
+  return points.slice(1).map((point) => ({
     start: hub,
     end: point
   }));
 });
 
-const topLocations = computed(() => normalizedLocations.value.slice(0, 5));
+const allLocations = computed(() => normalizedLocations.value);
 
 onMounted(async () => {
   try {

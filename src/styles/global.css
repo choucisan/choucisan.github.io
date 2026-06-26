@@ -2426,6 +2426,7 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   display: grid;
   gap: 7px;
   width: min(290px, 42%);
+  max-height: min(360px, 56vh);
   margin: 0;
   padding: 8px;
   border: 1px solid rgba(250, 249, 241, 0.38);
@@ -2435,6 +2436,9 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   list-style: none;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
 }
 
 .about-visitor-map-list li {
