@@ -3067,14 +3067,20 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   stroke-linejoin: round;
 }
 
-.visitor-vue-map-arcs path {
+.visitor-vue-map-arc {
   fill: none;
   stroke: url(#visitorVueArc);
-  stroke-width: 2.25;
+  stroke-width: 1.65;
   stroke-linecap: round;
-  stroke-dasharray: 10 5;
-  opacity: 0.96;
-  filter: drop-shadow(0 6px 10px rgba(111, 159, 134, 0.24));
+  stroke-dasharray: 9 7;
+  filter: drop-shadow(0 4px 8px rgba(111, 159, 134, 0.12));
+  pointer-events: none;
+}
+
+.visitor-vue-map-arc.is-active {
+  stroke-width: 2.5;
+  stroke-dasharray: 11 5;
+  filter: drop-shadow(0 7px 12px rgba(111, 159, 134, 0.24));
 }
 
 .visitor-vue-map-dot {
@@ -3082,6 +3088,14 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   stroke: rgba(250, 249, 241, 0.92);
   stroke-width: 1.25;
   filter: drop-shadow(0 5px 8px rgba(111, 159, 134, 0.18));
+  cursor: pointer;
+  transition: filter 180ms ease, stroke-width 180ms ease;
+}
+
+.visitor-vue-map-dot:hover,
+.visitor-vue-map-dot.is-active {
+  stroke-width: 2;
+  filter: drop-shadow(0 8px 14px rgba(111, 159, 134, 0.32));
 }
 
 .visitor-vue-map-pulse {
@@ -3120,16 +3134,41 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
 }
 
 .about-visitor-map-list li {
+  display: block;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.about-visitor-map-list li.is-active {
+  background: rgba(111, 159, 134, 0.16);
+}
+
+.about-visitor-map-list button {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  width: 100%;
   min-width: 0;
   padding: 7px 8px;
   border: 0;
-  border-radius: 10px;
+  border-radius: inherit;
   color: rgba(30, 31, 30, 0.62);
-  background: rgba(255, 255, 255, 0.34);
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.about-visitor-map-list button:focus-visible {
+  outline: 2px solid rgba(111, 159, 134, 0.45);
+  outline-offset: 2px;
+}
+
+.about-visitor-map-list span,
+.about-visitor-map-list strong {
+  pointer-events: none;
 }
 
 .about-visitor-map-list span {
@@ -3145,6 +3184,34 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   flex: 0 0 auto;
   color: rgba(30, 31, 30, 0.72);
   font-size: 12px;
+}
+
+.visitor-vue-map-tooltip {
+  pointer-events: none;
+}
+
+.visitor-vue-map-tooltip rect {
+  fill: rgba(250, 249, 241, 0.84);
+  stroke: rgba(111, 159, 134, 0.18);
+  stroke-width: 1;
+  filter: drop-shadow(0 12px 24px rgba(30, 31, 30, 0.12));
+}
+
+.visitor-vue-map-tooltip text {
+  fill: rgba(30, 31, 30, 0.68);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.visitor-vue-map-tooltip-country {
+  fill: rgba(30, 31, 30, 0.48);
+  font-size: 10px;
+}
+
+.visitor-vue-map-tooltip-count {
+  fill: rgba(30, 31, 30, 0.48);
+  font-size: 10px;
+  font-weight: 800;
 }
 
 .about-footer-garden {

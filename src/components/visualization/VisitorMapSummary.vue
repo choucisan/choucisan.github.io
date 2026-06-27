@@ -13,9 +13,17 @@
     </button>
 
     <ol v-if="isDetailsOpen && allLocations.length" class="about-visitor-map-list" aria-label="Visitor cities">
-      <li v-for="item in allLocations" :key="item.key">
-        <span>{{ item.place }}</span>
-        <strong>{{ formatNumber(item.visitors) }}</strong>
+      <li
+        v-for="item in allLocations"
+        :key="item.key"
+        :class="{ 'is-active': activeLocationKey === item.key }"
+        @mouseenter="setActiveLocation(item.key)"
+        @focusin="setActiveLocation(item.key)"
+      >
+        <button type="button" @click="setActiveLocation(item.key)">
+          <span>{{ item.place }}</span>
+          <strong>{{ formatNumber(item.visitors) }}</strong>
+        </button>
       </li>
     </ol>
   </div>
@@ -24,10 +32,12 @@
 <script setup>
 import { computed, onMounted } from 'vue';
 import {
+  activeLocationKey,
   ensureVisitorMapLoaded,
   formatNumber,
   isDetailsOpen,
   normalizedLocations,
+  setActiveLocation,
   summary
 } from './visitorMapStore';
 

@@ -64,7 +64,7 @@
 
   const getCachedGeo = () => {
     try {
-      const raw = window.localStorage.getItem('onethree_geo_v1');
+      const raw = window.localStorage.getItem('onethree_geo_v2');
       if (!raw) return null;
       const cached = JSON.parse(raw);
       if (Date.now() - cached.savedAt > 24 * 60 * 60 * 1000) return null;
@@ -76,7 +76,7 @@
 
   const setCachedGeo = (geo) => {
     try {
-      window.localStorage.setItem('onethree_geo_v1', JSON.stringify({ savedAt: Date.now(), geo }));
+      window.localStorage.setItem('onethree_geo_v2', JSON.stringify({ savedAt: Date.now(), geo }));
     } catch {
       // Location lookup is opportunistic.
     }

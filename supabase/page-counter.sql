@@ -163,15 +163,38 @@ set search_path = public
 as $$
   with normalized as (
     select
-      location.country_code,
-      location.country_name,
+      upper(coalesce(location.country_code, '')) as country_code,
+      case
+        when upper(coalesce(location.country_code, '')) = 'CN' then 'China'
+        when upper(coalesce(location.country_code, '')) = 'SG' then 'Singapore'
+        when upper(coalesce(location.country_code, '')) = 'US' then 'United States'
+        when upper(coalesce(location.country_code, '')) = 'JP' then 'Japan'
+        else location.country_name
+      end as country_name,
       case
         when upper(coalesce(location.country_code, '')) = 'SG' then 'Singapore'
         when upper(coalesce(location.country_code, '')) = 'JP'
           and lower(coalesce(location.city, '')) = 'osaka' then 'Osaka'
         when upper(coalesce(location.country_code, '')) = 'CN'
-          and lower(coalesce(location.region, '')) = 'beijing'
-          and lower(coalesce(location.city, '')) in ('beijing', 'chaowai') then 'Beijing'
+          and (
+            lower(coalesce(location.region, '')) = 'beijing'
+            or lower(coalesce(location.city, '')) in ('beijing', 'chaowai', 'xicheng', 'dongcheng', 'chaoyang', 'haidian', 'fengtai', 'shijingshan', 'tongzhou')
+          ) then 'Beijing'
+        when upper(coalesce(location.country_code, '')) = 'CN'
+          and (
+            lower(coalesce(location.region, '')) = 'shanghai'
+            or lower(coalesce(location.city, '')) in ('shanghai', 'pudong', 'huangpu', 'xuhui', 'changning', 'jingan', 'minhang', 'baoshan')
+          ) then 'Shanghai'
+        when upper(coalesce(location.country_code, '')) = 'CN'
+          and (
+            lower(coalesce(location.city, '')) in ('shenzhen', 'shenzhen shi')
+            or lower(coalesce(location.region, '')) in ('shenzhen', 'shenzhen shi')
+          ) then 'Shenzhen'
+        when upper(coalesce(location.country_code, '')) = 'CN'
+          and (
+            lower(coalesce(location.city, '')) in ('guangzhou', 'guangzhou shi')
+            or lower(coalesce(location.region, '')) in ('guangzhou', 'guangzhou shi')
+          ) then 'Guangzhou'
         else location.region
       end as region,
       case
@@ -179,9 +202,29 @@ as $$
         when upper(coalesce(location.country_code, '')) = 'JP'
           and lower(coalesce(location.city, '')) = 'osaka' then 'Osaka'
         when upper(coalesce(location.country_code, '')) = 'CN'
-          and lower(coalesce(location.region, '')) = 'beijing'
-          and lower(coalesce(location.city, '')) in ('beijing', 'chaowai') then 'Beijing'
-        else location.city
+          and (
+            lower(coalesce(location.region, '')) = 'beijing'
+            or lower(coalesce(location.city, '')) in ('beijing', 'chaowai', 'xicheng', 'dongcheng', 'chaoyang', 'haidian', 'fengtai', 'shijingshan', 'tongzhou')
+          ) then 'Beijing'
+        when upper(coalesce(location.country_code, '')) = 'CN'
+          and (
+            lower(coalesce(location.region, '')) = 'shanghai'
+            or lower(coalesce(location.city, '')) in ('shanghai', 'pudong', 'huangpu', 'xuhui', 'changning', 'jingan', 'minhang', 'baoshan')
+          ) then 'Shanghai'
+        when upper(coalesce(location.country_code, '')) = 'CN'
+          and (
+            lower(coalesce(location.city, '')) in ('shenzhen', 'shenzhen shi')
+            or lower(coalesce(location.region, '')) in ('shenzhen', 'shenzhen shi')
+          ) then 'Shenzhen'
+        when upper(coalesce(location.country_code, '')) = 'CN'
+          and (
+            lower(coalesce(location.city, '')) in ('guangzhou', 'guangzhou shi')
+            or lower(coalesce(location.region, '')) in ('guangzhou', 'guangzhou shi')
+          ) then 'Guangzhou'
+        when upper(coalesce(location.country_code, '')) = 'CN'
+          and lower(coalesce(location.city, '')) like '% shi'
+          then initcap(regexp_replace(location.city, '\s+shi$', '', 'i'))
+        else initcap(location.city)
       end as city,
       location.latitude,
       location.longitude,

@@ -12,10 +12,81 @@ const headers = {
 export const locations = ref([]);
 export const summary = ref('Visitor map is loading.');
 export const isDetailsOpen = ref(false);
+export const activeLocationKey = ref('');
 
 let loadPromise;
 
 export const formatNumber = (value) => new Intl.NumberFormat('en-US').format(value || 0);
+
+const toTitleCase = (value) => String(value ?? '')
+  .trim()
+  .replace(/\s+/g, ' ')
+  .replace(/\b\w/g, (letter) => letter.toUpperCase());
+
+const normalizeCountryName = (countryCode, countryName) => {
+  const code = String(countryCode ?? '').trim().toUpperCase();
+  const country = String(countryName ?? '').trim();
+  if (code === 'CN') return 'China';
+  if (code === 'SG') return 'Singapore';
+  if (code === 'US') return 'United States';
+  if (code === 'JP') return 'Japan';
+  return country || '';
+};
+
+const normalizeChineseCity = (region, city) => {
+  const regionKey = String(region ?? '').trim().toLowerCase();
+  const cityKey = String(city ?? '').trim().toLowerCase();
+  const combined = `${regionKey} ${cityKey}`;
+
+  const municipalityMap = [
+    ['Beijing', ['beijing', 'xicheng', 'chaowai', 'dongcheng', 'chaoyang', 'haidian', 'fengtai', 'shijingshan', 'tongzhou']],
+    ['Shanghai', ['shanghai', 'pudong', 'huangpu', 'xuhui', 'changning', 'jingan', 'minhang', 'baoshan']],
+    ['Tianjin', ['tianjin', 'heping', 'nankai', 'hexi', 'binhai']],
+    ['Chongqing', ['chongqing', 'yuzhong', 'jiangbei', 'yubei', 'shapingba']]
+  ];
+
+  for (const [name, aliases] of municipalityMap) {
+    if (aliases.some((alias) => combined.includes(alias))) return name;
+  }
+
+  const directMap = [
+    ['Shenzhen', ['shenzhen', 'shenzhen shi']],
+    ['Guangzhou', ['guangzhou', 'guangzhou shi']],
+    ['Hangzhou', ['hangzhou', 'hangzhou shi']],
+    ['Nanjing', ['nanjing', 'nanjing shi']],
+    ['Suzhou', ['suzhou', 'suzhou shi']],
+    ['Chengdu', ['chengdu', 'chengdu shi']],
+    ['Wuhan', ['wuhan', 'wuhan shi']],
+    ['Xi’an', ["xi'an", 'xian', 'xian shi']],
+    ['Changsha', ['changsha', 'changsha shi']],
+    ['Zhengzhou', ['zhengzhou', 'zhengzhou shi']],
+    ['Qingdao', ['qingdao', 'qingdao shi']],
+    ['Xiamen', ['xiamen', 'xiamen shi']]
+  ];
+
+  for (const [name, aliases] of directMap) {
+    if (aliases.some((alias) => combined.includes(alias))) return name;
+  }
+
+  return toTitleCase(String(city || region || '').replace(/\s+shi$/i, ''));
+};
+
+const normalizeLocation = (item) => {
+  const countryCode = String(item.country_code ?? '').trim().toUpperCase();
+  const countryName = normalizeCountryName(countryCode, item.country_name);
+  const city = countryCode === 'CN'
+    ? normalizeChineseCity(item.region, item.city)
+    : toTitleCase(String(item.city || item.region || '').replace(/\s+shi$/i, ''));
+  const region = countryCode === 'CN' ? city : toTitleCase(item.region || city);
+
+  return {
+    ...item,
+    country_code: countryCode,
+    country_name: countryName,
+    region,
+    city
+  };
+};
 
 const rpc = async (name, body) => {
   if (window.OneThreeSupabase?.callRpc) {
@@ -46,7 +117,8 @@ export const normalizedLocations = computed(() => {
   const valid = locations.value
     .filter((item) => Number.isFinite(Number(item.latitude)) && Number.isFinite(Number(item.longitude)));
 
-  return valid.map((item, index) => {
+  return valid.map((rawItem, index) => {
+    const item = normalizeLocation(rawItem);
     const place = [item.city, item.country_name].filter(Boolean).join(', ') || 'Unknown location';
     return {
       ...item,
@@ -60,6 +132,10 @@ export const normalizedLocations = computed(() => {
     };
   });
 });
+
+export const setActiveLocation = (key) => {
+  activeLocationKey.value = key ?? '';
+};
 
 export const ensureVisitorMapLoaded = async () => {
   if (loadPromise) return loadPromise;
