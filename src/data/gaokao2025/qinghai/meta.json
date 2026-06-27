@@ -1,0 +1,176 @@
+{
+  "university_stats": {
+    "total": 1336,
+    "is_985": 39,
+    "is_211": 111,
+    "public": 0,
+    "private": 0,
+    "other": 0,
+    "by_province": {}
+  },
+  "enrollment_stats": {
+    "total_plan": 42616,
+    "university_count": 1336,
+    "major_count": 1029,
+    "has_plan_count": true,
+    "by_batch": {
+      "本科批次⑦段": 18628,
+      "本科提前批次①段": 196,
+      "本科提前批次②段": 340,
+      "本科提前批次③段": 470,
+      "本科提前批次④段": 251,
+      "本科提前批次⑤段": 2682,
+      "高职(专科)批次⑩段": 19681,
+      "高职(专科)提前批次(公安司法军士类型)⑥段": 201,
+      "高职(专科)提前批次(特殊类型)⑧段": 167
+    },
+    "by_category": {
+      "历史类": 13714,
+      "物理类": 28902
+    },
+    "top_universities": [
+      {
+        "name": "青海职业技术大学",
+        "plan_count": 1820
+      },
+      {
+        "name": "青海师范大学",
+        "plan_count": 1658
+      },
+      {
+        "name": "青海民族大学",
+        "plan_count": 1166
+      },
+      {
+        "name": "青海卫生职业技术学院",
+        "plan_count": 1115
+      },
+      {
+        "name": "青海大学",
+        "plan_count": 970
+      },
+      {
+        "name": "青海理工学院",
+        "plan_count": 849
+      },
+      {
+        "name": "青海建筑职业技术学院",
+        "plan_count": 649
+      },
+      {
+        "name": "西宁城市职业技术学院",
+        "plan_count": 598
+      },
+      {
+        "name": "青海柴达木职业技术学院",
+        "plan_count": 424
+      },
+      {
+        "name": "青海农牧科技职业学院",
+        "plan_count": 407
+      }
+    ]
+  },
+  "top_majors": [
+    {
+      "name": "护理",
+      "plan_count": 1707,
+      "university_count": 155
+    },
+    {
+      "name": "本科预科班",
+      "plan_count": 951,
+      "university_count": 90
+    },
+    {
+      "name": "大数据与会计",
+      "plan_count": 871,
+      "university_count": 134
+    },
+    {
+      "name": "学前教育",
+      "plan_count": 808,
+      "university_count": 139
+    },
+    {
+      "name": "临床医学",
+      "plan_count": 672,
+      "university_count": 120
+    },
+    {
+      "name": "汉语言文学",
+      "plan_count": 635,
+      "university_count": 141
+    },
+    {
+      "name": "小学教育",
+      "plan_count": 574,
+      "university_count": 81
+    },
+    {
+      "name": "计算机科学与技术",
+      "plan_count": 560,
+      "university_count": 170
+    },
+    {
+      "name": "法学",
+      "plan_count": 504,
+      "university_count": 127
+    },
+    {
+      "name": "旅游管理",
+      "plan_count": 456,
+      "university_count": 93
+    },
+    {
+      "name": "药学",
+      "plan_count": 414,
+      "university_count": 108
+    },
+    {
+      "name": "英语",
+      "plan_count": 404,
+      "university_count": 81
+    },
+    {
+      "name": "电气工程及其自动化",
+      "plan_count": 400,
+      "university_count": 111
+    },
+    {
+      "name": "会计学",
+      "plan_count": 383,
+      "university_count": 122
+    },
+    {
+      "name": "医学检验技术",
+      "plan_count": 381,
+      "university_count": 75
+    },
+    {
+      "name": "机电一体化技术",
+      "plan_count": 381,
+      "university_count": 79
+    },
+    {
+      "name": "电子商务",
+      "plan_count": 371,
+      "university_count": 97
+    },
+    {
+      "name": "工程造价",
+      "plan_count": 327,
+      "university_count": 70
+    },
+    {
+      "name": "计算机网络技术",
+      "plan_count": 319,
+      "university_count": 64
+    },
+    {
+      "name": "数学与应用数学",
+      "plan_count": 310,
+      "university_count": 58
+    }
+  ]
+}

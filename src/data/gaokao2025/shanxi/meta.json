@@ -1,0 +1,293 @@
+{
+  "exam_overview": {
+    "categories": [
+      {
+        "name": "综合",
+        "total_candidates": 120285,
+        "max_score": 703,
+        "batch_lines": []
+      }
+    ],
+    "total_candidates": 120285
+  },
+  "university_stats": {
+    "total": 1957,
+    "is_985": 34,
+    "is_211": 105,
+    "public": 0,
+    "private": 0,
+    "other": 1957,
+    "by_province": {}
+  },
+  "enrollment_stats": {
+    "total_plan": 229236,
+    "university_count": 1957,
+    "major_count": 1251,
+    "has_plan_count": true,
+    "by_batch": {
+      "专科批": 93287,
+      "本科批": 135949
+    },
+    "by_category": {
+      "历史类": 70824,
+      "物理类": 158412
+    },
+    "top_universities": [
+      {
+        "name": "中北大学",
+        "plan_count": 4986
+      },
+      {
+        "name": "山西大同大学",
+        "plan_count": 4916
+      },
+      {
+        "name": "太原理工大学",
+        "plan_count": 4856
+      },
+      {
+        "name": "山西农业大学(太谷)",
+        "plan_count": 4445
+      },
+      {
+        "name": "太原科技大学",
+        "plan_count": 4000
+      },
+      {
+        "name": "山西工程科技职业大学",
+        "plan_count": 3564
+      },
+      {
+        "name": "山西工商学院",
+        "plan_count": 3195
+      },
+      {
+        "name": "山西大学",
+        "plan_count": 3160
+      },
+      {
+        "name": "山西工程职业学院",
+        "plan_count": 3068
+      },
+      {
+        "name": "晋中职业技术学院",
+        "plan_count": 3034
+      }
+    ]
+  },
+  "top_majors": [
+    {
+      "name": "软件工程",
+      "plan_count": 6801,
+      "university_count": 231
+    },
+    {
+      "name": "护理",
+      "plan_count": 4979,
+      "university_count": 195
+    },
+    {
+      "name": "计算机科学与技术",
+      "plan_count": 3955,
+      "university_count": 428
+    },
+    {
+      "name": "大数据与会计",
+      "plan_count": 3792,
+      "university_count": 262
+    },
+    {
+      "name": "机电一体化技术",
+      "plan_count": 2998,
+      "university_count": 172
+    },
+    {
+      "name": "学前教育",
+      "plan_count": 2895,
+      "university_count": 180
+    },
+    {
+      "name": "电气工程及其自动化",
+      "plan_count": 2808,
+      "university_count": 292
+    },
+    {
+      "name": "财务管理",
+      "plan_count": 2791,
+      "university_count": 237
+    },
+    {
+      "name": "会计学",
+      "plan_count": 2595,
+      "university_count": 317
+    },
+    {
+      "name": "护理学",
+      "plan_count": 2552,
+      "university_count": 131
+    },
+    {
+      "name": "临床医学",
+      "plan_count": 2512,
+      "university_count": 177
+    },
+    {
+      "name": "机械设计制造及其自动化",
+      "plan_count": 2440,
+      "university_count": 269
+    },
+    {
+      "name": "计算机应用技术",
+      "plan_count": 2440,
+      "university_count": 136
+    },
+    {
+      "name": "英语",
+      "plan_count": 2289,
+      "university_count": 334
+    },
+    {
+      "name": "电子商务",
+      "plan_count": 2168,
+      "university_count": 287
+    },
+    {
+      "name": "大数据技术",
+      "plan_count": 2097,
+      "university_count": 120
+    },
+    {
+      "name": "数字媒体技术",
+      "plan_count": 2094,
+      "university_count": 169
+    },
+    {
+      "name": "法学",
+      "plan_count": 2064,
+      "university_count": 255
+    },
+    {
+      "name": "汉语言文学",
+      "plan_count": 2055,
+      "university_count": 285
+    },
+    {
+      "name": "自动化",
+      "plan_count": 1864,
+      "university_count": 206
+    }
+  ],
+  "score_distribution": [
+    {
+      "category": "综合",
+      "points": [
+        {
+          "score": 703,
+          "segment_count": 0,
+          "cumulative_count": 15
+        },
+        {
+          "score": 678,
+          "segment_count": 0,
+          "cumulative_count": 279
+        },
+        {
+          "score": 662,
+          "segment_count": 0,
+          "cumulative_count": 34
+        },
+        {
+          "score": 649,
+          "segment_count": 0,
+          "cumulative_count": 123
+        },
+        {
+          "score": 637,
+          "segment_count": 0,
+          "cumulative_count": 3077
+        },
+        {
+          "score": 624,
+          "segment_count": 0,
+          "cumulative_count": 5001
+        },
+        {
+          "score": 612,
+          "segment_count": 0,
+          "cumulative_count": 7414
+        },
+        {
+          "score": 599,
+          "segment_count": 0,
+          "cumulative_count": 10738
+        },
+        {
+          "score": 587,
+          "segment_count": 0,
+          "cumulative_count": 3093
+        },
+        {
+          "score": 574,
+          "segment_count": 0,
+          "cumulative_count": 4632
+        },
+        {
+          "score": 562,
+          "segment_count": 0,
+          "cumulative_count": 6303
+        },
+        {
+          "score": 549,
+          "segment_count": 0,
+          "cumulative_count": 30360
+        },
+        {
+          "score": 537,
+          "segment_count": 0,
+          "cumulative_count": 11024
+        },
+        {
+          "score": 524,
+          "segment_count": 0,
+          "cumulative_count": 44351
+        },
+        {
+          "score": 512,
+          "segment_count": 0,
+          "cumulative_count": 52162
+        },
+        {
+          "score": 499,
+          "segment_count": 0,
+          "cumulative_count": 20534
+        },
+        {
+          "score": 487,
+          "segment_count": 0,
+          "cumulative_count": 70087
+        },
+        {
+          "score": 474,
+          "segment_count": 0,
+          "cumulative_count": 27610
+        },
+        {
+          "score": 462,
+          "segment_count": 0,
+          "cumulative_count": 30966
+        },
+        {
+          "score": 449,
+          "segment_count": 0,
+          "cumulative_count": 99650
+        },
+        {
+          "score": 431,
+          "segment_count": 0,
+          "cumulative_count": 112545
+        }
+      ]
+    }
+  ],
+  "admission_bands": []
+}

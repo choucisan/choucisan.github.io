@@ -1,0 +1,397 @@
+{
+  "exam_overview": {
+    "categories": [
+      {
+        "name": "综合",
+        "total_candidates": 49276,
+        "max_score": 623,
+        "batch_lines": [
+          {
+            "batch": "本科批",
+            "score": 402
+          }
+        ]
+      }
+    ],
+    "total_candidates": 49276
+  },
+  "university_stats": {
+    "total": 643,
+    "is_985": 39,
+    "is_211": 114,
+    "public": 0,
+    "private": 0,
+    "other": 643,
+    "by_province": {}
+  },
+  "enrollment_stats": {
+    "total_plan": 46228,
+    "university_count": 643,
+    "major_count": 1378,
+    "has_plan_count": true,
+    "by_batch": {
+      "地方农村专项计划批": 10,
+      "本科提前批": 3087,
+      "本科普通批": 40828,
+      "综合评价": 2242,
+      "零志愿批": 61
+    },
+    "by_category": {
+      "综合": 46228
+    },
+    "top_universities": [
+      {
+        "name": "上海立信会计金融学院",
+        "plan_count": 2385
+      },
+      {
+        "name": "上海大学",
+        "plan_count": 2043
+      },
+      {
+        "name": "上海工程技术大学",
+        "plan_count": 1978
+      },
+      {
+        "name": "上海师范大学",
+        "plan_count": 1890
+      },
+      {
+        "name": "上海海事大学",
+        "plan_count": 1684
+      },
+      {
+        "name": "上海应用技术大学",
+        "plan_count": 1626
+      },
+      {
+        "name": "上海电机学院",
+        "plan_count": 1462
+      },
+      {
+        "name": "上海第二工业大学",
+        "plan_count": 1440
+      },
+      {
+        "name": "上海建桥学院",
+        "plan_count": 1410
+      },
+      {
+        "name": "上海对外经贸大学",
+        "plan_count": 1381
+      }
+    ]
+  },
+  "top_majors": [
+    {
+      "name": "计算机科学与技术",
+      "plan_count": 1060,
+      "university_count": 109
+    },
+    {
+      "name": "法学",
+      "plan_count": 897,
+      "university_count": 90
+    },
+    {
+      "name": "金融学",
+      "plan_count": 779,
+      "university_count": 93
+    },
+    {
+      "name": "英语",
+      "plan_count": 774,
+      "university_count": 97
+    },
+    {
+      "name": "会计学",
+      "plan_count": 762,
+      "university_count": 117
+    },
+    {
+      "name": "国际经济与贸易",
+      "plan_count": 733,
+      "university_count": 93
+    },
+    {
+      "name": "数据科学与大数据技术",
+      "plan_count": 690,
+      "university_count": 58
+    },
+    {
+      "name": "经济学类",
+      "plan_count": 613,
+      "university_count": 27
+    },
+    {
+      "name": "电气工程及其自动化",
+      "plan_count": 588,
+      "university_count": 76
+    },
+    {
+      "name": "财务管理",
+      "plan_count": 587,
+      "university_count": 65
+    },
+    {
+      "name": "人工智能",
+      "plan_count": 549,
+      "university_count": 75
+    },
+    {
+      "name": "电子信息类",
+      "plan_count": 526,
+      "university_count": 23
+    },
+    {
+      "name": "护理学",
+      "plan_count": 516,
+      "university_count": 31
+    },
+    {
+      "name": "工商管理类",
+      "plan_count": 503,
+      "university_count": 34
+    },
+    {
+      "name": "汉语言文学",
+      "plan_count": 478,
+      "university_count": 69
+    },
+    {
+      "name": "工商管理",
+      "plan_count": 452,
+      "university_count": 56
+    },
+    {
+      "name": "数学与应用数学",
+      "plan_count": 414,
+      "university_count": 35
+    },
+    {
+      "name": "电子信息工程",
+      "plan_count": 393,
+      "university_count": 55
+    },
+    {
+      "name": "临床医学",
+      "plan_count": 387,
+      "university_count": 63
+    },
+    {
+      "name": "机械设计制造及其自动化",
+      "plan_count": 382,
+      "university_count": 43
+    }
+  ],
+  "score_distribution": [
+    {
+      "category": "综合",
+      "points": [
+        {
+          "score": 623,
+          "segment_count": 52,
+          "cumulative_count": 52
+        },
+        {
+          "score": 612,
+          "segment_count": 43,
+          "cumulative_count": 365
+        },
+        {
+          "score": 601,
+          "segment_count": 98,
+          "cumulative_count": 1146
+        },
+        {
+          "score": 590,
+          "segment_count": 132,
+          "cumulative_count": 2503
+        },
+        {
+          "score": 579,
+          "segment_count": 189,
+          "cumulative_count": 4285
+        },
+        {
+          "score": 568,
+          "segment_count": 197,
+          "cumulative_count": 6379
+        },
+        {
+          "score": 557,
+          "segment_count": 245,
+          "cumulative_count": 8824
+        },
+        {
+          "score": 546,
+          "segment_count": 242,
+          "cumulative_count": 11525
+        },
+        {
+          "score": 535,
+          "segment_count": 286,
+          "cumulative_count": 14414
+        },
+        {
+          "score": 524,
+          "segment_count": 275,
+          "cumulative_count": 17497
+        },
+        {
+          "score": 513,
+          "segment_count": 273,
+          "cumulative_count": 20546
+        },
+        {
+          "score": 502,
+          "segment_count": 296,
+          "cumulative_count": 23673
+        },
+        {
+          "score": 491,
+          "segment_count": 275,
+          "cumulative_count": 26773
+        },
+        {
+          "score": 480,
+          "segment_count": 266,
+          "cumulative_count": 29907
+        },
+        {
+          "score": 469,
+          "segment_count": 276,
+          "cumulative_count": 33044
+        },
+        {
+          "score": 458,
+          "segment_count": 271,
+          "cumulative_count": 36057
+        },
+        {
+          "score": 447,
+          "segment_count": 255,
+          "cumulative_count": 38962
+        },
+        {
+          "score": 436,
+          "segment_count": 241,
+          "cumulative_count": 41677
+        },
+        {
+          "score": 425,
+          "segment_count": 239,
+          "cumulative_count": 44325
+        },
+        {
+          "score": 414,
+          "segment_count": 188,
+          "cumulative_count": 46738
+        },
+        {
+          "score": 403,
+          "segment_count": 201,
+          "cumulative_count": 49069
+        }
+      ]
+    }
+  ],
+  "admission_bands": [
+    {
+      "batch": "专科批",
+      "count": 76,
+      "min_score": 101,
+      "max_score": 268,
+      "median_score": 183,
+      "by_category": [
+        {
+          "category": "综合",
+          "count": 76,
+          "min_score": 101,
+          "max_score": 268,
+          "median_score": 183
+        }
+      ]
+    },
+    {
+      "batch": "专科提前批",
+      "count": 10,
+      "min_score": 116,
+      "max_score": 249,
+      "median_score": 214,
+      "by_category": [
+        {
+          "category": "综合",
+          "count": 10,
+          "min_score": 116,
+          "max_score": 249,
+          "median_score": 214
+        }
+      ]
+    },
+    {
+      "batch": "本科批",
+      "count": 1205,
+      "min_score": 387,
+      "max_score": 580,
+      "median_score": 458,
+      "by_category": [
+        {
+          "category": "综合",
+          "count": 1205,
+          "min_score": 387,
+          "max_score": 580,
+          "median_score": 458
+        }
+      ]
+    },
+    {
+      "batch": "本科提前批",
+      "count": 84,
+      "min_score": 405,
+      "max_score": 580,
+      "median_score": 534,
+      "by_category": [
+        {
+          "category": "综合",
+          "count": 84,
+          "min_score": 405,
+          "max_score": 580,
+          "median_score": 534
+        }
+      ]
+    },
+    {
+      "batch": "综合评价",
+      "count": 25,
+      "min_score": 527,
+      "max_score": 580,
+      "median_score": 577,
+      "by_category": [
+        {
+          "category": "综合",
+          "count": 25,
+          "min_score": 527,
+          "max_score": 580,
+          "median_score": 577
+        }
+      ]
+    },
+    {
+      "batch": "零志愿批",
+      "count": 6,
+      "min_score": 594,
+      "max_score": 621,
+      "median_score": 621,
+      "by_category": [
+        {
+          "category": "综合",
+          "count": 6,
+          "min_score": 594,
+          "max_score": 621,
+          "median_score": 621
+        }
+      ]
+    }
+  ]
+}

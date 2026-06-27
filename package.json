@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "predev": "node scripts/sync-cvpr2026-data.mjs && node scripts/sync-gaokao2025-data.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
     "indexnow": "node scripts/submit-indexnow.mjs",
-    "prebuild": "node scripts/update-about-stats.mjs && node scripts/sync-cvpr2026-data.mjs"
+    "prebuild": "node scripts/update-about-stats.mjs && node scripts/sync-cvpr2026-data.mjs && node scripts/sync-gaokao2025-data.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "latest",

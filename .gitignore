@@ -5,3 +5,5 @@ dist/
 www.callbaba.com/
 .env
 .env.local
+public/assets/gaokao2025/index.json
+public/assets/gaokao2025/*/

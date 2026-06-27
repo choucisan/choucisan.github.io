@@ -1,0 +1,557 @@
+{
+  "exam_overview": {
+    "categories": [
+      {
+        "name": "物理类",
+        "total_candidates": 173282,
+        "max_score": 683,
+        "batch_lines": [
+          {
+            "batch": "专科批",
+            "score": 180
+          },
+          {
+            "batch": "本科批",
+            "score": 430
+          }
+        ]
+      },
+      {
+        "name": "历史类",
+        "total_candidates": 112406,
+        "max_score": 655,
+        "batch_lines": [
+          {
+            "batch": "专科批",
+            "score": 180
+          },
+          {
+            "batch": "本科批",
+            "score": 465
+          }
+        ]
+      }
+    ],
+    "total_candidates": 285688
+  },
+  "university_stats": {
+    "total": 1862,
+    "is_985": 38,
+    "is_211": 109,
+    "public": 562,
+    "private": 71,
+    "other": 1229,
+    "by_province": {
+      "浙江": 44,
+      "江苏": 40,
+      "辽宁": 37,
+      "山东": 34,
+      "北京": 34,
+      "上海": 29,
+      "河北": 29,
+      "吉林": 27,
+      "四川": 27,
+      "黑龙江": 26
+    }
+  },
+  "enrollment_stats": {
+    "total_plan": 0,
+    "university_count": 1862,
+    "major_count": 0,
+    "has_plan_count": false,
+    "by_batch": {},
+    "by_category": {},
+    "top_universities": [
+      {
+        "name": "三亚中瑞酒店管理职业学院",
+        "major_count": 0
+      },
+      {
+        "name": "三亚城市职业学院",
+        "major_count": 0
+      },
+      {
+        "name": "三亚学院",
+        "major_count": 0
+      },
+      {
+        "name": "三亚护理职业学院",
+        "major_count": 0
+      },
+      {
+        "name": "三亚理工职业学院",
+        "major_count": 0
+      },
+      {
+        "name": "三亚航空旅游职业学院",
+        "major_count": 0
+      },
+      {
+        "name": "三峡大学",
+        "major_count": 0
+      },
+      {
+        "name": "三峡大学科技学院",
+        "major_count": 0
+      },
+      {
+        "name": "三峡旅游职业技术学院",
+        "major_count": 0
+      },
+      {
+        "name": "三峡电力职业学院",
+        "major_count": 0
+      }
+    ]
+  },
+  "top_majors": [],
+  "score_distribution": [
+    {
+      "category": "物理类",
+      "points": [
+        {
+          "score": 683,
+          "segment_count": 52,
+          "cumulative_count": 52
+        },
+        {
+          "score": 658,
+          "segment_count": 38,
+          "cumulative_count": 490
+        },
+        {
+          "score": 633,
+          "segment_count": 125,
+          "cumulative_count": 2517
+        },
+        {
+          "score": 608,
+          "segment_count": 262,
+          "cumulative_count": 7586
+        },
+        {
+          "score": 583,
+          "segment_count": 389,
+          "cumulative_count": 15809
+        },
+        {
+          "score": 558,
+          "segment_count": 493,
+          "cumulative_count": 26994
+        },
+        {
+          "score": 533,
+          "segment_count": 638,
+          "cumulative_count": 41041
+        },
+        {
+          "score": 508,
+          "segment_count": 683,
+          "cumulative_count": 57507
+        },
+        {
+          "score": 483,
+          "segment_count": 778,
+          "cumulative_count": 75535
+        },
+        {
+          "score": 458,
+          "segment_count": 735,
+          "cumulative_count": 94444
+        },
+        {
+          "score": 433,
+          "segment_count": 722,
+          "cumulative_count": 113145
+        },
+        {
+          "score": 408,
+          "segment_count": 645,
+          "cumulative_count": 129696
+        },
+        {
+          "score": 383,
+          "segment_count": 465,
+          "cumulative_count": 143142
+        },
+        {
+          "score": 358,
+          "segment_count": 362,
+          "cumulative_count": 153743
+        },
+        {
+          "score": 333,
+          "segment_count": 254,
+          "cumulative_count": 161371
+        },
+        {
+          "score": 308,
+          "segment_count": 184,
+          "cumulative_count": 166712
+        },
+        {
+          "score": 283,
+          "segment_count": 122,
+          "cumulative_count": 170070
+        },
+        {
+          "score": 258,
+          "segment_count": 60,
+          "cumulative_count": 171991
+        },
+        {
+          "score": 233,
+          "segment_count": 28,
+          "cumulative_count": 172912
+        },
+        {
+          "score": 208,
+          "segment_count": 3,
+          "cumulative_count": 173191
+        },
+        {
+          "score": 183,
+          "segment_count": 2,
+          "cumulative_count": 173276
+        }
+      ]
+    },
+    {
+      "category": "历史类",
+      "points": [
+        {
+          "score": 655,
+          "segment_count": 51,
+          "cumulative_count": 51
+        },
+        {
+          "score": 632,
+          "segment_count": 18,
+          "cumulative_count": 343
+        },
+        {
+          "score": 609,
+          "segment_count": 74,
+          "cumulative_count": 1407
+        },
+        {
+          "score": 586,
+          "segment_count": 151,
+          "cumulative_count": 3856
+        },
+        {
+          "score": 563,
+          "segment_count": 218,
+          "cumulative_count": 7862
+        },
+        {
+          "score": 540,
+          "segment_count": 283,
+          "cumulative_count": 13686
+        },
+        {
+          "score": 517,
+          "segment_count": 391,
+          "cumulative_count": 21194
+        },
+        {
+          "score": 494,
+          "segment_count": 411,
+          "cumulative_count": 29873
+        },
+        {
+          "score": 471,
+          "segment_count": 455,
+          "cumulative_count": 39747
+        },
+        {
+          "score": 448,
+          "segment_count": 498,
+          "cumulative_count": 50496
+        },
+        {
+          "score": 425,
+          "segment_count": 456,
+          "cumulative_count": 61984
+        },
+        {
+          "score": 402,
+          "segment_count": 503,
+          "cumulative_count": 73470
+        },
+        {
+          "score": 379,
+          "segment_count": 465,
+          "cumulative_count": 84283
+        },
+        {
+          "score": 356,
+          "segment_count": 362,
+          "cumulative_count": 93891
+        },
+        {
+          "score": 333,
+          "segment_count": 282,
+          "cumulative_count": 101251
+        },
+        {
+          "score": 310,
+          "segment_count": 160,
+          "cumulative_count": 106368
+        },
+        {
+          "score": 287,
+          "segment_count": 109,
+          "cumulative_count": 109606
+        },
+        {
+          "score": 264,
+          "segment_count": 47,
+          "cumulative_count": 111324
+        },
+        {
+          "score": 241,
+          "segment_count": 17,
+          "cumulative_count": 112042
+        },
+        {
+          "score": 218,
+          "segment_count": 12,
+          "cumulative_count": 112273
+        },
+        {
+          "score": 195,
+          "segment_count": 3,
+          "cumulative_count": 112381
+        }
+      ]
+    }
+  ],
+  "admission_bands": [
+    {
+      "batch": "专科批",
+      "count": 242,
+      "min_score": 180,
+      "max_score": 498,
+      "median_score": 391,
+      "by_category": [
+        {
+          "category": "历史类",
+          "count": 113,
+          "min_score": 180,
+          "max_score": 498,
+          "median_score": 409
+        },
+        {
+          "category": "物理类",
+          "count": 129,
+          "min_score": 180,
+          "max_score": 480,
+          "median_score": 381
+        }
+      ]
+    },
+    {
+      "batch": "本科批A段",
+      "count": 13,
+      "min_score": 531,
+      "max_score": 626,
+      "median_score": 586,
+      "by_category": [
+        {
+          "category": "历史类",
+          "count": 4,
+          "min_score": 586,
+          "max_score": 610,
+          "median_score": 604
+        },
+        {
+          "category": "物理类",
+          "count": 9,
+          "min_score": 531,
+          "max_score": 626,
+          "median_score": 573
+        }
+      ]
+    },
+    {
+      "batch": "本科批B段",
+      "count": 1420,
+      "min_score": 391,
+      "max_score": 661,
+      "median_score": 523,
+      "by_category": [
+        {
+          "category": "历史类",
+          "count": 505,
+          "min_score": 426,
+          "max_score": 620,
+          "median_score": 538
+        },
+        {
+          "category": "物理类",
+          "count": 915,
+          "min_score": 391,
+          "max_score": 661,
+          "median_score": 509
+        }
+      ]
+    },
+    {
+      "batch": "本科提前批A段",
+      "count": 8,
+      "min_score": 511,
+      "max_score": 625,
+      "median_score": 610,
+      "by_category": [
+        {
+          "category": "历史类",
+          "count": 3,
+          "min_score": 511,
+          "max_score": 614,
+          "median_score": 608
+        },
+        {
+          "category": "物理类",
+          "count": 5,
+          "min_score": 534,
+          "max_score": 625,
+          "median_score": 613
+        }
+      ]
+    },
+    {
+      "batch": "本科提前批B段",
+      "count": 11,
+      "min_score": 495,
+      "max_score": 624,
+      "median_score": 559,
+      "by_category": [
+        {
+          "category": "历史类",
+          "count": 4,
+          "min_score": 495,
+          "max_score": 564,
+          "median_score": 553
+        },
+        {
+          "category": "物理类",
+          "count": 7,
+          "min_score": 524,
+          "max_score": 624,
+          "median_score": 594
+        }
+      ]
+    },
+    {
+      "batch": "本科提前批C段",
+      "count": 7,
+      "min_score": 501,
+      "max_score": 599,
+      "median_score": 525,
+      "by_category": [
+        {
+          "category": "历史类",
+          "count": 1,
+          "min_score": 599,
+          "max_score": 599,
+          "median_score": 599
+        },
+        {
+          "category": "物理类",
+          "count": 6,
+          "min_score": 501,
+          "max_score": 563,
+          "median_score": 519
+        }
+      ]
+    },
+    {
+      "batch": "本科提前批D段",
+      "count": 9,
+      "min_score": 604,
+      "max_score": 640,
+      "median_score": 632,
+      "by_category": [
+        {
+          "category": "历史类",
+          "count": 5,
+          "min_score": 604,
+          "max_score": 640,
+          "median_score": 633
+        },
+        {
+          "category": "物理类",
+          "count": 4,
+          "min_score": 619,
+          "max_score": 639,
+          "median_score": 631
+        }
+      ]
+    },
+    {
+      "batch": "高本贯通批",
+      "count": 2,
+      "min_score": 445,
+      "max_score": 486,
+      "median_score": 465,
+      "by_category": [
+        {
+          "category": "历史类",
+          "count": 2,
+          "min_score": 445,
+          "max_score": 486,
+          "median_score": 465
+        }
+      ]
+    },
+    {
+      "batch": "专科提前批B段",
+      "count": 2,
+      "min_score": 353,
+      "max_score": 393,
+      "median_score": 373,
+      "by_category": [
+        {
+          "category": "物理类",
+          "count": 2,
+          "min_score": 353,
+          "max_score": 393,
+          "median_score": 373
+        }
+      ]
+    },
+    {
+      "batch": "高校专项计划批",
+      "count": 1,
+      "min_score": 591,
+      "max_score": 591,
+      "median_score": 591,
+      "by_category": [
+        {
+          "category": "物理类",
+          "count": 1,
+          "min_score": 591,
+          "max_score": 591,
+          "median_score": 591
+        }
+      ]
+    },
+    {
+      "batch": "艺术类本科批",
+      "count": 1,
+      "min_score": 399,
+      "max_score": 399,
+      "median_score": 399,
+      "by_category": [
+        {
+          "category": "艺术类（历史）",
+          "count": 1,
+          "min_score": 399,
+          "max_score": 399,
+          "median_score": 399
+        }
+      ]
+    }
+  ]
+}

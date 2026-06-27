@@ -1,0 +1,446 @@
+{
+  "university_stats": {
+    "total": 885,
+    "is_985": 36,
+    "is_211": 98,
+    "public": 123,
+    "private": 0,
+    "other": 762,
+    "by_province": {
+      "北京": 15,
+      "吉林": 15,
+      "上海": 11,
+      "辽宁": 7,
+      "海南": 7,
+      "江苏": 7,
+      "黑龙江": 6,
+      "浙江": 6,
+      "湖北": 6,
+      "四川": 5
+    }
+  },
+  "enrollment_stats": {
+    "total_plan": 22599,
+    "university_count": 885,
+    "major_count": 780,
+    "has_plan_count": true,
+    "by_batch": {
+      "专科批": 8320,
+      "专科提前批": 163,
+      "体育类本科批": 5,
+      "国家专项计划批": 270,
+      "国家专项计划本科批": 416,
+      "地方专项计划批": 130,
+      "地方专项计划本科批": 235,
+      "提前录取军校批": 24,
+      "提前录取本科一批": 141,
+      "提前录取本科二批": 95,
+      "提前批艺体类专科": 187,
+      "提前批艺体类本科": 635,
+      "本科一批": 5843,
+      "本科二批": 5634,
+      "本科提前批": 13,
+      "艺术类本科批": 16,
+      "艺术类本科提前批": 3,
+      "边境专项计划批": 15,
+      "部队专项计划批": 170,
+      "部队生源本科批": 210,
+      "高校专项计划批": 4,
+      "高校专项计划本科批": 70
+    },
+    "by_category": {
+      "体育文": 2,
+      "体育理": 3,
+      "文科": 8974,
+      "理科": 13611,
+      "艺术文": 9
+    },
+    "top_universities": [
+      {
+        "name": "西藏民族大学",
+        "plan_count": 1580
+      },
+      {
+        "name": "西藏大学",
+        "plan_count": 1401
+      },
+      {
+        "name": "拉萨师范学院",
+        "plan_count": 760
+      },
+      {
+        "name": "西藏藏医药大学",
+        "plan_count": 360
+      },
+      {
+        "name": "辽阳职业技术学院",
+        "plan_count": 322
+      },
+      {
+        "name": "西藏农牧大学",
+        "plan_count": 267
+      },
+      {
+        "name": "淮南职业技术学院",
+        "plan_count": 251
+      },
+      {
+        "name": "娄底职业技术学院",
+        "plan_count": 240
+      },
+      {
+        "name": "黑龙江农业经济职业学院",
+        "plan_count": 230
+      },
+      {
+        "name": "西北民族大学",
+        "plan_count": 227
+      }
+    ]
+  },
+  "top_majors": [
+    {
+      "name": "学前教育",
+      "plan_count": 1009,
+      "university_count": 72
+    },
+    {
+      "name": "旅游管理",
+      "plan_count": 631,
+      "university_count": 105
+    },
+    {
+      "name": "法学",
+      "plan_count": 504,
+      "university_count": 110
+    },
+    {
+      "name": "临床医学",
+      "plan_count": 490,
+      "university_count": 56
+    },
+    {
+      "name": "护理",
+      "plan_count": 478,
+      "university_count": 38
+    },
+    {
+      "name": "汉语言文学",
+      "plan_count": 472,
+      "university_count": 103
+    },
+    {
+      "name": "小学教育",
+      "plan_count": 454,
+      "university_count": 56
+    },
+    {
+      "name": "护理学",
+      "plan_count": 367,
+      "university_count": 39
+    },
+    {
+      "name": "会计学",
+      "plan_count": 344,
+      "university_count": 76
+    },
+    {
+      "name": "中国少数民族语言文学",
+      "plan_count": 343,
+      "university_count": 7
+    },
+    {
+      "name": "大数据与会计",
+      "plan_count": 327,
+      "university_count": 50
+    },
+    {
+      "name": "畜牧兽医",
+      "plan_count": 319,
+      "university_count": 24
+    },
+    {
+      "name": "电子商务",
+      "plan_count": 306,
+      "university_count": 71
+    },
+    {
+      "name": "计算机科学与技术",
+      "plan_count": 304,
+      "university_count": 59
+    },
+    {
+      "name": "电气工程及其自动化",
+      "plan_count": 272,
+      "university_count": 48
+    },
+    {
+      "name": "工商管理",
+      "plan_count": 255,
+      "university_count": 56
+    },
+    {
+      "name": "体育教育",
+      "plan_count": 254,
+      "university_count": 24
+    },
+    {
+      "name": "计算机应用技术",
+      "plan_count": 246,
+      "university_count": 25
+    },
+    {
+      "name": "少数民族预科",
+      "plan_count": 242,
+      "university_count": 33
+    },
+    {
+      "name": "动物医学",
+      "plan_count": 238,
+      "university_count": 30
+    }
+  ],
+  "admission_bands": [
+    {
+      "batch": "专科批",
+      "count": 15,
+      "min_score": 218,
+      "max_score": 296,
+      "median_score": 258,
+      "by_category": [
+        {
+          "category": "文科",
+          "count": 8,
+          "min_score": 239,
+          "max_score": 296,
+          "median_score": 269
+        },
+        {
+          "category": "理科",
+          "count": 7,
+          "min_score": 218,
+          "max_score": 264,
+          "median_score": 231
+        }
+      ]
+    },
+    {
+      "batch": "国家专项计划本科批",
+      "count": 52,
+      "min_score": 314,
+      "max_score": 663,
+      "median_score": 405,
+      "by_category": [
+        {
+          "category": "文科",
+          "count": 14,
+          "min_score": 378,
+          "max_score": 586,
+          "median_score": 413
+        },
+        {
+          "category": "理科",
+          "count": 38,
+          "min_score": 314,
+          "max_score": 663,
+          "median_score": 398
+        }
+      ]
+    },
+    {
+      "batch": "提前录取本科一批",
+      "count": 15,
+      "min_score": 341,
+      "max_score": 484,
+      "median_score": 438,
+      "by_category": [
+        {
+          "category": "文科",
+          "count": 8,
+          "min_score": 347,
+          "max_score": 462,
+          "median_score": 443
+        },
+        {
+          "category": "理科",
+          "count": 7,
+          "min_score": 341,
+          "max_score": 484,
+          "median_score": 438
+        }
+      ]
+    },
+    {
+      "batch": "提前录取本科二批",
+      "count": 2,
+      "min_score": 335,
+      "max_score": 371,
+      "median_score": 353,
+      "by_category": [
+        {
+          "category": "文科",
+          "count": 1,
+          "min_score": 371,
+          "max_score": 371,
+          "median_score": 371
+        },
+        {
+          "category": "理科",
+          "count": 1,
+          "min_score": 335,
+          "max_score": 335,
+          "median_score": 335
+        }
+      ]
+    },
+    {
+      "batch": "本科一批",
+      "count": 82,
+      "min_score": 294,
+      "max_score": 589,
+      "median_score": 356,
+      "by_category": [
+        {
+          "category": "文科",
+          "count": 36,
+          "min_score": 327,
+          "max_score": 589,
+          "median_score": 376
+        },
+        {
+          "category": "理科",
+          "count": 46,
+          "min_score": 294,
+          "max_score": 581,
+          "median_score": 340
+        }
+      ]
+    },
+    {
+      "batch": "本科二批",
+      "count": 51,
+      "min_score": 266,
+      "max_score": 406,
+      "median_score": 311,
+      "by_category": [
+        {
+          "category": "文科",
+          "count": 22,
+          "min_score": 304,
+          "max_score": 406,
+          "median_score": 320
+        },
+        {
+          "category": "理科",
+          "count": 29,
+          "min_score": 266,
+          "max_score": 377,
+          "median_score": 282
+        }
+      ]
+    },
+    {
+      "batch": "高校专项计划本科批",
+      "count": 11,
+      "min_score": 310,
+      "max_score": 479,
+      "median_score": 390,
+      "by_category": [
+        {
+          "category": "文科",
+          "count": 4,
+          "min_score": 390,
+          "max_score": 437,
+          "median_score": 404
+        },
+        {
+          "category": "理科",
+          "count": 7,
+          "min_score": 310,
+          "max_score": 479,
+          "median_score": 374
+        }
+      ]
+    },
+    {
+      "batch": "专科提前批",
+      "count": 3,
+      "min_score": 234,
+      "max_score": 262,
+      "median_score": 236,
+      "by_category": [
+        {
+          "category": "理科",
+          "count": 3,
+          "min_score": 234,
+          "max_score": 262,
+          "median_score": 236
+        }
+      ]
+    },
+    {
+      "batch": "国家专项计划批",
+      "count": 1,
+      "min_score": 519,
+      "max_score": 519,
+      "median_score": 519,
+      "by_category": [
+        {
+          "category": "理科",
+          "count": 1,
+          "min_score": 519,
+          "max_score": 519,
+          "median_score": 519
+        }
+      ]
+    },
+    {
+      "batch": "提前录取军校批",
+      "count": 2,
+      "min_score": 320,
+      "max_score": 354,
+      "median_score": 337,
+      "by_category": [
+        {
+          "category": "理科",
+          "count": 2,
+          "min_score": 320,
+          "max_score": 354,
+          "median_score": 337
+        }
+      ]
+    },
+    {
+      "batch": "本科提前批",
+      "count": 1,
+      "min_score": 441,
+      "max_score": 441,
+      "median_score": 441,
+      "by_category": [
+        {
+          "category": "理科",
+          "count": 1,
+          "min_score": 441,
+          "max_score": 441,
+          "median_score": 441
+        }
+      ]
+    },
+    {
+      "batch": "高校专项计划批",
+      "count": 1,
+      "min_score": 345,
+      "max_score": 345,
+      "median_score": 345,
+      "by_category": [
+        {
+          "category": "理科",
+          "count": 1,
+          "min_score": 345,
+          "max_score": 345,
+          "median_score": 345
+        }
+      ]
+    }
+  ]
+}

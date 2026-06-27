@@ -10,13 +10,14 @@ export async function getStaticPaths() {
 const { item } = Astro.props;
 const { Content } = await render(item);
 const isCvpr2026Intro = item.id === 'cvpr2026intro';
+const isGaokaoCompass = item.id === 'gaokao_compass';
 const date = item.data.pubDate.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric'
 });
 ---
-<BaseLayout title={`${item.data.title} | Workshops`} description={item.data.description} image={item.data.image} headerMode="glass" bodyClass={isCvpr2026Intro ? 'archive-body cvpr-explorer-body' : ''}>
+<BaseLayout title={`${item.data.title} | Workshops`} description={item.data.description} image={item.data.image} headerMode="glass" bodyClass={isCvpr2026Intro ? 'archive-body cvpr-explorer-body' : isGaokaoCompass ? 'archive-body gaokao-compass-body' : ''}>
   {isCvpr2026Intro ? (
     <main class="cvpr-explorer-page">
       <section class="cvpr-explorer-hero">
@@ -77,6 +78,62 @@ const date = item.data.pubDate.toLocaleDateString('en-US', {
       </section>
     </main>
     <script src="/assets/cvpr2026/app.js" defer></script>
+  ) : isGaokaoCompass ? (
+    <main class="gaokao-compass-page">
+      <section class="gaokao-compass-hero">
+        <img class="publication-cloud publication-cloud-left" src="/assets/hero/cloud-large.png" alt="" aria-hidden="true" />
+        <img class="publication-cloud publication-cloud-right" src="/assets/hero/cloud-large.png" alt="" aria-hidden="true" />
+        <div class="container gaokao-compass-hero-inner">
+          <a class="detail-back" href="/workshops/">← Workshops</a>
+          <h1>2025年高考录取数据查询</h1>
+          <p class="gaokao-compass-lede">连接分数、位次、招生计划与录取线，帮助家长和考生更快看清志愿选择空间。</p>
+        </div>
+      </section>
+
+      <section class="gaokao-compass-shell" aria-live="polite">
+        <div class="gaokao-control-bar">
+          <label class="gaokao-select-wrap" for="gaokao-province">
+            <span>省份</span>
+            <select id="gaokao-province" data-gaokao-province></select>
+          </label>
+          <label class="gaokao-select-wrap" for="gaokao-category">
+            <span>类别</span>
+            <select id="gaokao-category" data-gaokao-category></select>
+          </label>
+          <label class="gaokao-select-wrap" for="gaokao-batch">
+            <span>批次</span>
+            <select id="gaokao-batch" data-gaokao-batch></select>
+          </label>
+          <label class="gaokao-search" for="gaokao-search">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10.8 18.1a7.3 7.3 0 1 1 0-14.6 7.3 7.3 0 0 1 0 14.6Zm5.2-2.1 4.5 4.5" />
+            </svg>
+            <input id="gaokao-search" type="search" autocomplete="off" placeholder="输入学校、专业或分数，例如：浙江大学 / 临床医学 / 620" data-gaokao-search />
+          </label>
+          <button class="gaokao-query-button" type="button" data-gaokao-query>查询</button>
+        </div>
+
+        <div class="gaokao-status-strip">
+          <span data-gaokao-status>正在加载 2025 高考数据索引...</span>
+          <span data-gaokao-rank></span>
+        </div>
+
+        <section class="gaokao-results-panel">
+          <div class="gaokao-results-head">
+            <div>
+              <p class="gaokao-kicker">查询结果</p>
+              <h2 data-gaokao-results-title>先选择省份、类别和批次，再输入学校、专业或分数</h2>
+            </div>
+            <p data-gaokao-results-count>等待查询</p>
+          </div>
+          <div class="gaokao-results-grid" data-gaokao-results></div>
+          <p class="empty-results" data-gaokao-empty hidden>没有找到匹配结果，可以放宽批次或换一个关键词。</p>
+        </section>
+        <section class="gaokao-insight-grid" data-gaokao-insights></section>
+        <section class="gaokao-analysis-panel" data-gaokao-panel hidden></section>
+      </section>
+    </main>
+    <script src="/assets/gaokao2025/app.js?v=20260627-2" defer></script>
   ) : (
     <main class="collection-detail">
       <section class="detail-hero">
