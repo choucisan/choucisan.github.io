@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import VisitorMapSummary from '../components/visualization/VisitorMapSummary.vue';
 import VisitorWorldMap from '../components/visualization/VisitorWorldMap.vue';
 import aboutStats from '../data/about-stats.json';
 
@@ -87,7 +88,10 @@ const xiaohongshuLikes =
     </section>
     <section class="about-visitor-map" data-reveal-scene data-visitor-map>
       <div class="container about-visitor-map-inner">
-        <p class="about-visitor-map-label">Visitors Map</p>
+        <div class="about-visitor-map-head">
+          <p class="about-visitor-map-label">Visitors Map</p>
+          <VisitorMapSummary client:load />
+        </div>
         <div class="about-visitor-map-frame">
           <VisitorWorldMap client:load />
         </div>

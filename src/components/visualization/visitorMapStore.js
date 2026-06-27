@@ -1,0 +1,85 @@
+import { computed, ref } from 'vue';
+
+const SUPABASE_URL = 'https://owdsphmfgxptpinffufn.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im93ZHNwaG1mZ3hwdHBpbmZmdWZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg3MjI5NjYsImV4cCI6MjA5NDI5ODk2Nn0.TXYVtvjdYrMYluKOiWJTbY9j0KhecOGiTfzfed8kx6A';
+const endpoint = `${SUPABASE_URL}/rest/v1/rpc`;
+const headers = {
+  'Content-Type': 'application/json',
+  apikey: SUPABASE_ANON_KEY,
+  Authorization: `Bearer ${SUPABASE_ANON_KEY}`
+};
+
+export const locations = ref([]);
+export const summary = ref('Visitor map is loading.');
+export const isDetailsOpen = ref(false);
+
+let loadPromise;
+
+export const formatNumber = (value) => new Intl.NumberFormat('en-US').format(value || 0);
+
+const rpc = async (name, body) => {
+  if (window.OneThreeSupabase?.callRpc) {
+    return window.OneThreeSupabase.callRpc(name, body);
+  }
+
+  const response = await fetch(`${endpoint}/${name}`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(body ?? {})
+  });
+  if (!response.ok) {
+    throw new Error(`${name} failed: ${response.status} ${await response.text()}`);
+  }
+  if (response.status === 204) return null;
+  const text = await response.text();
+  return text ? JSON.parse(text) : null;
+};
+
+const refreshSummary = () => {
+  const totalVisitors = locations.value.reduce((sum, item) => sum + Number(item.visitors || 0), 0);
+  summary.value = locations.value.length
+    ? `${formatNumber(totalVisitors)} visitors · ${formatNumber(locations.value.length)} cities`
+    : 'Collecting city-level visitor signals.';
+};
+
+export const normalizedLocations = computed(() => {
+  const valid = locations.value
+    .filter((item) => Number.isFinite(Number(item.latitude)) && Number.isFinite(Number(item.longitude)));
+
+  return valid.map((item, index) => {
+    const place = [item.city, item.country_name].filter(Boolean).join(', ') || 'Unknown location';
+    return {
+      ...item,
+      key: `${item.country_code ?? 'xx'}-${item.city ?? index}`,
+      label: [item.city, item.region, item.country_name].filter(Boolean).join(', ') || 'Unknown location',
+      place,
+      visitors: Number(item.visitors || 0),
+      lat: Number(item.latitude),
+      lng: Number(item.longitude),
+      radius: 3.2
+    };
+  });
+});
+
+export const ensureVisitorMapLoaded = async () => {
+  if (loadPromise) return loadPromise;
+
+  loadPromise = (async () => {
+    try {
+      await window.OneThreeSupabase?.recordVisitorLocation?.();
+    } catch (error) {
+      console.warn('[OneThree] Visitor location recording failed:', error);
+    }
+
+    try {
+      const data = await rpc('get_visitor_locations', { p_limit: 500 });
+      locations.value = Array.isArray(data) ? data : [];
+      refreshSummary();
+    } catch (error) {
+      console.warn('[OneThree] Visitor map failed:', error);
+      summary.value = 'Visitor map is unavailable.';
+    }
+  })();
+
+  return loadPromise;
+};

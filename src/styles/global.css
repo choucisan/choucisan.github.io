@@ -2945,14 +2945,20 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
 }
 
 .about-visitor-map-inner {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(190px, 0.48fr) minmax(0, 1.8fr);
-  gap: clamp(42px, 6vw, 112px);
-  align-items: start;
+  gap: clamp(8px, 1vw, 16px);
+}
+
+.about-visitor-map-head {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2vw, 32px);
+  min-width: 0;
 }
 
 .about-visitor-map-label {
-  margin: -0.08em 0 0;
+  margin: 0;
   color: rgba(250, 249, 241, 0.92);
   font-family: "Faire Octave", Georgia, "Times New Roman", serif;
   font-size: clamp(34px, 3.5vw, 60px);
@@ -2964,8 +2970,10 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
 
 .about-visitor-map-frame {
   position: relative;
-  min-height: clamp(500px, 50vw, 760px);
-  overflow: hidden;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  min-height: clamp(640px, 60vw, 900px);
+  overflow: visible;
 }
 
 .about-visitor-map-summary {
@@ -2975,7 +2983,7 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   align-items: center;
   gap: 8px;
   min-height: 36px;
-  margin: 0 0 clamp(8px, 1vw, 14px);
+  margin: 0;
   padding: 0 12px 0 14px;
   border: 1px solid rgba(250, 249, 241, 0.4);
   border-radius: 999px;
@@ -3010,9 +3018,25 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   position: relative;
 }
 
-.visitor-vue-map::before {
+.visitor-vue-map-controls {
+  position: relative;
+  left: auto;
+  top: auto;
+  z-index: 6;
+  width: min(360px, 100%);
+  flex: 0 0 auto;
+}
+
+.visitor-vue-map-stage {
+  position: relative;
+  width: min(100vw, 1720px);
+  margin-inline: auto;
+  transform: none;
+}
+
+.visitor-vue-map-stage::before {
   position: absolute;
-  inset: 6% max(-4vw, -72px) 8% max(-5vw, -88px);
+  inset: 2% max(-8vw, -136px) 4%;
   z-index: 0;
   border-radius: 999px;
   background:
@@ -3025,11 +3049,11 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   position: relative;
   z-index: 1;
   display: block;
-  width: min(116%, 1240px);
+  width: 100%;
   height: auto;
-  margin-left: max(-7vw, -112px);
+  margin-inline: auto;
   aspect-ratio: 2 / 1;
-  min-height: clamp(460px, 45vw, 700px);
+  min-height: clamp(650px, 58vw, 980px);
   padding: 0;
   border-radius: 0;
   background: transparent;
@@ -3056,30 +3080,30 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
 .visitor-vue-map-dot {
   fill: #6f9f86;
   stroke: rgba(250, 249, 241, 0.92);
-  stroke-width: 1.8;
-  filter: drop-shadow(0 7px 10px rgba(111, 159, 134, 0.2));
+  stroke-width: 1.25;
+  filter: drop-shadow(0 5px 8px rgba(111, 159, 134, 0.18));
 }
 
 .visitor-vue-map-pulse {
   fill: url(#visitorVueGlow);
-  opacity: 0.48;
+  opacity: 0.28;
   transform-origin: center;
   animation: visitor-pulse 2200ms ease-in-out infinite;
 }
 
 @keyframes visitor-pulse {
-  0%, 100% { opacity: 0.18; }
-  50% { opacity: 0.58; }
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.34; }
 }
 
 .about-visitor-map-list {
   position: absolute;
+  top: calc(100% + 8px);
   left: 0;
-  top: clamp(44px, 3.4vw, 54px);
   z-index: 5;
   display: grid;
   gap: 7px;
-  width: min(290px, 42%);
+  width: min(290px, 100%);
   max-height: min(360px, 56vh);
   margin: 0;
   padding: 8px;
@@ -3272,18 +3296,24 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   .about-garden-transition .transition-dove-large { right: 16vw; top: 142px; }
   .about-garden-transition .transition-dove-small { right: 44vw; top: 102px; }
   .about-visitor-map { padding: 14px 0 42px; }
-  .about-visitor-map-inner { grid-template-columns: 1fr; gap: 18px; }
+  .about-visitor-map-inner { grid-template-columns: 1fr; grid-template-rows: auto auto; gap: 18px; }
+  .about-visitor-map-head { align-items: center; gap: 14px; }
   .about-visitor-map-label { margin-top: 0; font-size: clamp(32px, 9vw, 48px); line-height: 0.95; }
-  .about-visitor-map-frame { min-height: 460px; }
-  .about-visitor-map-summary { margin-bottom: 10px; }
-  .visitor-vue-map::before { inset: 7% 0 10%; border-radius: 999px; }
-  .visitor-vue-map-svg { width: 100%; min-height: 330px; margin-left: 0; border-radius: 0; clip-path: none; }
+  .about-visitor-map-frame { grid-column: 1; grid-row: 2; min-height: 520px; }
+  .about-visitor-map-summary { margin: 0; }
+  .visitor-vue-map { position: relative; }
+  .visitor-vue-map-controls {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: min(100%, 320px);
+    margin: 0;
+  }
+  .visitor-vue-map-stage::before { inset: 7% 0 10%; border-radius: 999px; }
+  .visitor-vue-map-stage { width: 100vw; }
+  .visitor-vue-map-svg { width: 100%; min-height: 430px; margin-inline: auto; border-radius: 0; clip-path: none; }
   .about-visitor-map-list {
-    position: absolute;
-    left: 0;
-    top: 48px;
-    right: auto;
-    bottom: auto;
+    position: static;
     width: min(100%, 320px);
     margin-top: 0;
   }

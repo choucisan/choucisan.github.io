@@ -1,5 +1,5 @@
 <template>
-  <svg class="visitor-vue-map-svg" viewBox="0 0 1000 500" role="img" aria-label="City-level visitor world map">
+  <svg class="visitor-vue-map-svg" viewBox="-36 -22 1072 544" role="img" aria-label="City-level visitor world map">
     <defs>
       <radialGradient id="visitorVueGlow" cx="50%" cy="50%" r="50%">
         <stop offset="0%" stop-color="rgba(111, 159, 134, 0.82)" />
@@ -12,7 +12,7 @@
       </linearGradient>
     </defs>
 
-    <rect width="1000" height="500" :fill="mapBgColor" opacity="0" />
+    <rect x="-36" y="-22" width="1072" height="544" :fill="mapBgColor" opacity="0" />
 
     <g class="visitor-vue-map-land">
       <path
@@ -93,8 +93,8 @@ const props = defineProps({
 const world = feature(countries, countries.objects.countries);
 const landFeatures = world.features;
 const projection = geoNaturalEarth1()
-  .scale(186)
-  .translate([500, 258]);
+  .scale(174)
+  .translate([500, 247]);
 const pathGenerator = geoPath(projection);
 
 const project = ({ lat, lng }) => projection([Number(lng), Number(lat)]) ?? [0, 0];
