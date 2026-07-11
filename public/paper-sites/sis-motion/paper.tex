@@ -1,0 +1,806 @@
+%%
+%% This is file `sample-sigconf-authordraft.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% samples.dtx  (with options: `all,proceedings,bibtex,authordraft')
+%%
+%% IMPORTANT NOTICE:
+%%
+%% For the copyright see the source file.
+%%
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from sample-sigconf-authordraft.tex.
+%%
+%% For distribution of the original source see the terms
+%% for copying and modification in the file samples.dtx.
+%%
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+%%
+%%
+%% Commands for TeXCount
+%TC:macro \cite [option:text,text]
+%TC:macro \citep [option:text,text]
+%TC:macro \citet [option:text,text]
+%TC:envir table 0 1
+%TC:envir table* 0 1
+%TC:envir tabular [ignore] word
+%TC:envir displaymath 0 word
+%TC:envir math 0 word
+%TC:envir comment 0 0
+%%
+%% The first command in your LaTeX source must be the \documentclass
+%% command.
+%%
+%% For submission and review of your manuscript please change the
+%% command to \documentclass[manuscript, screen, review]{acmart}.
+%%
+%% When submitting camera ready or to TAPS, please change the command
+%% to \documentclass[sigconf]{acmart} or whichever template is required
+%% for your publication.
+%%
+%%
+% \documentclass[sigconf]{acmart}
+\documentclass[sigconf, screen, review, anonymous]{acmart}
+
+%% \BibTeX command to typeset BibTeX logo in the docs
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    Bib\TeX}}}
+
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{colortbl}
+
+\newcommand{\wenjia}[1]{\textcolor{blue}{[Wenjia: #1]}}
+\newcommand{\wenjiaadd}[1]{\textcolor{blue}{ #1}}
+
+\newcommand{\zhiwei}[1]{\textcolor{red}{[zhiwei: #1]}}
+\newcommand{\zhiweiadd}[1]{\textcolor{red}{ #1}}
+
+\newcommand{\pjc}[1]{\textcolor{red}{#1}}
+
+\newcommand{\choucisan}[1]{\textcolor{purple}{#1}}
+
+%% Rights management information.  This information is sent to you
+%% when you complete the rights form.  These commands have SAMPLE
+%% values in them; it is your responsibility as an author to replace
+%% the commands and values with those provided to you when you
+%% complete the rights form.
+
+\setcopyright{none}
+\settopmatter{printacmref=false}
+
+% \copyrightyear{2018}
+% \acmYear{2018}
+% \acmDOI{XXXXXXX.XXXXXXX}
+%% These commands are for a PROCEEDINGS abstract or paper.
+% \acmConference[Conference acronym 'XX]{Make sure to enter the correct
+%   conference title from your rights confirmation email}{June 03--05,
+%   2018}{Woodstock, NY}
+%%
+%%  Uncomment \acmBooktitle if the title of the proceedings is different
+%%  from ``Proceedings of ...''!
+%%
+%%\acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection,
+%%  June 03--05, 2018, Woodstock, NY}
+% \acmISBN{978-1-4503-XXXX-X/2018/06}
+
+
+%%
+%% Submission ID.
+%% Use this when submitting an article to a sponsored event. You'll
+%% receive a unique submission ID from the organizers
+%% of the event, and this ID should be used as the parameter to this command.
+\acmSubmissionID{3983}
+
+%%
+%% For managing citations, it is recommended to use bibliography
+%% files in BibTeX format.
+%%
+%% You can then either use BibTeX with the ACM-Reference-Format style,
+%% or BibLaTeX with the acmnumeric or acmauthoryear sytles, that include
+%% support for advanced citation of software artefact from the
+%% biblatex-software package, also separately available on CTAN.
+%%
+%% Look at the sample-*-biblatex.tex files for templates showcasing
+%% the biblatex styles.
+%%
+
+%%
+%% The majority of ACM publications use numbered citations and
+%% references.  The command \citestyle{authoryear} switches to the
+%% "author year" style.
+%%
+%% If you are preparing content for an event
+%% sponsored by ACM SIGGRAPH, you must use the "author year" style of
+%% citations and references.
+%% Uncommenting
+%% the next command will enable that style.
+%%\citestyle{acmauthoryear}
+
+
+%%
+%% end of the preamble, start of the body of the document source.
+\begin{document}
+
+%%
+%% The "title" command has an optional parameter,
+%% allowing the author to define a "short title" to be used in page headers.
+\title{Self in Space: Benchmarking Self-Awareness and Spatial Cognition in UAV Embodied Intelligence}
+
+%%
+%% The "author" command and its associated commands are used to define
+%% the authors and their affiliations.
+%% Of note is the shared affiliation of the first two authors, and the
+%% "authornote" and "authornotemark" commands
+%% used to denote shared contribution to the research.
+
+
+
+
+
+%%
+%% By default, the full list of authors will be used in the page
+%% headers. Often, this list is too long, and will overlap
+%% other information printed in the page headers. This command allows
+%% the author to define a more concise list
+%% of authors' names for this purpose.
+\renewcommand{\shortauthors}{Trovato et al.}
+
+
+
+
+
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
+\begin{abstract}
+Autonomous UAV systems increasingly rely on multimodal large language models (MLLMs) to operate in complex real-world environments. Such embodied scenarios require not only understanding the surrounding space but also maintaining a coherent representation of the agent itself. However, existing UAV-oriented approaches and benchmarks remain largely environment-centric, primarily focusing on spatial understanding tasks, with the agent's self-awareness remaining implicit. To address this gap, we introduce \textbf{SIS-Bench}, a benchmark for evaluating embodied spatial intelligence in UAV scenarios under a unified self-in-space formulation. SIS-Bench organizes evaluation along two complementary dimensions, \emph{space} and \emph{self}, and a three-level hierarchy of perception, memory, and reasoning. It contains 4,856 question--answer pairs across 13 tasks derived from 1,646 real-world UAV videos through a task-conditioned construction pipeline with expert verification.
+Extensive evaluations reveal that current MLLMs exhibit fundamental limitations in modeling dynamic and agent-centered processes. In particular, we observe a clear imbalance between spatial cognition and self-awareness, as well as a progressive performance degradation across cognitive levels.
+Motivated by these findings, we further explore a motion-aware representation that incorporates self-related dynamics through optical flow and visual feature fusion. Experimental results show that modeling agent motion consistently improves perception and memory performance, not only in spatial cognition but also in self-awareness, and generalizes to downstream UAV decision-making tasks.
+Our results highlight the importance of self-awareness for advancing embodied spatial intelligence, and provide both a new benchmark and empirical evidence for motion-aware self-in-space modeling.
+
+\end{abstract}
+
+%%
+%% The code below is generated by the tool at http://dl.acm.org/ccs.cfm.
+%% Please copy and paste the code instead of the example below.
+%%
+\begin{CCSXML}
+<ccs2012>
+   <concept>
+       <concept_id>10010147.10010178</concept_id>
+       <concept_desc>Computing methodologies~Artificial intelligence</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+ </ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Computing methodologies~Artificial intelligence}
+
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe
+%% the work being presented. Separate the keywords with commas.
+\keywords{Multimodal Large Language Model, Visual Understanding, Embodied Spatial Intelligence for UAV, Optical Flow}
+
+
+
+
+%% A "teaser" image appears between the author and affiliation
+%% information and the body of the document, and typically spans the
+%% page.
+\begin{teaserfigure}
+  \includegraphics[width=\textwidth]{figure/teaser.pdf}
+  \caption{Overview of SIS-Bench for Self-Awareness and Spatial
+Cognition: The evaluation capabilities covered by our benchmark are illustrated on the left, while the performance comparison of six closed-source models is presented on the right.}
+  \label{fig:teaser}
+\end{teaserfigure}
+
+
+
+
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+
+
+
+\section{Introduction}
+\label{sec:intro}
+
+
+
+
+Driven by advances in lightweight hardware, battery technology, and manufacturing, unmanned aerial vehicles (UAVs) have become increasingly available, leading to their widespread deployment in real-world applications such as urban monitoring~\cite{UrbanVideo-Bench}, infrastructure inspection~\cite{aela2024uav}, and emergency response~\cite{ishiwatari2024leveraging}. As these applications grow in scale and complexity, UAV systems must operate more intelligently in dynamic physical environments, requiring stronger capabilities for perception, reasoning, and decision-making~\cite{wen2019visdrone}. Recent advances in multimodal large language models (MLLMs), with their ability to unify perception and reasoning, have thus created new opportunities for UAV intelligence~\cite{UAV-VLN,emami2026large}.
+
+
+Recent efforts have pushed the boundaries of UAV intelligence with MLLMs, extending their use from aerial perception~\cite{liu2024remoteclip,wang2024skyscript} to navigation~\cite{wang2024towards,xu2025aerial}, and more recently to embodied UAV tasks~\cite{gao2025openfly,liu2026indooruav}. Alongside these advances, a parallel line of work has increasingly recognized the limitations of current MLLMs in UAV scenarios, motivating benchmarks and evaluation frameworks that assess their capabilities, failure modes, and reasoning gaps from different perspectives~\cite{UrbanVideo-Bench,UAVScenes,MM-UAVBench}. Despite these advances, existing studies remain largely environment-centered and task-oriented, which mainly focus on how UAVs perceive the environment and accomplish predefined tasks, while largely overlooking explicitly modeling the internal state of the UAV itself as an embodied agent. In practice, however, UAV operation is a continuous agent--environment interaction process, in which the UAV is not merely an observer of space, but an active entity evolving within it~\cite{zhang2025mllms,montello1993scale}. Such a setting requires a unified capability that jointly models the external environment (\emph{space}) and the agent’s own state (\emph{self}).
+
+
+
+Viewed from this perspective, embodied intelligence is not only about understanding the world, but also about understanding the agent within the world---what we refer to as \textbf{self in space}.
+
+Recent research has increasingly highlighted the importance of agent-centered representations in embodied intelligence, suggesting that explicitly modeling internal agent states and dynamics is critical for grounded and consistent behavior~\cite{DeconstructingSpatialIntelligence,kadambi2025embodiment,li2024embodied}. However, current UAV-oriented MLLMs still fall short of a unified understanding of \emph{space} and \emph{self}. This naturally raises a central question: \textbf{how well do MLLMs jointly model the external environment, the UAV self-state, and the interaction between them?}
+
+
+
+
+
+To systematically answer this question, we introduce \textbf{SIS-Bench} (\textbf{S}elf-\textbf{I}n-\textbf{S}pace Benchmark), a benchmark for evaluating how well MLLMs jointly model space, self, and their interaction in UAV scenarios. Unlike existing evaluations that mainly focus on environment understanding or task completion, SIS-Bench is built upon a unified self-in-space framework that evaluates UAV embodied intelligence along two complementary dimensions, \emph{spatial cognition} and \emph{self-awareness}, while organizing tasks into a three-level cognitive hierarchy of perception, memory, and reasoning. We further establish SIS-Bench through a task-conditioned construction protocol with heterogeneous video types, task-specific annotation pipelines, and rigorous dual-expert verification.
+SIS-Bench contains 4,856 question--answer (QA) pairs across 13 tasks derived from real-world aerial videos spanning diverse environments (e.g., urban, residential, industrial, and natural) and long temporal durations from 10 seconds to over 2 minutes.
+Using SIS-Bench, we evaluate selected proprietary and open-source MLLMs and include human study as an upper-bound reference. As shown in Figure~\ref{fig:teaser}, we observe a clear imbalance between spatial cognition and self-awareness, as well as a steady decline across perception, memory, and reasoning, highlighting that existing models remain largely environment-centric and struggle with embodied self-awareness.
+
+Motivated by these findings, we further examine whether explicitly strengthening the joint modeling of \emph{space} and \emph{self} can lead to measurable gains. Rather than presenting a new flagship model, we use this question to conduct a controlled motion-aware exploration. Concretely, we construct \textbf{SIS-Motion}, a motion-aware extension of a standard video MLLM that fuses optical-flow-based motion features with visual embeddings, enabling the model to jointly capture environmental context and agent dynamics. To support this exploration, we construct a spatial motion-aware question answering dataset, \textbf{SIS-Motion-54K}, and perform supervised fine-tuning. Experimental results show that this exploratory setup consistently improves both spatial cognition and self-awareness on SIS-Bench. Moreover, the resulting gains transfer beyond benchmark settings to downstream UAV navigation decision-making tasks~\cite{anderson2018vision,fried2018speaker,irshad2021hierarchical}. Our main contributions are as follows:
+
+
+
+\begin{itemize}
+    \item We introduce \textbf{SIS-Bench}, a benchmark with 4,856 QA pairs from 1,646 real-world UAV videos, covering 13 tasks over spatial cognition and self-awareness under a perception--memory--reasoning hierarchy.
+    \item We evaluate 16 video MLLMs, including 6 proprietary and 10 open-source models, and reveal two consistent limitations: weaker modeling of \emph{self} than \emph{space}, and progressive degradation from perception to memory to reasoning.
+    \item Motivated by these findings, we conduct a controlled motion-aware exploration through \textbf{SIS-Motion}, showing improved spatial cognition and self-awareness on SIS-Bench, with transfer to downstream UAV navigation tasks.
+\end{itemize}
+
+
+
+\begin{figure*}[t]
+	\centering
+    \vspace{-10pt}
+	\includegraphics[width = 1\linewidth]{figure/bench.pdf}
+	\vspace{-10pt}
+        \caption{Task illustrations of SIS-Bench. The benchmark evaluates 13 tasks under two dimensions (Spatial Cognition and Self-Awareness) and three cognitive levels. Perception is built from \emph{Single Video} inputs, Memory from \emph{Concatenated Video} inputs, and Reasoning from \emph{Long Video} and \emph{Shuffled Video} inputs, reflecting progressively higher cognitive demands. Colored boxes are for illustration only and are not part of the model input.}
+	\label{Fig:task}
+	\vspace{-10pt}
+\end{figure*}
+
+
+\section{Related Work}
+\label{sec:related}
+
+\noindent\textbf{MLLMs for UAV Applications.}
+Recent advances in multimodal large language models (MLLMs) have driven growing interest in UAV-oriented multimodal intelligence. Existing work has progressed from aerial visual understanding, such as image understanding, object detection, and change detection~\cite{liu2024remoteclip,wang2024skyscript}, to navigation and decision-making, where MLLMs support trajectory planning, target-oriented navigation, and spatio-temporal scene interpretation~\cite{wang2024towards,xu2025aerial}. More recent studies further extend UAV intelligence toward agentic and embodied settings, emphasizing autonomous reasoning and closed-loop interaction with the physical world~\cite{koubaa2025agentic,emami2026large,gao2025openfly,liu2026indooruav}. In parallel, dedicated UAV benchmarks have emerged to evaluate capabilities such as perception, navigation, reasoning, and planning under realistic aerial conditions~\cite{UrbanVideo-Bench,UAVScenes,MM-UAVBench}. Unlike these task-centric efforts, our work focuses on how well MLLMs jointly model the external environment, the UAV self-state, and their interaction.
+
+\noindent\textbf{MLLMs for Spatial Intelligence.}
+Spatial intelligence enables embodied agents to perceive, represent, and reason about spatial structure in the physical world. Prior work has evolved from vision--language alignment~\cite{radford2021learning,li2023blip} to 3D geometric reasoning and structured spatial grounding~\cite{chen2024ll3da,hong20233d,chen2024spatialvlm,chen2024grounded,wang2023chat,huang2023embodied,huang2024chat,fu2024scene,zhu2024llava,zheng2025video,qi2025gpt4scene}, and more recently to embodied understanding in egocentric and interactive environments~\cite{EgoSchema,majumdar2024openeqa,fu2025objectrelator,pan2026v,mahdi2025exo2egosyn}. While these advances substantially improve spatial reasoning, most existing methods remain environment-centered, with limited explicit modeling of the agent itself. For embodied UAVs, however, robust operation requires consistent representations of self-state, motion, and agent--environment interaction over time. Our work builds on this gap through the joint modeling of \emph{space}, \emph{self}, and their interaction.
+
+% \noindent\textbf{Motion-aware and Integrated Sensing.}
+\noindent\textbf{Motion-aware Modeling for Embodied UAVs.} Most video-based MLLMs inherit CLIP-style pretraining, which captures high-level semantics but is less effective for fine-grained motion and temporal dynamics. Recent work adds structured spatial cues and embodied video reasoning to improve spatio-temporal understanding~\cite{chen2024spatialvlm,zheng2025video,majumdar2024openeqa}, yet explicit modeling of agent-related motion remains underexplored, especially in UAV scenarios where viewpoint change and self-motion are fundamental. This gap motivates our motion-aware exploration in UAV settings, where we examine whether integrating visual appearance with motion-aware cues can improve self-in-space modeling.
+
+
+
+% \section{SIS-Bench}
+% \label{sec:SIS-Bench}
+
+% \pjc{
+% To systematically study UAV embodied spatial intelligence, we introduce \textbf{SIS-Bench}, a comprehensive benchmark that decomposes this capability into structured, measurable components. Specifically, we formulate a principled evaluation framework grounded in human cognitive processes, where perception, memory, and reasoning evolve from simple recognition to complex spatial-temporal interactions. Following this formulation, we first introduce the core design principles in Sec.~\ref{sec:design}, followed by the benchmark construction pipeline in Sec.~\ref{sec:pipeline}, and finally present detailed statistics in Sec.~\ref{sec:stats}.
+% }
+
+
+
+% \subsection{\pjc{Design Principles}}
+% \label{sec:design}
+% \pjc{Unlike existing benchmarks that primarily focus on isolated perception or reasoning skills, SIS-Bench is designed to capture the intrinsic coupling between \emph{spatial cognition} and \emph{self-awareness} under realistic UAV embodied scenarios. XXX}
+
+% \noindent \textbf{\pjc{Self-in-Space Dual-Dimension}}
+
+% \noindent \textbf{\pjc{Hierarchical Cognitive}}
+
+% \noindent \textbf{\pjc{XXX}}
+
+% \subsection{\pjc{Benchmark Construction Pipeline}}
+% \label{sec:pipeline}
+
+% \noindent \textbf{\pjc{Data Source Paradigm and Processing.}}
+% \pjc{We design three complementary video construction strategies to induce progressively richer temporal structures:
+% (1) \textbf{Single/Atomic Video}, which preserves single, self-contained observations for instantaneous perception;
+% (2) \textbf{Concatenated/Composed Video}, which concatenates multiple segments to introduce cross-segment temporal dependency; and
+% (3) \textbf{Shuffled/Permuted Video}, which disrupts temporal order through segment permutation, requiring structural understanding beyond original chronology.}
+
+
+% \noindent \textbf{\pjc{Task-specific Annotation.}}
+
+% \noindent \textbf{\pjc{QA Construction}}
+
+% \noindent \textbf{\pjc{Dual-expert Verification.}}
+
+% \subsection{\pjc{Benchmark Statistics}}
+% \label{sec:stats}
+
+
+% \section{SIS-Bench}
+% \label{sec:SIS-Bench}
+
+% \noindent To systematically study UAV embodied spatial intelligence, we introduce \textbf{SIS-Bench}, a benchmark that decomposes this capability into structured and measurable components. Rather than evaluating isolated perception or reasoning skills, SIS-Bench is designed to capture how a UAV jointly models the external environment and its own evolving action state under realistic embodied scenarios. Following this formulation, we first present the design principles in Sec.~\ref{sec:design}, then describe the benchmark construction pipeline in Sec.~\ref{sec:pipeline}, and finally summarize dataset statistics in Sec.~\ref{sec:stats}.
+
+% \subsection{Design Principles}
+% \label{sec:design}
+
+% Unlike existing benchmarks~\cite{} that mainly focus on environment understanding or downstream task completion, SIS-Bench is built around a \textbf{self-in-space} formulation. The goal is to evaluate not only whether a model understands the surrounding scene, but also whether it can maintain a coherent representation of the UAV itself as an embodied agent acting within that scene as shown in Figure~\ref{Fig:task}.
+
+% \noindent\textbf{Self-in-Space Dual-Dimension.}
+% \pjc{We organize the benchmark along two complementary dimensions: \textbf{spatial cognition} and \textbf{self-awareness}. (1) \textbf{Spatial cognition} measures how well a model understands the external environment, including objects, landmarks, spatial relations, and scene consistency. (2) \textbf{Self-awareness} measures how well it understands the UAV's own motion, action history, and future behavior. This dual design directly follows the central question raised in Sec.~\ref{sec:intro}: embodied UAV intelligence requires joint modeling of \emph{space}, \emph{self}, and their interaction.}
+
+% \noindent\textbf{Hierarchical Cognitive Design.}
+% \pjc{On top of these two dimensions, we introduce a progressive three-level hierarchy: \textbf{perception}, \textbf{memory}, and \textbf{reasoning}.
+% Inspired by human cognition, this hierarchy captures the evolution from immediate observation to temporal retention and structured inference, enabling a fine-grained evaluation beyond a single aggregate score.
+% (1) \textbf{Perception} focuses on immediate understanding of visual scenes and actions. Under spatial cognition, it includes object existence, attribute recognition, and relative spatial relationships. Under self-awareness, it involves recognizing the agent’s current actions. This level isolates instantaneous understanding without requiring temporal accumulation.
+% (2) \textbf{Memory} evaluates the ability to retain and retrieve information over time. Under spatial cognition, it includes landmark recall, ordering, and positional relationships. Under self-awareness, it involves action sequence understanding and recall.
+% This level emphasizes temporal continuity and information persistence beyond immediate observation.
+% (3) \textbf{Reasoning} evaluates higher-level embodied inference that integrates spatial context and agent dynamics. For spatial cognition, this includes spatial and spatio-temporal consistency. For self-awareness, it involves future action anticipation and decision-making under environmental constraints. This level places the strongest demands on structured reasoning across both \emph{space} and \emph{self}.}
+
+% \noindent\textbf{Hierarchical Cognitive Design.}
+% On top of these two dimensions, we introduce a progressive three-level hierarchy: \textbf{perception}, \textbf{memory}, and \textbf{reasoning}. The motivation is to evaluate embodied intelligence from immediate recognition to temporally extended inference, rather than collapsing all capabilities into a single aggregate score.
+
+% \noindent \textit{Perception.}
+% Perception evaluates direct visual and motion understanding from \emph{Single Video} inputs. Under spatial cognition, we include Object Existence, Object Attribute, and Relative Direction. Under self-awareness, we include Action Recognition. We intentionally use short AirScape clips at this level to isolate instantaneous scene and action understanding without introducing long-horizon temporal burden.
+
+% \noindent \textit{Memory.}
+% Memory evaluates whether a model can retain and retrieve information across scene transitions. We construct this level with \emph{Concatenated Video} inputs by stitching 2--4 AirScape clips. Under spatial cognition, we include Landmark Order, Landmark Recall, and Positional Relationship. Under self-awareness, we include Action Sequence and Action Recall. This design introduces temporal storage and retrieval demands while keeping the supervision source controllable.
+
+% \noindent \textit{Reasoning.}
+% Reasoning evaluates higher-level embodied inference over longer temporal horizons. For spatial cognition, we use \emph{Shuffled Video} constructed from UrbanVideo-Bench and VisDrone by splitting long videos into 2--4 segments and randomly reordering them, then evaluate Spatial Consistency and Spatio-temporal Consistency. For self-awareness, we use \emph{Long Video} inputs to construct Action Prediction and Path Planning, which require understanding motion tendency and choosing future actions under spatial constraints. These tasks place the strongest demands on structured reasoning over both environment and self.
+
+% \noindent\textbf{Task-driven Source Assignment.}
+% The benchmark therefore follows a task-driven data strategy rather than uniform data pooling: \emph{Single Video} for Perception, \emph{Concatenated Video} for Memory, and \emph{Long Video}/\emph{Shuffled Video} for Reasoning. This mapping aligns each cognitive level with the video form and source data that best expose the intended capability.
+% 这部分动机需要讨论一下，
+% \pjc{To aligns each cognitive level with the video form and source data that best expose the intended capability, we design three complementary video construction strategies to induce progressively richer temporal structures:
+% (1) \textbf{Single/Atomic Video}, which preserves single, self-contained observations for instantaneous perception;
+% (2) \textbf{Concatenated/Composed Video}, which concatenates multiple segments to introduce cross-segment temporal dependency; and
+% (3) \textbf{Shuffled/Permuted Video}, which disrupts temporal order through segment permutation, requiring structural understanding beyond original chronology.}
+
+
+
+% 这部分需要分点（结合分布图，没有的后面图中也可以展现出来）：1）多层级多能力多任务 （层级：Self/space；认知能力： Memory等这种；任务：就是更细分的task 2）多源/多类型视频数据（源：airscape，visdrone。。。 类型：Single Video, Concatenated Video, and Long Video Shuffled Video ） 3）XX的QA对（这部分有没有办法对QA进行单独的统计：比如像问题难度啥的？
+
+
+
+\begin{figure*}[t]
+	\centering
+	\includegraphics[width = 1\linewidth]{figure/pipeline.pdf}
+		\caption{Overview of the SIS-Bench construction pipeline and statistics. The upper panel illustrates the four-stage protocol: Data Processing, Task-specific Annotation, QA Construction, and Dual-expert Verification. The lower panel details dataset statistics, including video-source composition, duration, and task-wise distribution across 13 categories.}
+	\label{Fig:pipeline}
+    \vspace{-10pt}
+\end{figure*}
+
+
+
+\section{SIS-Bench}
+\label{sec:SIS-Bench}
+
+\noindent To systematically study UAV embodied spatial intelligence, we introduce \textbf{SIS-Bench}, a benchmark that decomposes this capability into structured and measurable components. Rather than evaluating isolated perception or reasoning skills, SIS-Bench is designed to capture how a UAV jointly models the external environment and its own evolving action state under realistic embodied scenarios. Following this formulation, we first present the design principles in Sec.~\ref{sec:design}, then describe the benchmark construction pipeline in Sec.~\ref{sec:pipeline}, and finally summarize dataset statistics in Sec.~\ref{sec:stats}.
+
+
+
+
+
+
+\subsection{Design Principles}
+\label{sec:design}
+
+Unlike existing benchmarks that mainly focus on environment understanding or downstream task completion, SIS-Bench is built around a \textbf{self-in-space} formulation. The goal is to evaluate not only whether a model understands the surrounding scene, but also whether it can maintain a coherent representation of the UAV itself as an embodied agent acting within that scene.
+
+\noindent\textbf{Self-in-Space Dual-Dimension.}
+As shown in Figure~\ref{Fig:task}, we organize the benchmark along two complementary dimensions. (1) \textbf{Spatial cognition} measures how well a model understands the external environment, including objects, landmarks, spatial relations, and scene consistency. (2) \textbf{Self-awareness} measures how well it understands the UAV's own motion, action history, and future behavior. This dual design directly follows the central question in Sec.~\ref{sec:intro}: embodied UAV intelligence requires joint modeling of \emph{space}, \emph{self}, and their interaction.
+
+\noindent\textbf{Hierarchical Cognitive Design.}
+% On top of these two dimensions, we introduce a progressive three-level hierarchy: \textbf{perception}, \textbf{memory}, and \textbf{reasoning}.
+Within each of these two dimensions, we further organize the benchmark into three progressive cognitive levels: \textbf{perception}, \textbf{memory}, and \textbf{reasoning}.
+Inspired by human cognition, this hierarchy captures the evolution from immediate observation to temporal retention and structured inference, enabling a more fine-grained evaluation than a single aggregate score.
+\textbf{(1) Perception.}
+Perception focuses on immediate understanding of visual scenes and agent actions. Under spatial cognition, it includes \textit{Object Existence}, \textit{Object Attribute}, and \textit{Relative Direction}. Under self-awareness, it includes \textit{Action Recognition}. This level isolates instantaneous understanding without requiring temporal accumulation.
+\textbf{(2) Memory.}
+Memory evaluates whether a model can retain and retrieve information over time. Under spatial cognition, it includes \textit{Landmark Recall}, \textit{Landmark Order}, and \textit{Positional Relationship}. Under self-awareness, it includes \textit{Action Sequence} and \textit{Action Recall}. This level emphasizes temporal continuity and information persistence beyond immediate observation.
+\textbf{(3) Reasoning.}
+Reasoning evaluates higher-level embodied inference that integrates spatial context and agent dynamics. Under spatial cognition, it includes \textit{Spatial Consistency} and \textit{Spatio-temporal Consistency}. Under self-awareness, it includes \textit{Action Prediction} and \textit{Path Planning}. This level places the strongest demands on structured reasoning across both \emph{space} and \emph{self}.
+
+\noindent\textbf{Task-conditioned Video Construction.}
+To match task demands, we define four video construction types. (1) \textbf{Single Video} keeps one self-contained observation for instantaneous perception. (2) \textbf{Concatenated Video} composes 2--4 \textbf{Single Video} clips to add cross-segment dependency for memory evaluation. (3) \textbf{Long Video} preserves long-horizon motion and scene evolution for future-action reasoning. (4) \textbf{Shuffled Video} permutes segmented \textbf{Long Video} clips to break original chronology, requiring recovery of spatial and temporal consistency beyond the input order. Based on this design, SIS-Bench prioritizes task-driven data over uniform pooling.
+
+
+
+\setlength{\tabcolsep}{3pt}
+\begin{table*}[t]
+\centering
+\caption{Performance on SIS-Bench. Accuracy (\%) across 13 tasks on 6 proprietary models and 10 open-source models.}
+\label{tab:main_results}
+\scriptsize
+\renewcommand{\arraystretch}{1.05}
+\scalebox{1.50}{
+\begin{tabular}{l|ccc|ccc|ccc|cc|c|cc|cc}
+\hline
+& & & & \multicolumn{8}{c|}{\textcolor[HTML]{675BC6}{\textbf{Spatial Cognition}}} & \multicolumn{5}{c}{\textcolor[HTML]{FF7F00}{\textbf{Self-Awareness}}} \\
+& & & & \multicolumn{3}{c|}{\cellcolor[HTML]{EBF4E2}Perception} & \multicolumn{3}{c|}{\cellcolor[HTML]{FDF0EF}Memory} & \multicolumn{2}{c|}{\cellcolor[HTML]{E5EEFD}Reasoning} & \cellcolor[HTML]{EBF4E2}Perc. & \multicolumn{2}{c|}{\cellcolor[HTML]{FDF0EF}Memory} & \multicolumn{2}{c}{\cellcolor[HTML]{E5EEFD}Reasoning} \\
+\textbf{Model} & \rotatebox{90}{\textbf{Perc.}} & \rotatebox{90}{\textbf{Perc.+Mem.}} & \rotatebox{90}{\textbf{Overall}} & \rotatebox{90}{\textit{Obj Exist}} & \rotatebox{90}{\textit{Obj Attr}} & \rotatebox{90}{\textit{Rel Dir}} & \rotatebox{90}{\textit{Land Order}} & \rotatebox{90}{\textit{Land Recall}} & \rotatebox{90}{\textit{Pos Rel}} & \rotatebox{90}{\textit{Spat Consist}} & \rotatebox{90}{\textit{ST Consist}} & \rotatebox{90}{\textit{Act Recog}} & \rotatebox{90}{\textit{Act Seq}} & \rotatebox{90}{\textit{Act Recall}} & \rotatebox{90}{\textit{Act Pred}} & \rotatebox{90}{\textit{Path Plan}} \\
+\hline
+Random & 24.8 & 25.0 & 25.0 & 24.7 & 24.9 & 24.9 & 25.2 & 25.2 & 25.1 & 25.0 & 25.2 & 24.7 & 25.3 & 25.0 & 24.9 & 25.2 \\
+Human Performance & 93.4 & 94.2 & 91.7 & 95.9 & 96.6 & 84.4 & 97.0 & 93.8 & 94.6 & 88.3 & 68.8 & 92.4 & 96.6 & 94.1 & 86.9 & 83.6 \\
+\hline
+\multicolumn{17}{l}{\cellcolor[HTML]{ECF4FF}\textit{Proprietary Models}} \\
+Gemini-3-Flash & 79.1 & 74.4 & 71.6 & 97.2 & 80.6 & 75.0 & 94.4 & 84.0 & 89.7 & 71.8 & 57.7 & 66.5 & 84.1 & 42.4 & 61.6 & 53.7 \\
+Kimi-2.5 & 73.0 & 73.2 & 71.0 & 97.0 & 78.0 & 80.5 & 98.0 & 81.9 & 87.3 & 76.4 & 53.1 & 50.9 & 77.8 & 53.0 & 65.4 & 57.0 \\
+Doubao-Seed-1.8 & 68.7 & 73.3 & 70.6 & 97.4 & 72.6 & 76.5 & 96.1 & 84.4 & 87.7 & 66.2 & 57.3 & 43.7 & 85.1 & 59.2 & 63.1 & 54.0 \\
+Qwen3.5-Plus & 73.3 & 71.7 & 70.1 & 97.6 & 76.2 & 78.5 & 97.7 & 83.3 & 87.7 & 75.9 & 54.8 & 52.8 & 82.5 & 42.4 & 69.2 & 58.5 \\
+GPT-5.4 & 73.7 & 72.2 & 70.0 & 98.4 & 74.9 & 67.0 & 94.8 & 78.6 & 86.9 & 64.1 & 57.3 & 57.3 & 77.8 & 49.9 & 65.8 & 58.8 \\
+Doubao-Seed-1.6-Vision & 72.8 & 71.8 & 69.8 & 97.4 & 73.9 & 78.0 & 94.4 & 81.0 & 87.7 & 72.3 & 53.5 & 53.1 & 77.1 & 48.9 & 65.8 & 57.4 \\
+
+\hline
+\multicolumn{17}{l}{\cellcolor[HTML]{ECF4FF}\textit{Open-source Models}} \\
+Qwen3-VL-8B-Instruct & 74.9 & 67.0 & 64.6 & 97.2 & 82.2 & 73.5 & 95.8 & 74.9 & 82.9 & 64.6 & 51.0 & 55.1 & 60.3 & 32.2 & 57.0 & 48.9 \\
+InternVL3.5-8B & 73.4 & 64.0 & 61.1 & 96.1 & 76.5 & 70.5 & 86.3 & 72.0 & 73.8 & 55.4 & 47.3 & 56.1 & 52.4 & 31.8 & 55.1 & 41.9 \\
+Qwen3-VL-30B-A3B-Instruct & 68.7 & 62.5 & 61.0 & 97.2 & 78.6 & 79.0 & 95.1 & 76.5 & 85.3 & 67.7 & 47.7 & 39.7 & 44.8 & 28.4 & 59.7 & 48.9 \\
+Step3-VL-10B & 69.6 & 62.1 & 60.3 & 95.1 & 72.4 & 68.5 & 94.1 & 72.2 & 67.5 & 64.1 & 54.4 & 50.0 & 55.9 & 28.6 & 54.4 & 42.3 \\
+MiMo-VL-7B-RL & 68.9 & 61.1 & 59.2 & 96.3 & 74.2 & 73.5 & 80.1 & 75.2 & 81.3 & 72.3 & 47.3 & 44.8 & 43.2 & 29.7 & 51.7 & 40.8 \\
+InternVL3-14B & 68.5 & 61.6 & 59.1 & 96.3 & 77.5 & 71.0 & 94.8 & 79.7 & 81.3 & 67.7 & 46.1 & 42.7 & 43.8 & 24.9 & 55.5 & 31.6 \\
+Kimi-VL-A3B-Instruct & 68.5 & 61.7 & 59.0 & 95.1 & 76.5 & 70.0 & 87.9 & 74.3 & 79.4 & 66.7 & 45.6 & 44.6 & 42.5 & 31.8 & 57.4 & 27.9 \\
+Ovis2.5-9B & 71.8 & 60.3 & 58.5 & 96.7 & 79.1 & 69.5 & 76.5 & 63.9 & 73.0 & 58.5 & 46.1 & 50.6 & 50.5 & 26.7 & 60.1 & 41.5 \\
+InternVL2.5-8B & 71.0 & 61.0 & 58.2 & 95.3 & 82.9 & 67.0 & 85.3 & 66.6 & 79.0 & 61.0 & 50.2 & 48.0 & 29.5 & 33.2 & 53.2 & 29.0 \\
+GLM-4.6V-Flash-9B & 73.2 & 61.9 & 59.6 & 96.5 & 79.1 & 66.0 & 89.5 & 44.9 & 65.1 & 64.6 & 41.9 & 55.2 & 56.2 & 37.1 & 55.1 & 43.4 \\
+
+\hline
+\end{tabular}
+}
+\end{table*}
+
+
+
+
+
+\subsection{Benchmark Construction Pipeline}
+\label{sec:pipeline}
+
+As illustrated in the upper panel of Figure~\ref{Fig:pipeline}, SIS-Bench is constructed with a four-stage pipeline: \textbf{Data Processing}, \textbf{Task-specific Annotation}, \textbf{QA Construction}, and \textbf{Dual-expert Verification}. This protocol is designed to keep the benchmark both scalable and reliable across heterogeneous tasks and datasets.
+
+\noindent \textbf{Data Processing.}
+We start from three public sources: AirScape~\cite{zhao2025airscape}, UrbanVideo-Bench~\cite{UrbanVideo-Bench}, and VisDrone~\cite{wen2019visdrone}. As shown in Figure~\ref{Fig:pipeline}, this stage contains three task-oriented operations: \textbf{(1) Converted}, where VisDrone frame sequences are converted into videos (15 FPS); \textbf{(2) Concatenated}, where 2--4 AirScape clips are stitched to build multi-segment videos for memory evaluation; and \textbf{(3) Shuffled}, where selected long UrbanVideo-Bench videos are reordered through task-specific shuffling strategies to construct spatial reasoning samples. These operations transform heterogeneous source data into capability-aligned video inputs for the later stages.
+
+\noindent \textbf{Task-specific Annotation.}
+Following the processed video types, we employ three annotation pipelines, denoted as \textbf{Pipeline-A}, \textbf{Pipeline-B}, and \textbf{Pipeline-C} in Figure~\ref{Fig:pipeline}. \textbf{Pipeline-A} is used for self-awareness perception and memory tasks built from \emph{Single Video} and \emph{Concatenated Video} inputs. Since these samples already contain reliable action annotations, we directly reorganize the existing labels into structured metadata such as action category, action order, and clip-level action correspondence. \textbf{Pipeline-B} is used for spatial perception and memory tasks. We first prompt a VLM to annotate each sample using three types of input: the video itself, task-specific guidance, and in-context examples. The guidance instructs the model to focus on static landmarks and scene elements, maintain unique semantic references to target objects, and summarize the visible entities and their relations in a structured way. The examples demonstrate the expected annotation format and level of detail, so that the model outputs metadata that can be reliably converted into QA pairs; these metadata are then manually filtered and corrected. \textbf{Pipeline-C} is used for reasoning tasks on \emph{Long Video} and \emph{Shuffled Video} inputs, where automatic labeling is more prone to hallucination. For this stage, we develop a multi-annotator collaborative platform, and UAV-experienced experts annotate the samples by following task-specific instructions and examples. The platform further standardizes and organizes the resulting annotations into metadata fields, supporting later QA construction.
+
+\noindent \textbf{QA Construction.}
+After annotation, we convert verified metadata into multiple-choice QA pairs through task-specific templates with LLM assistance. The templates are designed to preserve consistent answer formats and difficulty within each task, while distractors are manually controlled to remain plausible but non-ambiguous.
+
+\noindent \textbf{Dual-expert Verification.}
+All candidate QA pairs are independently reviewed by two experts on our internal verification platform. Samples are retained only when both reviewers accept them; samples rejected by both are removed; samples with disagreement enter discussion and are either revised and accepted or discarded. This final stage enforces answer uniqueness, question validity, and difficulty consistency across all 13 tasks, and directly supports the evaluation reported in Sec.~\ref{sec:eva}.
+
+
+
+\subsection{Benchmark Statistics}
+\label{sec:stats}
+
+\noindent \textbf{Multi-level and multi-capability evaluation.}
+SIS-Bench evaluates embodied UAV intelligence over two dimensions, \textbf{spatial cognition} and \textbf{self-awareness}, and three cognitive levels, \textbf{perception}, \textbf{memory}, and \textbf{reasoning}. This yields \textbf{13} tasks that jointly cover direct recognition, cross-segment memory, and higher-level inference. As shown in Figure~\ref{Fig:pipeline}, Perception accounts for 36.3\% of SIS-Bench, Memory accounts for 43.7\%, and Reasoning accounts for 20.0\%, yielding a balanced, cognitively progressive benchmark.
+
+\noindent \textbf{Multi-source and multi-type video data.}
+SIS-Bench contains \textbf{4,856} multiple-choice question--answer pairs from \textbf{1,646} real-world UAV videos collected from AirScape~\cite{zhao2025airscape}, UrbanVideo-Bench~\cite{UrbanVideo-Bench}, and VisDrone~\cite{wen2019visdrone}. In total, these videos cover approximately \textbf{14.9} hours of UAV footage and span diverse environments, including urban, residential, industrial, and natural scenes. At the video level, the benchmark combines \emph{Single Video}, \emph{Concatenated Video}, \emph{Long Video}, and \emph{Shuffled Video}, covering different temporal structures for different tasks. All QA pairs are built through task-matched pipelines and dual-expert verification.
+
+
+
+
+
+\section{How Well Do MLLMs Handle Self-Awareness and Spatial Cognition in UAV Scenarios?}
+\label{sec:eva}
+
+\subsection{Evaluation Setup}
+
+\textbf{Benchmark Models.} We conduct the evaluations on 16 video-capable multimodal large language models (MLLMs), covering a diverse range of model families, parameter scales, and training paradigms. For proprietary models, we evaluate Gemini 3 Flash Preview~\cite{gemini3flash}, GPT-5.4~\cite{gpt5}, Kimi-2.5~\cite{team2026kimi}, Doubao-Seed-1.8~\cite{doubaoseed18}, Doubao-Seed-1.6-Vision~\cite{doubaoseed16vision}, and Qwen3.5-Plus~\cite{qwen35plus}.
+For open-source models, we include representative models such as Qwen3-VL~\cite{bai2025qwen3}, InternVL series (2.5–3.5)~\cite{chen2024expanding,zhu2025internvl3,wang2025internvl3}, Kimi-VL~\cite{team2025kimi}, MiMo-VL~\cite{yue2025mimo}, GLM-4V series~\cite{hong2025glm}, Ovis2.5~\cite{lu2025ovis2}, and Step3-VL~\cite{huang2026step3}.
+
+All evaluations are conducted under a zero-shot setting using default prompts provided by each model.
+To ensure reproducibility, we adopt greedy decoding for all models.
+
+
+\noindent\textbf{Evaluation Metric.}
+Since all questions are in multiple-choice format, we report accuracy for each task as well as overall accuracy.
+
+
+
+
+\begin{figure*}[t]
+	\centering
+	\includegraphics[width = 0.95\linewidth]{figure/model.pdf}
+	\caption{Overview of the SIS-Motion framework. The architecture (left) comprises parallel encoders for synchronized visual and motion processing. The internal mechanism of the Motion Encoder is further elaborated on the right, showing the structural alignment of motion features into unified tokens compatible with large-scale language models.}
+
+	\label{Fig:framework}
+    \vspace{-10pt}
+\end{figure*}
+
+
+
+\subsection{Evaluation on SIS-Bench}
+
+Table~\ref{tab:main_results} summarizes the performance of all evaluated models on SIS-Bench.
+Overall, the results reveal a consistent pattern across model families: current MLLMs are substantially stronger at modeling the external environment than the embodied agent itself, and their performance degrades progressively as tasks require longer temporal integration and higher-order reasoning.
+
+\noindent\textbf{Overall performance and human upper bound.}
+Human evaluators achieve an overall accuracy of \textbf{91.7\%}, substantially outperforming all evaluated models; the best model reaches \textbf{71.6\%}, leaving a gap of over \textbf{20} points. This shows SIS-Bench is far from saturated, with a large gap to human embodied spatial understanding. The gap is especially evident on self-awareness and reasoning tasks, indicating that current models still struggle to form coherent, temporally grounded representations of the UAV as an embodied agent.
+
+\noindent\textbf{Imbalance between spatial cognition and self-awareness.}
+A key finding of SIS-Bench is the imbalance between \emph{spatial cognition} and \emph{self-awareness}. Across most evaluated models, performance on spatial cognition tasks is consistently higher than on self-awareness tasks. In other words, current MLLMs are better at interpreting the external scene---such as object layouts, attributes, and landmark relations---than at modeling the UAV's own state, motion history, and action dynamics. This directly supports our motivation in Sec.~\ref{sec:intro}: existing UAV MLLMs focus heavily on environmental perception, often at the expense of embodied-agent awareness.
+
+\noindent\textbf{Progressive degradation across the cognitive hierarchy.}
+The results also show a clear cognitive hierarchy: performance is highest on \emph{perception}, drops on \emph{memory}, and declines further on \emph{reasoning}. This trend is consistent across both proprietary and open-source models. Perception mainly depends on direct visual recognition, memory requires retaining temporally distributed evidence, and reasoning requires integrating such evidence into coherent spatial or action-level inference. This degradation suggests current MLLMs are much better at immediate recognition than at maintaining stable representations over time and reasoning over them.
+
+\noindent\textbf{Model families and the limitation of scaling.}
+Proprietary models generally outperform open-source models on overall accuracy, showing benefits from stronger pretraining and system-level optimization. However, this gap is still modest compared with the large remaining human gap. More importantly, gains from stronger models are uneven across tasks: clearer on reasoning-intensive spatial cognition tasks, but much less evident on UAV motion, action recognition, and action recall. This suggests scaling improves general recognition and inference, but does not fundamentally resolve dynamic, agent-centered modeling.
+
+% \noindent\textbf{Implications for embodied UAV intelligence.}
+% Taken together, these results reveal three consistent limitations of current MLLMs in UAV scenarios. First, they are substantially better at modeling \emph{space} than \emph{self}. Second, their performance deteriorates markedly from perception to memory to reasoning, indicating that embodied cognition remains fragile across temporal depth. Third, scaling alone does not adequately address self-related motion understanding. \choucisan{Given the benchmark formulation in Sec.~\ref{sec:SIS-Bench} and the capability gaps diagnosed here, the next step is to ask whether explicit motion-aware modeling can alleviate part of this weakness. We examine this question in Sec.~\ref{sec:method} through a controlled motion-aware exploration based on SIS-Motion.}
+% \noindent\textbf{Implications for embodied UAV intelligence.} Taken together, the above results suggest that the main bottleneck of current MLLMs in UAV scenarios lies not only in general reasoning capacity, but also in the lack of explicit modeling of self-related dynamics. Since the UAV's self state is situated in space, a natural next question is whether strengthening motion-aware modeling can improve the joint understanding of \emph{self} and \emph{space}. We examine this question in the following section through a controlled motion-aware exploration.
+
+% \noindent\textbf{Implications for embodied UAV intelligence.}
+% Taken together, the above results suggest that current MLLMs still lack explicit mechanisms for modeling self-related dynamics in UAV scenarios. Since changes in the UAV's self state directly affect its observation of the external environment: for example, when the UAV moves rapidly forward, surrounding scene elements appear to move backward in the visual field, this naturally raises the next question: can stronger motion-aware cues improve the joint modeling of \emph{self} and \emph{space}? We examine this question in the following section through a controlled motion-aware exploration.
+
+\noindent\textbf{Implications for embodied UAV intelligence.}
+Taken together, the above results suggest that current MLLMs still lack explicit mechanisms for modeling self-related dynamics in UAV scenarios. Changes in the UAV's self-state directly alter how the external environment is observed; for example, when the UAV moves rapidly forward, surrounding scene elements appear to move backward in the visual field. This naturally raises the next question: can stronger motion-aware cues improve the joint modeling of \emph{self} and \emph{space}? We investigate this question in the following section through a controlled motion-aware exploration.
+
+
+
+
+
+% \section{Integrated Sensing as a New Paradigm}
+% \label{sec:method}
+\section{A Motion-aware Exploration of Self in Space}
+\label{sec:method}
+
+
+
+Spatial cognition and self-awareness should be inherently coupled in embodied UAV intelligence. In real aerial operation, the UAV's self-state is always situated in space: viewpoint changes, scene evolution, and agent motion are tightly intertwined with the surrounding environment. This raises a natural question: \emph{can explicitly modeling motion-related changes in space help MLLMs better understand self, and can such self-related modeling also benefit spatial cognition?}
+
+% To investigate this question, we propose a motion-aware exploration experiment. Specifically, we construct a motion-aware model, termed \textbf{SIS-Motion}, by augmenting a standard video MLLM with an optical-flow-based motion encoder and a lightweight fusion connector, so that self-related motion cues can be integrated with appearance-based spatial context. As will be shown below, this exploration yields two main findings: (1) integrating motion cues improves both self-awareness and spatial cognition on SIS-Bench; and (2) the gains are most evident on perception- and memory-level tasks, while also transferring to downstream UAV navigation.
+
+To investigate this question, we conduct a motion-aware exploration. Specifically, we instantiate \textbf{SIS-Motion} as a motion-aware extension of a standard video MLLM by augmenting it with an optical-flow-based motion encoder and a lightweight fusion connector, so that self-related motion cues can be integrated with appearance-based spatial context. As shown below, this exploration yields two main findings: (1) integrating motion cues improves both self-awareness and spatial cognition on SIS-Bench; and (2) the gains are most evident on perception- and memory-level tasks, while also transferring to downstream UAV navigation.
+
+
+
+
+
+
+\subsection{SIS-Motion Framework}
+
+We implement SIS-Motion as a motion-aware extension of a standard video MLLM. The key idea is to complement appearance-based visual representations with explicit motion cues, so that the model can jointly capture scene semantics and self-related dynamics under changing viewpoints. The architecture of SIS-Motion is shown in Figure~\ref{Fig:framework}, where we adopt a dual-encoder design to jointly model environmental context and self-motion, consisting of a visual encoder, a motion encoder and a connector.
+
+\noindent \textbf{Visual Encoder.}
+Given an input video clip \( \{\mathbf{f}_i\}_{i=1}^{N} \), where \( \mathbf{f}_i\in\mathbb{R}^{3\times H\times W} \), the visual encoder \( \mathcal{E}_{v} \) extracts semantic video tokens:
+\[
+\mathbf{e}_{v}=\mathcal{E}_{v}(\{\mathbf{f}_i\}_{i=1}^{N}), \quad
+\mathbf{e}_{v}\in\mathbb{R}^{N_v\times d}.
+\]
+These tokens mainly encode scene appearance, object layout, and environmental context.
+
+\noindent\textbf{Motion encoder.}
+To explicitly model temporal dynamics, we estimate optical flow from the input video:
+\[
+\mathbf{U}=\Phi(\{\mathbf{f}_i\}_{i=1}^{N}), \quad
+\mathbf{U}\in\mathbb{R}^{T_f\times 2\times H_f\times W_f},
+\]
+where \( \Phi \) denotes an optical-flow estimator (e.g., RAFT~\cite{teed2020raft}). We then convert the flow into a 3-channel pseudo-image sequence:
+\[
+\mathbf{P}_t=\left[\left\|\mathbf{U}_t\right\|_2,\ \mathbf{U}_t^{x},\ \mathbf{U}_t^{y}\right], \quad
+\mathbf{P}\in\mathbb{R}^{T_f\times 3\times H_f\times W_f}.
+\]
+After temporal alignment to the video length \(N\), the sequence $\mathbf{P}$ is fed into a ViT-based motion encoder \( \mathcal{E}_m \) to obtain motion tokens:
+\[
+\mathbf{e}_m=\mathcal{E}_m(\mathbf{P}), \quad
+\mathbf{e}_m\in\mathbb{R}^{N_v\times d}.
+\]
+Compared with appearance features, these motion tokens provide more explicit cues about directional movement, action transitions, and viewpoint evolution.
+
+\noindent\textbf{Feature fusion.}
+We integrate the two streams through a lightweight connector. Specifically, motion features are first aligned to the visual token space and then fused with visual tokens:
+\[
+\mathbf{e}_{m}'=\mathrm{MLP}_{m}(\mathrm{LN}(\mathbf{e}_{m})), \quad
+\mathbf{e}=\mathbf{e}_{v}+\mathbf{e}_{m}'.
+\]
+The fused representation \( \mathbf{e} \) is finally fed into the language model for downstream prediction. This design keeps the setup controlled, so that any observed gain can be more directly attributed to motion-aware cues in the joint modeling of \emph{self} and \emph{space}.
+
+
+
+
+
+% \subsection{SIS-Motion Framework}
+
+% Spatial intelligence arises from the joint modeling of the external environment (\emph{space}) and the agent’s own state (\emph{self}), where environmental changes and agent actions are inherently coupled~\cite{DeconstructingSpatialIntelligence}. The results in Sec.~\ref{sec:eva} further show that current MLLMs perform well on environment-centric perception but remain limited in modeling dynamic, agent-centered processes. To address this gap, we propose \textbf{SIS-Motion}, an integrated-sensing \textbf{paradigm}~\cite{wu2025spatial,tong2024eyes,caron2021emerging,jiang2023clip}  rather than a fixed model. \textbf{SIS-Motion} preserves the standard video-MLLM pipeline while augmenting visual representations with explicit motion cues to capture agent actions and self-related dynamics, enabling flexible integration with different LLM backbones and visual encoders within a unified framework.
+
+% To instantiate such self-related motion modeling, we draw inspiration from robotics and SLAM~\cite{campos2021orb,qin2018vins,engel2014lsd}, where optical flow~\cite{teed2020raft,wang2024sea} serves as a fundamental cue for capturing egocentric motion through frame-to-frame dynamics. Following this intuition, \textbf{SIS-Motion} adopts a dual-encoder design to jointly model environmental context and self-motion, consisting of a \textbf{visual encoder} and a \textbf{motion encoder}. As shown in Figure~\ref{Fig:framework}, the visual branch captures appearance and spatial layout, while the Motion encoder captures self-dynamics complementary to visual semantics.
+
+% \noindent \textbf{Visual Encoder.}
+% Given an input video clip \( \{\mathbf{f}_i\}_{i=1}^{N} \), where \( \mathbf{f}_i\in\mathbb{R}^{3\times H\times W} \), the visual encoder \( \mathcal{E}_{v} \) extracts semantic video tokens:
+% \[
+% \mathbf{e}_{v}=\mathcal{E}_{v}(\{\mathbf{f}_i\}_{i=1}^{N}), \quad
+% \mathbf{e}_{v}\in\mathbb{R}^{N_v\times d}.
+% \]
+% Here, \( N \) is the number of frames, \( H \) and \( W \) are frame height and width, \( N_v \) is the number of visual tokens, and \( d \) is the token dimension.
+
+% \noindent \textbf{Motion Encoder.}
+% To model temporal dynamics, we first estimate optical flow and obtain a flow tensor:
+% \[
+% \mathbf{U}=\Phi(\{\mathbf{f}_i\}_{i=1}^{N}), \quad
+% \mathbf{U}\in\mathbb{R}^{T_f\times 2\times H_f\times W_f}.
+% \]
+% We then convert it into a 3-channel pseudo-image sequence:
+% \[
+% \mathbf{P}_t=\left[\left\|\mathbf{U}_t\right\|_2,\ \mathbf{U}_t^{x},\ \mathbf{U}_t^{y}\right], \quad
+% \mathbf{P}\in\mathbb{R}^{T_f\times 3\times H_f\times W_f}.
+% \]
+% We temporally align \(\mathbf{P}\) to length \(N\) via boundary replication (still denoted as \(\mathbf{P}\) for brevity), and feed the aligned pseudo-images to a ViT-based motion encoder encoder to obtain motion tokens:
+% \[
+% \mathbf{e}_{m}=\mathcal{E}_{m}(\mathbf{P}), \quad
+% \mathbf{e}_{m}\in\mathbb{R}^{N_v\times d}.
+% \]
+% Here, \( \Phi \) denotes a generic optical-flow estimator (e.g., RAFT\cite{teed2020raft}). The temporal length \(T_f\) depends on the estimator; for example, MOFNet\cite{shi2023videoflow} yields \(T_f=N-2\) before alignment.
+
+% \noindent \textbf{Connector Fusion.}
+% We align motion and visual tokens with a lightweight connector:
+% \[
+% \mathbf{e}_{m}'=\mathrm{MLP}_{m}(\mathrm{LN}(\mathbf{e}_{m})), \quad
+% \mathbf{e}=\mathbf{e}_{v}+\mathbf{e}_{m}'.
+% \]
+% Here, \( \mathrm{LN}(\cdot) \) denotes Layer Normalization, and \( \mathrm{MLP}_{m}(\cdot) \) is a learnable multilayer perceptron for feature alignment. The fused tokens \( \mathbf{e} \) are then fed into the LLM backbone for downstream reasoning.
+
+
+\setlength{\tabcolsep}{3pt}
+\begin{table*}[t]
+\centering
+\caption{Results of the motion-aware exploration on SIS-Bench. Accuracy (\%) across 13 tasks, comparing the zero-shot baseline, visual-only SFT, and SIS-Motion. Bold numbers indicate the best results among the three compared settings.}
+\label{tab:ablation}
+\scriptsize
+\renewcommand{\arraystretch}{1.05}
+\scalebox{1.5}{
+\begin{tabular}{l|ccc|ccc|ccc|cc|c|cc|cc}
+\hline
+& & & & \multicolumn{8}{c|}{\textcolor[HTML]{675BC6}{\textbf{Spatial Cognition}}} & \multicolumn{5}{c}{\textcolor[HTML]{FF7F00}{\textbf{Self-Awareness}}} \\
+& & & & \multicolumn{3}{c|}{\cellcolor[HTML]{EBF4E2}Perception} & \multicolumn{3}{c|}{\cellcolor[HTML]{FDF0EF}Memory} & \multicolumn{2}{c|}{\cellcolor[HTML]{E5EEFD}Reasoning} & \cellcolor[HTML]{EBF4E2}Perc. & \multicolumn{2}{c|}{\cellcolor[HTML]{FDF0EF}Memory} & \multicolumn{2}{c}{\cellcolor[HTML]{E5EEFD}Reasoning} \\
+\textbf{Model} & \rotatebox{90}{\textbf{Spatial Avg}} & \rotatebox{90}{\textbf{Self Avg}} & \rotatebox{90}{\textbf{Overall}} & \rotatebox{90}{\textit{Obj Exist}} & \rotatebox{90}{\textit{Obj Attr}} & \rotatebox{90}{\textit{Rel Dir}} & \rotatebox{90}{\textit{Land Order}} & \rotatebox{90}{\textit{Land Recall}} & \rotatebox{90}{\textit{Pos Rel}} & \rotatebox{90}{\textit{Spat Consist}} & \rotatebox{90}{\textit{ST Consist}} & \rotatebox{90}{\textit{Act Recog}} & \rotatebox{90}{\textit{Act Seq}} & \rotatebox{90}{\textit{Act Recall}} & \rotatebox{90}{\textit{Act Pred}} & \rotatebox{90}{\textit{Path Plan}} \\
+\hline
+
+\multicolumn{17}{l}{\cellcolor[HTML]{ECF4FF}\textit{Proprietary Models}} \\
+Gemini-3-Flash & 83.7 & 58.6 & 71.6 & 97.2 & 80.6 & 75.0 & 94.4 & 84.0 & 89.7 & 71.8 & 57.7 & 66.5 & 84.1 & 42.4 & 61.6 & 53.7 \\
+% Kimi-2.5 & 83.5 & 57.6 & 71.0 & 97.0 & 78.0 & 80.5 & 98.0 & 81.9 & 87.3 & 76.4 & 53.1 & 50.9 & 77.8 & 53.0 & 65.4 & 57.0 \\
+Doubao-Seed-1.8 & 82.2 & 58.0 & 70.6 & 97.4 & 72.6 & 76.5 & 96.1 & 84.4 & 87.7 & 66.2 & 57.3 & 43.7 & 85.1 & 59.2 & 63.1 & 54.0 \\
+Qwen3.5-Plus & 83.5 & 55.7 & 70.1 & 97.6 & 76.2 & 78.5 & 97.7 & 83.3 & 87.7 & 75.9 & 54.8 & 52.8 & 82.5 & 42.4 & 69.2 & 58.5 \\
+GPT-5.4 & 80.6 & 58.6 & 70.0 & 98.4 & 74.9 & 67.0 & 94.8 & 78.6 & 86.9 & 64.1 & 57.3 & 57.3 & 77.8 & 49.9 & 65.8 & 58.8 \\
+% Doubao-Seed-1.6-Vision & 81.9 & 56.8 & 69.8 & 97.4 & 73.9 & 78.0 & 94.4 & 81.0 & 87.7 & 72.3 & 53.5 & 53.1 & 77.1 & 48.9 & 65.8 & 57.4 \\
+\hline
+
+\multicolumn{17}{l}{\cellcolor[HTML]{ECF4FF}\textit{Baseline}} \\
+ZeroShot & 65.8 & 40.5 & 53.6 & 92.7 & 48.8 & 64.5 & 90.8 & 51.9 & 62.7 & 57.4 & \textbf{42.7} & 37.9 & 62.5 & 35.6 & \textbf{53.6} & 23.2 \\
+SFT & 72.0 & 60.3 & 66.4 & 96.1 & 67.7 & \textbf{66.0} & \textbf{93.8} & 63.4 & 69.8 & 57.4 & 36.9 & 88.0 & 80.6 & 47.1 & 45.2 & 20.6 \\
+\hline
+
+\multicolumn{17}{l}{\cellcolor[HTML]{ECF4FF}\textit{Proprietary (Ours)}} \\
+SIS-Motion & \textbf{74.2} & \textbf{63.7} & \textbf{69.1} & \textbf{96.5} & \textbf{71.1} & \textbf{66.0} & \textbf{93.8} & \textbf{68.2} & \textbf{73.0} & \textbf{60.0} & 39.8 & \textbf{88.1} & \textbf{81.3} & \textbf{55.9} & 44.1 & \textbf{23.5} \\
+\hline
+\end{tabular}
+}
+\end{table*}
+
+
+
+
+\subsection{SIS-Motion-54K and Controlled Evaluation}
+
+\noindent \textbf{Training dataset SIS-Motion-54K.}
+To support motion-aware training, we construct \textbf{SIS-Motion-54K} from the AirScape~\cite{zhao2025airscape} \textbf{training split}, strictly separated from SIS-Bench. As shown in Figure~\ref{Fig:data}, the dataset contains 54k samples in three complementary formats. \textit{(1) Multiple-choice Question Answering~(MCQ):} covering 9 perception and memory tasks (e.g., Object Existence, Action Recognition), this format aligns training with the discriminative evaluation setting of SIS-Bench, directly strengthening motion-grounded perception. \textit{(2) Open-ended QA:} free-form supervision derived from action-related tasks, encouraging the model to explicitly express motion-aware content. \textit{(3) Description:} \textit{Motion Intention} and \textit{Scene Content} descriptions that provide continuous supervision for jointly grounding agent dynamics and scene semantics.
+Collectively, these three formats provide complementary supervision for motion and spatial grounding. Notably, because the training set focuses strictly on perception and memory rather than high-level reasoning, any subsequent performance gains on reasoning tasks can be robustly attributed to improved spatial-temporal generalization rather than task-specific memorization.
+
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width = 1\linewidth]{figure/data.pdf}
+		\caption{Task distribution of SIS-Motion-54K across three formats: MCQ, Open-ended QA, and Description.}
+	\label{Fig:data}
+	\vspace{-20pt}
+\end{figure}
+
+
+
+\noindent \textbf{Experiment setup.}
+We adopt Qwen2.5-VL 3B~\cite{bai2025qwen2} as the backbone and compare two settings under identical training configurations: a \textbf{visual-only baseline} and a \textbf{motion-aware variant}. In both settings, the visual encoder is frozen and only lightweight adaptation modules are trained, ensuring that the comparison isolates the effect of motion-aware integration rather than large-scale retraining.
+
+\noindent \textbf{Testing protocol.}
+We evaluate the resulting models from two perspectives. First, we test them on \textbf{SIS-Bench} to examine whether motion-aware integration improves the joint modeling of \emph{self} and \emph{space}, especially across different cognitive levels. Second, we test transferability on a \textbf{downstream UAV navigation} benchmark constructed from OpenUAV~\cite{wang2024towards}, where continuous path trajectories are converted into multiple-choice action decisions. Together, these two evaluations allow us to examine both benchmark-level gains and their transfer to practical UAV decision-making.
+
+
+% \subsection{Training with SIS-Motion-54K}
+
+% \noindent\textbf{Training Data.} To support motion-aware learning, we construct \textbf{SIS-Motion-54K} from the AirScape \textbf{training split}, strictly separated from SIS-Bench. As shown in Figure~\ref{Fig:data}, it contains about \textbf{54k} samples in three complementary formats:
+
+% \textbf{\textit{(1) MCQ.}} Covering 9 perception and memory tasks (e.g., Object Existence, Action Recognition), this format aligns training with the discriminative evaluation setting of SIS-Bench, directly strengthening motion-grounded perception.
+
+% \textbf{\textit{(2) Open-ended QA.}} Derived from action-related tasks, this free-form format encourages the model to explicitly generate motion content, which is vital for enhancing embodied self-awareness.
+
+% \textbf{\textit{(3) Description.}} Comprising \textit{Motion Intention} and \textit{Scene Content}, this component provides continuous supervision to align dynamic agent states with scene semantics, yielding richer joint representations.
+
+% Collectively, these three formats provide complementary supervision for motion and spatial grounding. Notably, because the training set focuses strictly on perception and memory rather than high-level reasoning, any subsequent performance gains on reasoning tasks can be robustly attributed to improved spatial-temporal generalization rather than task-specific memorization.
+
+
+
+
+
+
+% \noindent \textbf{Supervised Fine-tuning.}
+% We adopt Qwen2.5-VL 3B\cite{bai2025qwen2} as the base model and perform supervised fine-tuning (SFT)
+% on SIS-Motion-54K. To fairly evaluate the effectiveness of the proposed architecture,
+% we compare two settings:
+
+% \textbf{\textit{Baseline.}}
+% We fine-tune the original Qwen2.5-VL 3B model on SIS-Motion-54K.
+% Due to limited computational resources, we freeze the visual encoder
+% and apply LoRA\cite{hu2022lora} to the LLM backbone.
+
+% \textbf{\textit{Ours (Integrated Sensing).} }
+% We further fine-tune our proposed dual-encoder model on the same dataset.
+% Both the visual encoder and the motion encoder are frozen,
+% while the connector and the LLM (via LoRA) are trained.
+
+% For a fair comparison, all training configurations, including hyperparameters and optimization settings, are kept identical across both settings.
+
+\subsection{Motion-aware Results}
+
+Table~\ref{tab:ablation} reports the results of our motion-aware exploration on SIS-Bench, where we derive two main findings.
+
+\noindent \textbf{Coupling self and space improves both.}
+Compared with the visual-only SFT baseline, SIS-Motion improves both Spatial Avg and Self Avg, from 72.0 to 74.2 and from 60.3 to 63.7, respectively. These gains indicate that explicitly modeling self-related motion benefits not only understanding of the UAV itself, but also interpretation of the surrounding environment under changing viewpoints. In other words, the effect of motion-aware modeling is shared by both \emph{self} and \emph{space}, rather than being confined to one side.
+
+
+\noindent \textbf{Perception and memory benefits more than reasoning.}
+The improvements are most evident on perception- and memory-related tasks, including Object Attribute, Landmark Recall, Positional Relationship, Action Recognition, Action Sequence, and Action Recall. By contrast, the gains on reasoning tasks are limited and less consistent: SIS-Motion improves Path Planning, but does not improve Action Prediction. This pattern is consistent with both the design of SIS-Motion-54K and the diagnosis in Sec.~\ref{sec:eva}. Since the supplementary dataset mainly strengthens motion-grounded perception, temporal continuity, and action-related understanding, it naturally benefits perception and memory first, while higher-level reasoning remains more challenging.
+
+\noindent \textbf{Robust across different motion encoders.} We further test whether the above findings are robust across different motion encoders by replacing the optical-flow estimator~(RAFT~\cite{teed2020raft}, Sea-RAFT~\cite{wang2024sea}, MemFlow~\cite{dong2024memflow}, and MOFNet~\cite{shi2023videoflow}) while keeping the rest of the setup fixed. All four variants outperform the visual-only SFT baseline (66.4\% overall in Table~\ref{tab:ablation}), indicating that the gains brought by motion-aware integration are robust to the choice of motion encoder. Better motion quality further improves performance, with MOFNet achieving the best result.
+
+
+
+\setlength{\tabcolsep}{3pt}
+\begin{table}[t]
+\centering
+\caption{Ablation on optical-flow estimators under the same SIS-Motion framework.}
+\label{tab:flow_ablation}
+\scriptsize
+\renewcommand{\arraystretch}{1.05}
+\scalebox{1.4}{
+\begin{tabular}{l|c|c|c}
+\hline
+\textbf{Flow Estimation} & \textbf{Spatial Avg.} & \textbf{Awareness Avg.} & \textbf{Overall} \\
+\hline
+RAFT\cite{teed2020raft} & 73.8 & 59.9 & 67.1 \\
+Sea-RAFT\cite{wang2024sea} & \textbf{74.6} & 61.0 & 68.1 \\
+MemFlow~\cite{dong2024memflow} & 73.9 & 62.2 & 68.2 \\
+MOFNet\cite{shi2023videoflow} & 74.2 & \textbf{63.7} & \textbf{69.1} \\
+\hline
+\end{tabular}
+}
+% \vspace{-10pt}
+\end{table}
+
+
+\subsection{Transfer to Downstream UAV Navigation}
+
+To further examine whether the benefit of motion-aware self-in-space modeling transfers beyond our benchmark, we evaluate on a downstream UAV navigation task built from OpenUAV~\cite{wang2024towards}.
+% : the Qwen2.5-VL 3B backbone model and the SIS-Motion.
+The benchmark requires the model to make action decisions under realistic navigation contexts and contains 3{,}895 questions from 22 simulated environments, covering urban, desert, forest, port, and island scenes. All models are evaluated in a zero-shot manner without further fine-tuning, and more details are provided in the supplementary material. The results show that SIS-Motion achieves an accuracy of 92.2\%, significantly outperforming the Qwen2.5-VL 3B backbone (71.2\%). This suggests that the gains from motion-aware modeling are not limited to our SIS-Bench, but can also transfer to practical downstream UAV navigation scenarios.
+
+
+% \section{Conclusion}
+
+% \choucisan{In this work, we revisit embodied spatial intelligence in UAV scenarios from an agent-centered perspective. Through SIS-Bench, we systematically examine how current multimodal large language models (MLLMs) understand \emph{space} and \emph{self} in dynamic aerial environments under a structured self-in-space benchmark. Despite strong performance on environment-centric tasks, existing models still struggle to capture agent-related dynamics, leading to a clear imbalance between spatial cognition and self-awareness. We further find that limitations in early-stage perception and temporal modeling propagate to higher-level reasoning, indicating that improving embodied intelligence cannot rely solely on model scaling. Building on these benchmark findings, we conduct a controlled motion-aware exploration to study whether explicit self-related motion cues can improve self-in-space modeling. The results show clear gains on perception- and memory-level tasks, together with transfer to downstream UAV decision-making. Taken together, our study highlights the value of benchmark-driven diagnosis and suggests motion-aware modeling as a promising exploratory direction for embodied UAV intelligence.}
+
+
+\section{Conclusion}
+
+In this work, we introduce \textbf{SIS-Bench}, a benchmark for embodied UAV intelligence under a unified \emph{self-in-space} formulation. SIS-Bench is built through a task-conditioned construction pipeline with heterogeneous video processing, task-specific annotation and dual-expert verification. It contains 4,856 question--answer pairs from 1,646 real-world UAV videos spanning 14.9 hours of aerial footage, and organizes evaluation into 13 tasks over two complementary dimensions, \emph{spatial cognition} and \emph{self-awareness}, and three cognitive levels, \emph{perception}, \emph{memory}, and \emph{reasoning}. Based on this benchmark, we find that current MLLMs exhibit two consistent limitations in UAV embodied scenarios: they are substantially stronger at modeling space than self, and their performance degrades progressively from perception to memory to reasoning. Motivated by these findings, we further conduct a controlled motion-aware exploration through \textbf{SIS-Motion}. The results show that self-related motion improves UAV self-understanding and spatial interpretation under changing viewpoints, with transfer to downstream UAV navigation, underscoring unified \emph{self-in-space} modeling for embodied UAV intelligence.
+
+
+
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{sample-base}
+
+\end{document}
+\endinput
+% %%
+% %% End of file `sample-sigconf-authordraft.tex'.

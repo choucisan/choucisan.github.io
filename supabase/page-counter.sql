@@ -255,3 +255,49 @@ as $$
 $$;
 
 grant execute on function public.get_visitor_locations(integer) to anon, authenticated;
+
+drop function if exists public.get_page_visitor_locations(text, integer);
+
+create function public.get_page_visitor_locations(
+  p_path text,
+  p_limit integer default 250
+)
+returns table(
+  country_code text,
+  country_name text,
+  region text,
+  city text,
+  latitude double precision,
+  longitude double precision,
+  visitors bigint,
+  last_seen_at timestamptz
+)
+language sql
+security definer
+set search_path = public
+as $$
+  select
+    upper(coalesce(location.country_code, '')) as country_code,
+    location.country_name,
+    location.region,
+    location.city,
+    avg(location.latitude) as latitude,
+    avg(location.longitude) as longitude,
+    count(*)::bigint as visitors,
+    max(location.last_seen_at) as last_seen_at
+  from public.page_visitors as visitor
+  join public.visitor_locations as location
+    on location.visitor_id = visitor.visitor_id
+  where visitor.path = p_path
+    and location.latitude is not null
+    and location.longitude is not null
+  group by
+    upper(coalesce(location.country_code, '')),
+    location.country_name,
+    location.region,
+    location.city
+  order by visitors desc, last_seen_at desc
+  limit greatest(1, least(coalesce(p_limit, 250), 500));
+$$;
+
+grant execute on function public.get_page_visitor_locations(text, integer) to anon, authenticated;
