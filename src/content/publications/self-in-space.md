@@ -6,7 +6,7 @@ venue: "ACM MM 2026"
 authors:
   - "Zhishan Zou"
 
-tags: ["Video Understanding", "Benchmark", "Aerial Intelligence", "Spatial Intelligence", "Self-Awareness", "Embodied Intelligence", "MLLM"]
+tags: ["Video Understanding", "Benchmark", "Aerial Intelligence", "Spatial Intelligence", "Self-Awareness", "Embodied Intelligence", "MLLM", "Multimedia", "CCF-A", "ACM MM", "Optical Flow"]
 image: /paper-sites/sis-motion/static/img/poster.jpeg
 paperSite: "sis-motion"
 ---
