@@ -49,6 +49,46 @@
         <script defer src="./static/js/medium-zoom.min.js"></script>
         <script defer src="./static/js/zoom.js"></script>
         <script>
+            (function blockAlphaXivInjection() {
+                var alphaXivSelector = [
+                    'a[href*="alphaxiv" i]',
+                    '[id*="alphaxiv" i]',
+                    '[class*="alphaxiv" i]',
+                    '[data-alphaxiv]',
+                    'alphaxiv-button',
+                    'alpha-xiv-button'
+                ].join(',');
+
+                function removeAlphaXiv(root) {
+                    if (!root || root.nodeType !== Node.ELEMENT_NODE && root.nodeType !== Node.DOCUMENT_NODE) return;
+
+                    var matches = [];
+                    if (root.matches && root.matches(alphaXivSelector)) matches.push(root);
+                    if (root.querySelectorAll) matches.push.apply(matches, root.querySelectorAll(alphaXivSelector));
+                    matches.forEach(function(element) { element.remove(); });
+
+                    if (!root.querySelectorAll) return;
+                    root.querySelectorAll('a, button, [role="button"]').forEach(function(element) {
+                        if (/alpha\s*xiv/i.test(element.textContent || '')) element.remove();
+                    });
+                }
+
+                function startAlphaXivBlocker() {
+                    removeAlphaXiv(document);
+                    new MutationObserver(function(mutations) {
+                        mutations.forEach(function(mutation) {
+                            mutation.addedNodes.forEach(removeAlphaXiv);
+                        });
+                    }).observe(document.documentElement, { childList: true, subtree: true });
+                }
+
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', startAlphaXivBlocker, { once: true });
+                } else {
+                    startAlphaXivBlocker();
+                }
+            })();
+
             function toggleAnswer(answerId, element) {
                 var answerDiv = document.getElementById(answerId);
                 if (answerDiv.style.display === "none" || answerDiv.style.display === "") {
@@ -75,6 +115,15 @@
             });
         </script>
         <style>
+            a[href*="alphaxiv" i],
+            [id*="alphaxiv" i],
+            [class*="alphaxiv" i],
+            [data-alphaxiv],
+            alphaxiv-button,
+            alpha-xiv-button {
+                display: none !important;
+            }
+
             .authors a,
             .authors a * {
                 text-decoration: none !important;
