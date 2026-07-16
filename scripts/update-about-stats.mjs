@@ -7,6 +7,7 @@ const envLocalPath = path.join(process.cwd(), '.env.local');
 const config = {
   githubUser: 'choucisan',
   huggingFaceUser: 'choucsan',
+  modelScopeUser: 'choucisan',
   xiaohongshuProfiles: [
     {
       profile: 'https://www.xiaohongshu.com/user/profile/624aab39000000001000d3bc',
@@ -227,6 +228,37 @@ const fetchHuggingFaceStats = async () => {
     projects: models.projects + datasets.projects,
     source: `https://huggingface.co/${config.huggingFaceUser}`,
     monthlySource: `https://huggingface.co/api/datasets?author=${config.huggingFaceUser}&limit=1000&full=true`
+  };
+};
+
+const fetchModelScopeStats = async () => {
+  const source = `https://www.modelscope.cn/profile/${config.modelScopeUser}`;
+  const apiSource = `https://www.modelscope.cn/api/v1/profile/${config.modelScopeUser}`;
+  const payload = await fetchJson(apiSource, {
+    timeout: 25000,
+    headers: { Accept: 'application/json' }
+  });
+
+  if (Number(payload?.Code) !== 200 || !payload?.Data?.User) {
+    throw new Error(`Unexpected ModelScope profile response: ${payload?.Code ?? 'unknown'}`);
+  }
+
+  const downloads = formatMaybeNumber(payload.Data.User.Downloads);
+  if (downloads === null) throw new Error('ModelScope profile response has no download count.');
+
+  const models = Number(payload.Data.Model?.TotalCount || 0);
+  const datasets = Number(payload.Data.Dataset?.TotalCount || 0);
+  const studios = Number(payload.Data.Studio?.TotalCount || 0);
+
+  return {
+    downloads,
+    totalDownloads: downloads,
+    projects: models + datasets + studios,
+    models,
+    datasets,
+    studios,
+    source,
+    apiSource
   };
 };
 
@@ -498,9 +530,10 @@ const keepManualHuggingFaceTotal = (nextValue, existingValue) => {
 const run = async () => {
   await loadLocalEnv();
   const existing = await readExisting();
-  const [githubResult, huggingFaceResult, xiaohongshuResult] = await Promise.allSettled([
+  const [githubResult, huggingFaceResult, modelScopeResult, xiaohongshuResult] = await Promise.allSettled([
     fetchGitHubStats(),
     fetchHuggingFaceStats(),
+    fetchModelScopeStats(),
     fetchXiaohongshuStats()
   ]);
 
@@ -514,6 +547,10 @@ const run = async () => {
       huggingFaceResult.status === 'fulfilled' ? huggingFaceResult.value : undefined,
       existing.huggingface ?? { downloads: null, projects: null, source: `https://huggingface.co/${config.huggingFaceUser}` }
     ),
+    modelscope: keepOrDefault(
+      modelScopeResult.status === 'fulfilled' ? modelScopeResult.value : undefined,
+      existing.modelscope ?? { downloads: null, projects: null, source: `https://www.modelscope.cn/profile/${config.modelScopeUser}` }
+    ),
     xiaohongshu: keepManualDisplay(
       xiaohongshuResult.status === 'fulfilled' ? xiaohongshuResult.value : undefined,
       existing.xiaohongshu ?? { likesAndCollects: null, visiblePosts: null, display: null, source: config.xiaohongshuProfiles[0].profile }
@@ -526,6 +563,7 @@ const run = async () => {
   for (const [name, result] of [
     ['GitHub', githubResult],
     ['Hugging Face', huggingFaceResult],
+    ['ModelScope', modelScopeResult],
     ['Xiaohongshu', xiaohongshuResult]
   ]) {
     if (result.status === 'rejected') {

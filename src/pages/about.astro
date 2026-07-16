@@ -8,8 +8,11 @@ const formatNumber = (value: number | null | undefined) =>
   typeof value === 'number' ? new Intl.NumberFormat('en-US').format(value) : 'Updating';
 
 const githubStars = formatNumber(aboutStats.github?.stars);
-const huggingFaceDownloads = formatNumber(
-  aboutStats.huggingface?.totalDownloads ?? aboutStats.huggingface?.downloads
+const huggingFaceMonthlyDownloads = formatNumber(
+  aboutStats.huggingface?.monthlyDownloads ?? aboutStats.huggingface?.downloads
+);
+const modelScopeDownloads = formatNumber(
+  aboutStats.modelscope?.totalDownloads ?? aboutStats.modelscope?.downloads
 );
 const xiaohongshuLikes =
   aboutStats.xiaohongshu?.display ?? formatNumber(aboutStats.xiaohongshu?.likesAndCollects);
@@ -61,11 +64,20 @@ const xiaohongshuLikes =
           </a>
           <a class="contact-card" href="https://huggingface.co/choucsan" target="_blank" rel="noreferrer" aria-label="Hugging Face" title="Hugging Face">
             <span class="contact-icon-wrap">
-              <img class="contact-icon contact-icon-hf" src="https://huggingface.co/datasets/huggingface/brand-assets/resolve/main/hf-logo.svg" alt="" loading="lazy" />
+              <img class="contact-icon contact-icon-hf" src="/assets/icons/huggingface.svg" alt="" loading="lazy" />
             </span>
             <span class="contact-copy">
               <span class="contact-name">Hugging Face</span>
-              <span class="contact-stat">{huggingFaceDownloads} total downloads</span>
+              <span class="contact-stat">{huggingFaceMonthlyDownloads} monthly downloads</span>
+            </span>
+          </a>
+          <a class="contact-card" href="https://www.modelscope.cn/profile/choucisan" target="_blank" rel="noreferrer" aria-label="ModelScope" title="ModelScope">
+            <span class="contact-icon-wrap">
+              <img class="contact-icon contact-icon-modelscope" src="/assets/icons/modelscope.png" alt="" loading="lazy" />
+            </span>
+            <span class="contact-copy">
+              <span class="contact-name">ModelScope</span>
+              <span class="contact-stat">{modelScopeDownloads} total downloads</span>
             </span>
           </a>
           <a class="contact-card" href="https://www.xiaohongshu.com/user/profile/624aab39000000001000d3bc" target="_blank" rel="noreferrer" aria-label="Xiaohongshu" title="Xiaohongshu">
