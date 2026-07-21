@@ -1,11 +1,16 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
+
+const execFileAsync = promisify(execFile);
 
 const outputPath = path.join(process.cwd(), 'src', 'data', 'about-stats.json');
 const envLocalPath = path.join(process.cwd(), '.env.local');
 
 const config = {
   githubUser: 'choucisan',
+  googleScholarUser: 'MLkojp4AAAAJ',
   huggingFaceUser: 'choucsan',
   modelScopeUser: 'choucisan',
   xiaohongshuProfiles: [
@@ -131,6 +136,61 @@ const fetchGitHubStats = async () => {
     repos,
     source: `https://github.com/${config.githubUser}?tab=repositories`
   };
+};
+
+const fetchGoogleScholarStats = async () => {
+  const source = `https://scholar.google.com/citations?user=${config.googleScholarUser}&hl=en`;
+  let html;
+  try {
+    html = await fetchText(source, {
+      timeout: 25000,
+      headers: { 'Accept-Language': 'en-US,en;q=0.9' }
+    });
+  } catch (fetchError) {
+    try {
+      const result = await execFileAsync('curl', [
+        '--location',
+        '--fail',
+        '--silent',
+        '--show-error',
+        '--max-time', '25',
+        '--user-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
+        '--header', 'Accept-Language: en-US,en;q=0.9',
+        source
+      ], {
+        encoding: 'utf8',
+        maxBuffer: 5 * 1024 * 1024,
+        timeout: 30000
+      });
+      html = result.stdout;
+    } catch {
+      throw fetchError;
+    }
+  }
+
+  const isProfile = html.includes('id="gsc_prf_in"') &&
+    (html.includes(`user=${config.googleScholarUser}`) || html.includes(`user%3D${config.googleScholarUser}`));
+  const isBlocked = /(?:captcha|unusual traffic|not a robot|id=["']recaptcha)/i.test(html);
+  if (!isProfile || isBlocked) {
+    throw new Error('Google Scholar returned a blocked or invalid profile page.');
+  }
+
+  const metricsTable = html.match(/<table[^>]*id=["']gsc_rsb_st["'][^>]*>[\s\S]*?<\/table>/i)?.[0];
+  const citationsRow = metricsTable?.match(/<tr[^>]*>[\s\S]*?Citations[\s\S]*?<\/tr>/i)?.[0];
+  const citationsCell = citationsRow?.match(/class=["'][^"']*gsc_rsb_std[^"']*["'][^>]*>\s*([0-9][0-9,]*)\s*</i)?.[1];
+  const citations = formatMaybeNumber(citationsCell);
+
+  if (citations !== null) {
+    return { citations, source };
+  }
+
+  const citedArticle = Array.from(html.matchAll(/class=["'][^"']*gsc_a_ac[^"']*["'][^>]*>\s*([^<]*)\s*</gi))
+    .some((match) => formatMaybeNumber(match[1]) !== null);
+  if (metricsTable || citedArticle) {
+    throw new Error('Unable to parse Google Scholar citation total.');
+  }
+
+  return { citations: 0, source };
 };
 
 const extractHuggingFaceTotalDownloads = (html) => {
@@ -530,8 +590,9 @@ const keepManualHuggingFaceTotal = (nextValue, existingValue) => {
 const run = async () => {
   await loadLocalEnv();
   const existing = await readExisting();
-  const [githubResult, huggingFaceResult, modelScopeResult, xiaohongshuResult] = await Promise.allSettled([
+  const [githubResult, googleScholarResult, huggingFaceResult, modelScopeResult, xiaohongshuResult] = await Promise.allSettled([
     fetchGitHubStats(),
+    fetchGoogleScholarStats(),
     fetchHuggingFaceStats(),
     fetchModelScopeStats(),
     fetchXiaohongshuStats()
@@ -542,6 +603,10 @@ const run = async () => {
     github: keepOrDefault(
       githubResult.status === 'fulfilled' ? githubResult.value : undefined,
       existing.github ?? { stars: null, repos: null, source: `https://github.com/${config.githubUser}?tab=repositories` }
+    ),
+    googleScholar: keepOrDefault(
+      googleScholarResult.status === 'fulfilled' ? googleScholarResult.value : undefined,
+      existing.googleScholar ?? { citations: null, source: `https://scholar.google.com/citations?user=${config.googleScholarUser}&hl=en` }
     ),
     huggingface: keepManualHuggingFaceTotal(
       huggingFaceResult.status === 'fulfilled' ? huggingFaceResult.value : undefined,
@@ -562,6 +627,7 @@ const run = async () => {
 
   for (const [name, result] of [
     ['GitHub', githubResult],
+    ['Google Scholar', googleScholarResult],
     ['Hugging Face', huggingFaceResult],
     ['ModelScope', modelScopeResult],
     ['Xiaohongshu', xiaohongshuResult]
