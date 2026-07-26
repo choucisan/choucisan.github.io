@@ -163,8 +163,8 @@ const fetchGoogleScholarStats = async () => {
         timeout: 30000
       });
       html = result.stdout;
-    } catch {
-      throw fetchError;
+    } catch (curlError) {
+      throw new Error(`Google Scholar request failed (${fetchError.message}); curl fallback failed (${curlError.message}).`);
     }
   }
 
@@ -604,9 +604,9 @@ const run = async () => {
       githubResult.status === 'fulfilled' ? githubResult.value : undefined,
       existing.github ?? { stars: null, repos: null, source: `https://github.com/${config.githubUser}?tab=repositories` }
     ),
-    googleScholar: keepOrDefault(
+    googleScholar: keepManualDisplay(
       googleScholarResult.status === 'fulfilled' ? googleScholarResult.value : undefined,
-      existing.googleScholar ?? { citations: null, source: `https://scholar.google.com/citations?user=${config.googleScholarUser}&hl=en` }
+      existing.googleScholar ?? { citations: null, display: '', source: `https://scholar.google.com/citations?user=${config.googleScholarUser}&hl=en` }
     ),
     huggingface: keepManualHuggingFaceTotal(
       huggingFaceResult.status === 'fulfilled' ? huggingFaceResult.value : undefined,

@@ -8,7 +8,8 @@ const formatNumber = (value: number | null | undefined) =>
   typeof value === 'number' ? new Intl.NumberFormat('en-US').format(value) : 'Updating';
 
 const githubStars = formatNumber(aboutStats.github?.stars);
-const googleScholarCitations = formatNumber(aboutStats.googleScholar?.citations);
+const googleScholarCitations =
+  aboutStats.googleScholar?.display?.trim() || formatNumber(aboutStats.googleScholar?.citations);
 const huggingFaceMonthlyDownloads = formatNumber(
   aboutStats.huggingface?.monthlyDownloads ?? aboutStats.huggingface?.downloads
 );

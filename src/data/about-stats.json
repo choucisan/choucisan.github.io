@@ -1,13 +1,14 @@
 {
-  "updatedAt": "2026-07-26T03:40:54.270Z",
+  "updatedAt": "2026-07-26T07:28:58.590Z",
   "github": {
     "stars": 123,
     "repos": 26,
     "source": "https://github.com/choucisan?tab=repositories"
   },
   "googleScholar": {
-    "citations": 0,
-    "source": "https://scholar.google.com/citations?user=MLkojp4AAAAJ&hl=en"
+    "citations": 1,
+    "source": "https://scholar.google.com/citations?user=MLkojp4AAAAJ&hl=en",
+    "display": "1"
   },
   "huggingface": {
     "downloads": 2574,
