@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Poplar is a scalable Specify, Render, and Inspect pipeline for synthesizing auditable human-centric image datasets." />
+    <meta name="theme-color" content="#080807" />
+    <link rel="canonical" href="https://choucisan.github.io/publications/poplar/" />
+    <link rel="preload" as="image" href="./static/images/Poplar-9K_000077.webp" fetchpriority="high" />
+    <link rel="stylesheet" href="./static/css/style.css" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://choucisan.github.io/publications/poplar/" />
+    <meta property="og:title" content="Poplar: A Scalable Pipeline for Human-Centric Image Dataset Synthesis" />
+    <meta property="og:description" content="A visual project page for Poplar's auditable human-centric image synthesis pipeline." />
+    <meta property="og:image" content="https://choucisan.github.io/paper-sites/poplar/static/images/teaser.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Poplar: A Scalable Pipeline for Human-Centric Image Dataset Synthesis" />
+    <meta name="twitter:description" content="A visual project page for Poplar's auditable human-centric image synthesis pipeline." />
+    <meta name="twitter:image" content="https://choucisan.github.io/paper-sites/poplar/static/images/teaser.jpg" />
+    <title>Poplar: A Scalable Pipeline for Human-Centric Image Dataset Synthesis</title>
+    <script src="./static/js/app.js" defer></script>
+  </head>
+  <body>
+    <main class="site-shell" data-poplar-gallery data-assets="./static/">
+      <header class="paper-header">
+        <div class="paper-heading">
+          <h1><span>Poplar:</span> A Scalable Pipeline for Human-Centric Image Dataset Synthesis</h1>
+        </div>
+
+        <nav class="paper-actions" aria-label="Project links">
+          <a class="action-link" href="https://arxiv.org/" target="_blank" rel="noreferrer" title="Open arXiv">
+            <span class="action-icon action-icon-paper" aria-hidden="true"><img src="./static/icons/arxiv.svg" alt="" /></span>
+            <span class="action-copy"><strong>Paper</strong><small>Coming soon</small></span>
+          </a>
+          <a class="action-link" href="https://github.com/choucisan/poplar" target="_blank" rel="noreferrer">
+            <span class="action-icon" aria-hidden="true"><img src="/assets/icons/github.svg" alt="" /></span>
+            <span class="action-copy"><strong>GitHub</strong><small>Source code</small></span>
+          </a>
+          <a class="action-link" href="https://huggingface.co/collections/choucsan/poplar" target="_blank" rel="noreferrer">
+            <span class="action-icon" aria-hidden="true"><img src="/assets/icons/huggingface.svg" alt="" /></span>
+            <span class="action-copy"><strong>Hugging Face</strong><small>Collection</small></span>
+          </a>
+          <a class="action-link" href="https://www.modelscope.cn/collections/choucisan/Poplar" target="_blank" rel="noreferrer">
+            <span class="action-icon" aria-hidden="true"><img src="/assets/icons/modelscope.png" alt="" /></span>
+            <span class="action-copy"><strong>ModelScope</strong><small>Collection</small></span>
+          </a>
+          <button class="action-link action-button" type="button" data-open-cite>
+            <span class="action-icon action-icon-cite" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M7 17H4v-5a5 5 0 0 1 5-5v3a2 2 0 0 0-2 2zM17 17h-3v-5a5 5 0 0 1 5-5v3a2 2 0 0 0-2 2z" /></svg>
+            </span>
+            <span class="action-copy"><strong>Cite</strong><small>BibTeX</small></span>
+          </button>
+        </nav>
+      </header>
+
+      <section class="gallery" aria-label="Poplar sample gallery">
+        <div class="prompt-row">
+          <div class="prompt-copy">
+            <div class="prompt-head">
+              <span class="prompt-label">Prompt</span>
+              <button class="prompt-copy-button" type="button" data-copy-prompt aria-label="Copy prompt" title="Copy prompt">
+                <svg class="prompt-copy-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 8h10v12H9zM5 4h10v4M5 4v12h4" /></svg>
+                <svg class="prompt-check-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg>
+              </button>
+            </div>
+            <p class="prompt-text" data-prompt aria-live="polite">A man in his early 20s stands in a historic city square, captured in a natural waist-up phone portrait.</p>
+          </div>
+        </div>
+
+        <div class="viewer" data-viewer>
+          <div class="image-stage">
+            <img
+              class="main-image"
+              data-main-image
+              src="./static/images/Poplar-9K_000077.webp"
+              alt="Poplar sample Poplar-9K_000077"
+              draggable="false"
+            />
+          </div>
+        </div>
+
+        <div class="thumbnail-viewport" data-thumbnail-viewport aria-label="Sample thumbnails">
+          <div class="thumbnail-track" data-thumbnail-track></div>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="cite-dialog" data-cite-dialog aria-labelledby="cite-title">
+      <div class="cite-dialog-head">
+        <div>
+          <p class="dialog-kicker">Citation</p>
+          <h2 id="cite-title">Cite Poplar</h2>
+        </div>
+        <button class="icon-button" type="button" data-close-cite aria-label="Close citation" title="Close">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+        </button>
+      </div>
+      <pre><code data-citation>@misc{zou2026poplar,
+  title  = {Poplar: A Scalable Pipeline for Human-Centric Image Dataset Synthesis},
+  author = {Zhishan Zou},
+  year   = {2026},
+  note   = {arXiv preprint}
+}</code></pre>
+      <button class="copy-button" type="button" data-copy-citation>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 8h10v12H9zM5 4h10v4M5 4v12h4" /></svg>
+        <span data-copy-label>Copy BibTeX</span>
+      </button>
+    </dialog>
+  </body>
+</html>

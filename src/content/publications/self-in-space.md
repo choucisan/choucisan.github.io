@@ -2,11 +2,11 @@
 title: "Self in Space: Towards Self-Awareness and Spatial Cognition in Aerial Understanding"
 description: "We introduce SIS-Bench to evaluate self-awareness and spatial cognition across perception, memory, and reasoning in aerial video understanding, together with SIS-Motion, a motion-aware representation that improves embodied perception, memory, and downstream UAV decision-making."
 pubDate: 2026-07-10
-venue: "ACM MM 2026"
+venue: "ACM MM"
 authors:
   - "Zhishan Zou"
 
-tags: ["Video Understanding", "Benchmark", "Aerial Intelligence", "Spatial Intelligence", "Self-Awareness", "Embodied Intelligence", "MLLM", "Multimedia", "CCF-A", "ACM MM", "Optical Flow"]
+tags: ["Video Understanding", "Benchmark", "Aerial Intelligence", "Spatial Intelligence", "Self-Awareness", "Embodied Intelligence", "MLLM", "Multimedia", "CCF-A", "Optical Flow"]
 image: /paper-sites/sis-motion/static/img/poster.jpeg
 paperSite: "sis-motion"
 ---
