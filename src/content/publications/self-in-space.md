@@ -1,13 +1,23 @@
 ---
-title: "Self in Space: Towards Self-Awareness and Spatial Cognition in Aerial Understanding"
+title: "Self in Space: Benchmarking Self-Awareness and Spatial Cognition in UAV Embodied Intelligence"
 description: "We introduce SIS-Bench to evaluate self-awareness and spatial cognition across perception, memory, and reasoning in aerial video understanding, together with SIS-Motion, a motion-aware representation that improves embodied perception, memory, and downstream UAV decision-making."
 pubDate: 2026-07-10
 venue: "ACM MM"
 authors:
   - "Zhishan Zou"
+  - "Guoyan Sun"
+  - "Zhiwei Wei"
+  - "Jiancheng Pan"
+  - "Yujie Li"
+  - "Mugen Peng"
+  - "Wenjia Xu"
 
 tags: ["Video Understanding", "Benchmark", "Aerial Intelligence", "Spatial Intelligence", "Self-Awareness", "Embodied Intelligence", "MLLM", "Multimedia", "CCF-A", "Optical Flow"]
 image: /paper-sites/sis-motion/static/img/poster.jpeg
+paperUrl: "https://arxiv.org/abs/2607.12477"
+codeUrl: "https://github.com/IntelliSensing/Self-in-Space"
+huggingfaceUrl: "https://huggingface.co/collections/choucsan/self-in-space"
+modelscopeUrl: "https://www.modelscope.cn/collections/choucisan/Self-in-Space"
 paperSite: "sis-motion"
 ---
 

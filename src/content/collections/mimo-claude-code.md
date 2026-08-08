@@ -5,6 +5,7 @@ pubDate: 2026-06-22
 platform: "Hugging Face"
 tags: ["Dataset", "Code Agent", "Agent Traces", "Software Engineering", "Reinforcement Learning","Claude Code"]
 image: /assets/collections/mimo-claude-code/claude-code.webp
+githubUrl: "https://github.com/choucisan/mimo-claude-code-traces-1k"
 huggingfaceUrl: "https://huggingface.co/datasets/choucsan/mimo-claude-code-traces-1k"
 ---
 
@@ -308,6 +309,7 @@ MIMO Claude Code Traces can be used in several research and development settings
 
 ## Links
 
+- **GitHub:** [github.com/choucisan/mimo-claude-code-traces-1k](https://github.com/choucisan/mimo-claude-code-traces-1k)
 - **Hugging Face:** [huggingface.co/datasets/choucsan/mimo-claude-code-traces-1k](https://huggingface.co/datasets/choucsan/mimo-claude-code-traces-1k)
 
 ## Citation and Contact

@@ -17,6 +17,8 @@ const publications = defineCollection({
     image: z.string(),
     paperUrl: z.string().url().optional(),
     codeUrl: z.string().url().optional(),
+    huggingfaceUrl: z.string().url().optional(),
+    modelscopeUrl: z.string().url().optional(),
     paperSite: z.string().optional(),
     draft: z.boolean().default(false)
   })
@@ -38,6 +40,7 @@ const collectionItems = defineCollection({
     githubUrl: z.string().url().optional(),
     huggingfaceUrl: z.string().url().optional(),
     bilibiliUrl: z.string().url().optional(),
+    exampleUrl: z.string().url().optional(),
     draft: z.boolean().default(false)
   })
 });

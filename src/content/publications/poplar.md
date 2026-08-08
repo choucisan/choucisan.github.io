@@ -7,7 +7,10 @@ authors:
   - "Zhishan Zou"
 tags: ["Image Synthesis", "Human-Centric Generation", "Dataset Curation", "Quality Control", "Diffusion Models"]
 image: /paper-sites/poplar/static/images/teaser.jpg
+paperUrl: "https://arxiv.org/abs/2608.00440"
 codeUrl: "https://github.com/choucisan/poplar"
+huggingfaceUrl: "https://huggingface.co/collections/choucsan/poplar"
+modelscopeUrl: "https://www.modelscope.cn/collections/choucisan/Poplar"
 paperSite: "poplar"
 ---
 

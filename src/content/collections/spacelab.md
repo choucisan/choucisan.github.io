@@ -6,6 +6,7 @@ platform: "GitHub"
 tags: ["Website Template", "Research Lab", "Astro", "3D Globe", "Mapbox","Open Source"]
 image: /assets/collections/spacelab/spacelab.png
 githubUrl: "https://github.com/choucisan/SpaceLab"
+exampleUrl: "https://intellisensing.github.io"
 ---
 
 # Space Lab: A Website Template for Research Groups

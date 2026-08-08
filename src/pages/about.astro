@@ -1,8 +1,34 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import VisitorMapSummary from '../components/visualization/VisitorMapSummary.vue';
 import VisitorWorldMap from '../components/visualization/VisitorWorldMap.vue';
 import aboutStats from '../data/about-stats.json';
+
+const sortByDate = <T extends { data: { pubDate: Date } }>(items: T[]) =>
+  items.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const publications = sortByDate(
+  (await getCollection('publications')).filter((item) => !item.data.draft)
+);
+const collectionItems = sortByDate(
+  (await getCollection('collections')).filter((item) => !item.data.draft)
+);
+const workshopItems = sortByDate(
+  (await getCollection('workshops')).filter((item) => !item.data.draft)
+);
+const blogItems = sortByDate(
+  (await getCollection('blogs')).filter((item) => !item.data.draft)
+);
+
+const formatYear = (date: Date) => String(date.getFullYear());
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short' }).format(date);
+const publicationKind = (venue: string) => {
+  if (/preprint|arxiv/i.test(venue)) return 'preprint';
+  if (/journal|transactions|tpami|ijcv/i.test(venue)) return 'journal';
+  return 'conference';
+};
 
 const formatNumber = (value: number | null | undefined) =>
   typeof value === 'number' ? new Intl.NumberFormat('en-US').format(value) : 'Updating';
@@ -18,8 +44,48 @@ const modelScopeDownloads = formatNumber(
 );
 const xiaohongshuLikes =
   aboutStats.xiaohongshu?.display ?? formatNumber(aboutStats.xiaohongshu?.likesAndCollects);
+
+const personStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': 'https://choucisan.github.io/about/#person',
+  name: 'Zhishan Zou',
+  alternateName: ['邹志山', 'choucisan'],
+  url: 'https://choucisan.github.io/about/',
+  image: 'https://choucisan.github.io/assets/about/zhishan-zou.jpeg',
+  email: 'mailto:choucisan@gmail.com',
+  description: 'Zhishan Zou is a student at Beijing University of Posts and Telecommunications researching video understanding and generation, behavior and cognition, and agentic intelligence.',
+  affiliation: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Beijing University of Posts and Telecommunications',
+    url: 'https://www.bupt.edu.cn/'
+  },
+  knowsAbout: [
+    'Artificial intelligence',
+    'Video understanding',
+    'Video generation',
+    'Behavior and cognition',
+    'Agentic intelligence'
+  ],
+  sameAs: [
+    'https://scholar.google.com/citations?user=MLkojp4AAAAJ&hl=en',
+    'https://github.com/choucisan',
+    'https://huggingface.co/choucsan',
+    'https://www.modelscope.cn/profile/choucisan',
+    'https://www.xiaohongshu.com/user/profile/624aab39000000001000d3bc'
+  ]
+};
 ---
-<BaseLayout title="About | OneThree" description="A short note about the belief behind this personal website." bodyClass="about-body" showFooterIllustration={false}>
+<BaseLayout
+  title="Zhishan Zou (邹志山) | OneThree"
+  description="Zhishan Zou (邹志山) is a student at Beijing University of Posts and Telecommunications researching video understanding and generation, behavior and cognition, and agentic intelligence."
+  image="/assets/about/zhishan-zou.jpeg"
+  author="Zhishan Zou"
+  ogType="profile"
+  structuredData={personStructuredData}
+  bodyClass="about-body"
+  showFooterIllustration={false}
+>
   <main class="about-page" data-about-page>
     <section class="about-story">
       <div class="container about-story-grid">
@@ -34,6 +100,161 @@ const xiaohongshuLikes =
       <div class="about-clouds" aria-hidden="true">
         <img class="about-cloud about-cloud-left" src="/assets/hero/cloud-large.png" alt="" />
         <img class="about-cloud about-cloud-right" src="/assets/hero/cloud-large.png" alt="" />
+      </div>
+    </section>
+    <section class="about-profile" data-about-portfolio>
+      <div class="container about-profile-inner">
+        <h2 class="about-label about-profile-title">About Me</h2>
+        <div class="about-profile-grid">
+          <aside class="about-profile-sidebar">
+            <figure class="about-portrait-frame">
+              <div class="about-portrait-mat">
+                <img src="/assets/about/zhishan-zou.jpeg" alt="Portrait of Zhishan Zou" loading="lazy" />
+              </div>
+            </figure>
+            <nav class="about-profile-links" aria-label="Profile links">
+              <a href="/" aria-label="Homepage" title="Homepage">
+                <img src="/assets/icons/icon-3d.png" alt="" aria-hidden="true" />
+              </a>
+              <a href="mailto:choucisan@gmail.com" aria-label="Email choucisan@gmail.com" title="choucisan@gmail.com">
+                <img src="/assets/icons/gmail.svg" alt="" aria-hidden="true" />
+              </a>
+              <a href="https://scholar.google.com/citations?user=MLkojp4AAAAJ&amp;hl=en" target="_blank" rel="noreferrer" aria-label="Google Scholar" title="Google Scholar">
+                <img src="/assets/icons/google-scholar.svg" alt="" aria-hidden="true" />
+              </a>
+              <a href="https://github.com/choucisan" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub">
+                <img src="/assets/icons/github.svg" alt="" aria-hidden="true" />
+              </a>
+              <a href="https://huggingface.co/choucsan" target="_blank" rel="noreferrer" aria-label="Hugging Face" title="Hugging Face">
+                <img src="/assets/icons/huggingface.svg" alt="" aria-hidden="true" />
+              </a>
+              <a href="https://www.modelscope.cn/profile/choucisan" target="_blank" rel="noreferrer" aria-label="ModelScope" title="ModelScope">
+                <img class="about-profile-link-modelscope" src="/assets/icons/modelscope.png" alt="" aria-hidden="true" />
+              </a>
+              <a href="https://www.xiaohongshu.com/user/profile/624aab39000000001000d3bc" target="_blank" rel="noreferrer" aria-label="Xiaohongshu" title="Xiaohongshu">
+                <img src="/assets/icons/xiaohongshu.svg" alt="" aria-hidden="true" />
+              </a>
+              <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                <img src="/assets/icons/linkedin.svg" alt="" aria-hidden="true" />
+              </a>
+            </nav>
+          </aside>
+
+          <div class="about-profile-main">
+            <div class="about-profile-intro">
+              <p>
+                Hi there! 👋 I'm Zhishan Zou (邹志山), a student at Beijing University of Posts and Telecommunications. My research explores artificial intelligence, with a particular focus on video understanding and generation, behavior and cognition, and agentic intelligence. You can find my publications on <a href="https://scholar.google.com/citations?user=MLkojp4AAAAJ&amp;hl=en" target="_blank" rel="noreferrer">Google Scholar</a>. I'm always open to research collaborations and conversations around brave new ideas.
+              </p>
+            </div>
+
+            <div class="about-portfolio-explorer">
+              <div class="about-portfolio-tabs" role="tablist" aria-label="Portfolio sections">
+                <button class="is-active" id="about-tab-publications" type="button" role="tab" aria-selected="true" aria-controls="about-panel-publications" data-about-tab="publications">Publications</button>
+                <button id="about-tab-collections" type="button" role="tab" aria-selected="false" aria-controls="about-panel-collections" data-about-tab="collections">Collections</button>
+                <button id="about-tab-workshops" type="button" role="tab" aria-selected="false" aria-controls="about-panel-workshops" data-about-tab="workshops">Workshops</button>
+                <button id="about-tab-blogs" type="button" role="tab" aria-selected="false" aria-controls="about-panel-blogs" data-about-tab="blogs">Blogs</button>
+              </div>
+
+              <section class="about-portfolio-panel is-active" id="about-panel-publications" role="tabpanel" aria-labelledby="about-tab-publications" data-about-panel="publications">
+                <div class="about-publication-filters" aria-label="Publication type filters">
+                  <button class="is-active" type="button" data-about-publication-filter="all">All</button>
+                  <button type="button" data-about-publication-filter="conference">Conference</button>
+                  <button type="button" data-about-publication-filter="journal">Journal</button>
+                  <button type="button" data-about-publication-filter="preprint">Preprints</button>
+                </div>
+                <div class="about-portfolio-list" data-about-panel-list>
+                  {publications.map((item) => (
+                    <article class="about-portfolio-card about-publication-card" data-about-publication-card={publicationKind(item.data.venue)}>
+                      <a class="about-portfolio-media" href={`/publications/${item.id}/`} aria-label={`Open ${item.data.title}`}>
+                        <img src={item.data.image} alt="" loading="lazy" />
+                        <span>{item.data.venue}</span>
+                      </a>
+                      <div class="about-portfolio-card-body">
+                        <h4><a href={`/publications/${item.id}/`}>{item.data.title}</a></h4>
+                        {item.data.authors.length > 0 && <p class="about-publication-authors">{item.data.authors.join(', ')}</p>}
+                        <p class="about-publication-venue"><em>{item.data.venue}</em><span>{formatYear(item.data.pubDate)}</span></p>
+                        <div class="about-portfolio-actions">
+                          {item.data.paperUrl && <a href={item.data.paperUrl} target="_blank" rel="noreferrer">arXiv</a>}
+                          {item.data.codeUrl && <a href={item.data.codeUrl} target="_blank" rel="noreferrer">GitHub</a>}
+                          {item.data.huggingfaceUrl && <a href={item.data.huggingfaceUrl} target="_blank" rel="noreferrer">Hugging Face</a>}
+                          {item.data.modelscopeUrl && <a href={item.data.modelscopeUrl} target="_blank" rel="noreferrer">ModelScope</a>}
+                          <a href={`/publications/${item.id}/`}>Project Page</a>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                  <p class="about-portfolio-empty" data-about-publication-empty hidden>No publications in this category yet.</p>
+                </div>
+              </section>
+
+              <section class="about-portfolio-panel" id="about-panel-collections" role="tabpanel" aria-labelledby="about-tab-collections" data-about-panel="collections" hidden>
+                <div class="about-portfolio-list" data-about-panel-list>
+                  {collectionItems.map((item) => (
+                    <article class="about-portfolio-card">
+                      <a class="about-portfolio-media" href={`/collections/${item.id}/`} aria-label={`Open ${item.data.title}`}>
+                        <img src={item.data.image} alt="" loading="lazy" />
+                        <span>{item.data.platform}</span>
+                      </a>
+                      <div class="about-portfolio-card-body">
+                        <h4><a href={`/collections/${item.id}/`}>{item.data.title}</a></h4>
+                        <p class="about-portfolio-description">{item.data.description}</p>
+                        <p class="about-portfolio-meta"><span>{item.data.platform}</span><span>{formatDate(item.data.pubDate)}</span></p>
+                        <div class="about-portfolio-actions">
+                          <a href={`/collections/${item.id}/`}>View Project</a>
+                          {item.data.githubUrl && <a href={item.data.githubUrl} target="_blank" rel="noreferrer">GitHub</a>}
+                          {item.data.huggingfaceUrl && <a href={item.data.huggingfaceUrl} target="_blank" rel="noreferrer">Hugging Face</a>}
+                          {item.data.exampleUrl && <a href={item.data.exampleUrl} target="_blank" rel="noreferrer">Live Example</a>}
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+
+              <section class="about-portfolio-panel" id="about-panel-workshops" role="tabpanel" aria-labelledby="about-tab-workshops" data-about-panel="workshops" hidden>
+                <div class="about-portfolio-list" data-about-panel-list>
+                  {workshopItems.map((item) => (
+                    <article class="about-portfolio-card">
+                      <a class="about-portfolio-media" href={`/workshops/${item.id}/`} aria-label={`Open ${item.data.title}`}>
+                        <img src={item.data.image} alt="" loading="lazy" />
+                        <span>{item.data.platform}</span>
+                      </a>
+                      <div class="about-portfolio-card-body">
+                        <h4><a href={`/workshops/${item.id}/`}>{item.data.title}</a></h4>
+                        <p class="about-portfolio-description">{item.data.description}</p>
+                        <p class="about-portfolio-meta"><span>{item.data.platform}</span><span>{formatDate(item.data.pubDate)}</span></p>
+                        <div class="about-portfolio-actions">
+                          <a href={`/workshops/${item.id}/`}>Open Workshop</a>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+
+              <section class="about-portfolio-panel" id="about-panel-blogs" role="tabpanel" aria-labelledby="about-tab-blogs" data-about-panel="blogs" hidden>
+                <div class="about-portfolio-list" data-about-panel-list>
+                  {blogItems.map((item) => (
+                    <article class="about-portfolio-card">
+                      <a class="about-portfolio-media" href={`/blogs/${item.id}/`} aria-label={`Read ${item.data.title}`}>
+                        <img src={item.data.image} alt="" loading="lazy" />
+                        <span>{item.data.category}</span>
+                      </a>
+                      <div class="about-portfolio-card-body">
+                        <h4><a href={`/blogs/${item.id}/`}>{item.data.title}</a></h4>
+                        <p class="about-portfolio-description">{item.data.description}</p>
+                        <p class="about-portfolio-meta"><span>{item.data.category}</span><span>{formatDate(item.data.pubDate)}</span></p>
+                        <div class="about-portfolio-actions">
+                          <a href={`/blogs/${item.id}/`}>Read Article</a>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <section class="pink-cloud-transition about-pink-cloud-transition" data-reveal-scene aria-hidden="true">
@@ -142,5 +363,43 @@ const xiaohongshuLikes =
     updateAboutClouds();
     window.addEventListener('scroll', updateAboutClouds, { passive: true });
     window.addEventListener('resize', updateAboutClouds);
+
+    const aboutPortfolio = document.querySelector('[data-about-portfolio]');
+    const aboutTabs = Array.from(aboutPortfolio?.querySelectorAll('[data-about-tab]') ?? []);
+    const aboutPanels = Array.from(aboutPortfolio?.querySelectorAll('[data-about-panel]') ?? []);
+    const publicationFilters = Array.from(aboutPortfolio?.querySelectorAll('[data-about-publication-filter]') ?? []);
+    const publicationCards = Array.from(aboutPortfolio?.querySelectorAll('[data-about-publication-card]') ?? []);
+    const publicationEmpty = aboutPortfolio?.querySelector('[data-about-publication-empty]');
+
+    aboutTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const selected = tab.dataset.aboutTab;
+        aboutTabs.forEach((item) => {
+          const isActive = item === tab;
+          item.classList.toggle('is-active', isActive);
+          item.setAttribute('aria-selected', String(isActive));
+        });
+        aboutPanels.forEach((panel) => {
+          const isActive = panel.dataset.aboutPanel === selected;
+          panel.classList.toggle('is-active', isActive);
+          panel.toggleAttribute('hidden', !isActive);
+          if (isActive) panel.querySelector('[data-about-panel-list]')?.scrollTo({ top: 0 });
+        });
+      });
+    });
+
+    publicationFilters.forEach((filter) => {
+      filter.addEventListener('click', () => {
+        const selected = filter.dataset.aboutPublicationFilter ?? 'all';
+        let visibleCount = 0;
+        publicationFilters.forEach((item) => item.classList.toggle('is-active', item === filter));
+        publicationCards.forEach((card) => {
+          const isVisible = selected === 'all' || card.dataset.aboutPublicationCard === selected;
+          card.toggleAttribute('hidden', !isVisible);
+          if (isVisible) visibleCount += 1;
+        });
+        if (publicationEmpty) publicationEmpty.toggleAttribute('hidden', visibleCount !== 0);
+      });
+    });
   </script>
 </BaseLayout>

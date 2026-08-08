@@ -5,6 +5,9 @@ const {
   title = 'OneThree',
   description = 'Personal website for publications, datasets, projects, and research notes of choucisan.',
   image = '/assets/logo/avatar-rounded.png',
+  author = 'OneThree',
+  ogType = 'website',
+  structuredData = null,
   headerMode = 'auto',
   bodyClass = '',
   showSiteCounter = false,
@@ -21,7 +24,7 @@ const previewImage = new URL(image, siteUrl).toString();
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="author" content="OneThree" />
+    <meta name="author" content={author} />
     <meta name="robots" content="index, follow" />
     <meta name="msvalidate.01" content="D2DACB47E823A27BED79104A6244B3B0" />
     <meta name="google-site-verification" content="kDuimJ6Kx59N7ZBwPgPk0l4SM5_rn7Pwb71CpM4w5SM" />
@@ -32,7 +35,7 @@ const previewImage = new URL(image, siteUrl).toString();
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta property="og:site_name" content="OneThree" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
@@ -41,6 +44,9 @@ const previewImage = new URL(image, siteUrl).toString();
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={previewImage} />
+    {structuredData && (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+    )}
     <title>{title}</title>
   </head>
   <body class={bodyClass}>
