@@ -11,6 +11,7 @@ const envLocalPath = path.join(process.cwd(), '.env.local');
 const config = {
   githubUser: 'choucisan',
   googleScholarUser: 'MLkojp4AAAAJ',
+  semanticScholarAuthorId: '2449782969',
   huggingFaceUser: 'choucsan',
   modelScopeUser: 'choucisan',
   xiaohongshuProfiles: [
@@ -191,6 +192,40 @@ const fetchGoogleScholarStats = async () => {
   }
 
   return { citations: 0, source };
+};
+
+const fetchSemanticScholarStats = async () => {
+  const source = `https://www.semanticscholar.org/author/Zhishan-Zou/${config.semanticScholarAuthorId}`;
+  const apiSource = `https://api.semanticscholar.org/graph/v1/author/${config.semanticScholarAuthorId}?fields=name,citationCount,paperCount,hIndex,papers.citationCount`;
+  const headers = { Accept: 'application/json' };
+  if (process.env.SEMANTIC_SCHOLAR_API_KEY) {
+    headers['x-api-key'] = process.env.SEMANTIC_SCHOLAR_API_KEY;
+  }
+
+  const payload = await fetchJson(apiSource, { timeout: 20000, headers });
+  const authorCitations = formatMaybeNumber(payload?.citationCount);
+  const paperCitations = Array.isArray(payload?.papers)
+    ? payload.papers
+      .map((paper) => formatMaybeNumber(paper?.citationCount))
+      .filter((value) => value !== null)
+    : [];
+  const summedPaperCitations = paperCitations.reduce((sum, value) => sum + value, 0);
+  const citations = Math.max(authorCitations ?? 0, summedPaperCitations);
+  if (authorCitations === null && paperCitations.length === 0) {
+    throw new Error('Semantic Scholar author response has no citation count.');
+  }
+
+  const calculatedHIndex = [...paperCitations]
+    .sort((a, b) => b - a)
+    .reduce((hIndex, value, index) => value >= index + 1 ? index + 1 : hIndex, 0);
+
+  return {
+    citations,
+    papers: formatMaybeNumber(payload?.paperCount) ?? 0,
+    hIndex: Math.max(formatMaybeNumber(payload?.hIndex) ?? 0, calculatedHIndex),
+    source,
+    apiSource
+  };
 };
 
 const extractHuggingFaceTotalDownloads = (html) => {
@@ -573,6 +608,15 @@ const keepManualDisplay = (nextValue, existingValue) => {
   };
 };
 
+const keepCitationStats = (nextValue, existingValue, fallback) => {
+  if (!nextValue) return existingValue ?? fallback;
+  return {
+    ...existingValue,
+    ...nextValue,
+    display: compactNumber(nextValue.citations) ?? existingValue?.display ?? ''
+  };
+};
+
 const keepManualHuggingFaceTotal = (nextValue, existingValue) => {
   const merged = keepOrDefault(nextValue, existingValue);
   if (!merged || typeof merged !== 'object') return merged;
@@ -590,9 +634,10 @@ const keepManualHuggingFaceTotal = (nextValue, existingValue) => {
 const run = async () => {
   await loadLocalEnv();
   const existing = await readExisting();
-  const [githubResult, googleScholarResult, huggingFaceResult, modelScopeResult, xiaohongshuResult] = await Promise.allSettled([
+  const [githubResult, googleScholarResult, semanticScholarResult, huggingFaceResult, modelScopeResult, xiaohongshuResult] = await Promise.allSettled([
     fetchGitHubStats(),
     fetchGoogleScholarStats(),
+    fetchSemanticScholarStats(),
     fetchHuggingFaceStats(),
     fetchModelScopeStats(),
     fetchXiaohongshuStats()
@@ -604,9 +649,15 @@ const run = async () => {
       githubResult.status === 'fulfilled' ? githubResult.value : undefined,
       existing.github ?? { stars: null, repos: null, source: `https://github.com/${config.githubUser}?tab=repositories` }
     ),
-    googleScholar: keepManualDisplay(
+    googleScholar: keepCitationStats(
       googleScholarResult.status === 'fulfilled' ? googleScholarResult.value : undefined,
-      existing.googleScholar ?? { citations: null, display: '', source: `https://scholar.google.com/citations?user=${config.googleScholarUser}&hl=en` }
+      existing.googleScholar,
+      { citations: null, display: '', source: `https://scholar.google.com/citations?user=${config.googleScholarUser}&hl=en` }
+    ),
+    semanticScholar: keepCitationStats(
+      semanticScholarResult.status === 'fulfilled' ? semanticScholarResult.value : undefined,
+      existing.semanticScholar,
+      { citations: null, papers: null, hIndex: null, display: '', source: `https://www.semanticscholar.org/author/Zhishan-Zou/${config.semanticScholarAuthorId}` }
     ),
     huggingface: keepManualHuggingFaceTotal(
       huggingFaceResult.status === 'fulfilled' ? huggingFaceResult.value : undefined,
@@ -628,6 +679,7 @@ const run = async () => {
   for (const [name, result] of [
     ['GitHub', githubResult],
     ['Google Scholar', googleScholarResult],
+    ['Semantic Scholar', semanticScholarResult],
     ['Hugging Face', huggingFaceResult],
     ['ModelScope', modelScopeResult],
     ['Xiaohongshu', xiaohongshuResult]

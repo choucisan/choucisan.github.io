@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-11T05:18:17.502Z",
+  "updatedAt": "2026-08-11T14:38:17.294Z",
   "github": {
     "stars": 167,
     "repos": 30,
@@ -8,6 +8,14 @@
   "googleScholar": {
     "citations": 3,
     "source": "https://scholar.google.com/citations?user=MLkojp4AAAAJ&hl=en",
+    "display": "3"
+  },
+  "semanticScholar": {
+    "citations": 3,
+    "papers": 2,
+    "hIndex": 1,
+    "source": "https://www.semanticscholar.org/author/Zhishan-Zou/2449782969",
+    "apiSource": "https://api.semanticscholar.org/graph/v1/author/2449782969?fields=name,citationCount,paperCount,hIndex,papers.citationCount",
     "display": "3"
   },
   "huggingface": {
@@ -19,8 +27,8 @@
     "monthlySource": "https://huggingface.co/api/datasets?author=choucsan&limit=1000&full=true"
   },
   "modelscope": {
-    "downloads": 4203239,
-    "totalDownloads": 4203239,
+    "downloads": 4203241,
+    "totalDownloads": 4203241,
     "projects": 13,
     "models": 1,
     "datasets": 12,
@@ -29,11 +37,11 @@
     "apiSource": "https://www.modelscope.cn/api/v1/profile/choucisan"
   },
   "xiaohongshu": {
-    "likes": 662,
+    "likes": 665,
     "collects": null,
-    "likesAndCollects": 662,
-    "visiblePosts": 18,
-    "countedPosts": 18,
+    "likesAndCollects": 665,
+    "visiblePosts": 19,
+    "countedPosts": 19,
     "hasCompleteCollects": false,
     "display": "1340",
     "source": "https://www.xiaohongshu.com/user/profile/624aab39000000001000d3bc",
