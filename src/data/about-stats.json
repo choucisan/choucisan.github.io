@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-10T10:31:07.264Z",
+  "updatedAt": "2026-08-11T05:18:17.502Z",
   "github": {
     "stars": 167,
     "repos": 30,
@@ -8,7 +8,7 @@
   "googleScholar": {
     "citations": 3,
     "source": "https://scholar.google.com/citations?user=MLkojp4AAAAJ&hl=en",
-    "display": "1"
+    "display": "3"
   },
   "huggingface": {
     "downloads": 2574,
@@ -19,8 +19,8 @@
     "monthlySource": "https://huggingface.co/api/datasets?author=choucsan&limit=1000&full=true"
   },
   "modelscope": {
-    "downloads": 3590382,
-    "totalDownloads": 3590382,
+    "downloads": 4203239,
+    "totalDownloads": 4203239,
     "projects": 13,
     "models": 1,
     "datasets": 12,
@@ -29,9 +29,9 @@
     "apiSource": "https://www.modelscope.cn/api/v1/profile/choucisan"
   },
   "xiaohongshu": {
-    "likes": 661,
+    "likes": 662,
     "collects": null,
-    "likesAndCollects": 661,
+    "likesAndCollects": 662,
     "visiblePosts": 18,
     "countedPosts": 18,
     "hasCompleteCollects": false,
