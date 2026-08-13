@@ -2886,6 +2886,14 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   border-radius: 10px;
 }
 
+.about-profile-links .about-profile-link-alphaxiv {
+  border-radius: 11px;
+}
+
+.about-profile-links .about-profile-link-openalex {
+  border-radius: 10px;
+}
+
 .about-profile-main {
   min-width: 0;
 }
@@ -3305,6 +3313,14 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
 .contact-icon-modelscope {
   width: clamp(38px, 3vw, 48px);
   height: clamp(38px, 3vw, 48px);
+  border-radius: clamp(8px, 0.65vw, 10px);
+}
+
+.contact-icon-alphaxiv {
+  border-radius: clamp(9px, 0.75vw, 12px);
+}
+
+.contact-icon-openalex {
   border-radius: clamp(8px, 0.65vw, 10px);
 }
 
