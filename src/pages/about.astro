@@ -208,7 +208,7 @@ const personStructuredData = {
               <section class="about-portfolio-panel" id="about-panel-collections" role="tabpanel" aria-labelledby="about-tab-collections" data-about-panel="collections" hidden>
                 <div class="about-portfolio-list" data-about-panel-list>
                   {collectionItems.map((item) => (
-                    <article class="about-portfolio-card">
+                    <article class:list={['about-portfolio-card', { 'about-designer-fonts-card': item.id === 'awesome_designer_fonts' }]}>
                       <a class="about-portfolio-media" href={`/collections/${item.id}/`} aria-label={`Open ${item.data.title}`}>
                         <img src={item.data.image} alt="" loading="lazy" />
                         <span>{item.data.platform}</span>
