@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-30T10:55:18.370Z",
+  "updatedAt": "2026-08-30T17:25:41.034Z",
   "github": {
     "stars": 230,
     "repos": 31,
@@ -37,9 +37,9 @@
     "apiSource": "https://www.modelscope.cn/api/v1/profile/choucisan"
   },
   "xiaohongshu": {
-    "likes": 926,
+    "likes": 927,
     "collects": null,
-    "likesAndCollects": 926,
+    "likesAndCollects": 927,
     "visiblePosts": 23,
     "countedPosts": 23,
     "hasCompleteCollects": false,
