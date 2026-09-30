@@ -9,14 +9,17 @@
 
         <!-- Open Graph -->
         <meta property="og:url" content="https://choucisan.github.io/publications/self-in-space/" />
-        <meta property="og:image" content="https://choucisan.github.io/paper-sites/sis-motion/static/img/poster.jpeg" />
+        <meta property="og:image" content="https://choucisan.github.io/paper-sites/sis-motion/static/img/og-cover.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Self in Space: a punk-zine title card with a cartoon drone" />
         <meta property="og:title" content="Self in Space: Benchmarking Self-Awareness and Spatial Cognition in UAV Embodied Intelligence" />
         <meta property="og:description" content="SIS-Bench evaluates self-awareness and spatial cognition in aerial understanding through a perception-memory-reasoning hierarchy." />
 
         <!-- Twitter -->
         <meta name="twitter:url" content="https://choucisan.github.io/publications/self-in-space/" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:image" content="https://choucisan.github.io/paper-sites/sis-motion/static/img/poster.jpeg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://choucisan.github.io/paper-sites/sis-motion/static/img/og-cover.jpg" />
         <meta name="twitter:title" content="Self in Space: Benchmarking Self-Awareness and Spatial Cognition in UAV Embodied Intelligence" />
         <meta name="twitter:description" content="SIS-Bench evaluates self-awareness and spatial cognition in aerial understanding through a perception-memory-reasoning hierarchy." />
 
@@ -32,7 +35,6 @@
         <script src="./static/js/image_interact.js"></script>
         <script src="./static/js/switch_videos.js"></script>
 
-        <link rel="preload" as="image" href="static/img/background-hd.webp" type="image/webp" fetchpriority="high">
         <link rel="stylesheet" href="./static/css/style.css">
         <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
@@ -421,8 +423,6 @@
                 display: flex;
                 align-items: flex-start;
                 justify-content: flex-start;
-                background-image: url('./static/img/background.png');
-                background-image: image-set(url('./static/img/background-hd.webp') type('image/webp') 1x);
                 background-size: cover;
                 background-position: top center;
                 background-repeat: no-repeat;
@@ -1412,6 +1412,9 @@
         <link rel="stylesheet"
               href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5.7.3/index.css">
 
+        <!-- zine skin: must stay last so it overrides the template styles -->
+        <link rel="stylesheet" href="./static/css/zine.css">
+
     </head>
     <body>
         <!-- 进度条 -->
@@ -1426,6 +1429,7 @@
                 </a>
 
                 <ul class="nav-links">
+                    <li><a href="#promo-video" data-en="Video" data-zh="视频">Video</a></li>
                     <li><a href="#introduction" data-en="Introduction" data-zh="简介">Introduction</a></li>
                     <li><a href="#dataset" data-en="SIS-Bench" data-zh="SIS-Bench 基准">SIS-Bench</a></li>
                     <li><a href="#methodology" data-en="Evaluation" data-zh="评估">Evaluation</a></li>
@@ -1486,11 +1490,75 @@
             </div>
         </div>
 
-        <div class="header-wrapper" id="cover">
+        <div class="header-wrapper zine-hero" id="cover">
             <div class="header-container" id="header-container">
-                <div class="header-content">
-                    <div class="cover-kicker">ACM Multimedia 2026</div>
-                    <h1 style="margin-top: 0px"><span class="paper-title-lead">Self in Space:</span> <span class="paper-title-rest">Benchmarking Self-Awareness<br class="cover-title-break" />and Spatial Cognition in UAV Embodied Intelligence</span></h1>
+                <div class="zine-deco" aria-hidden="true">
+                    <span class="zd" style="left:1.5%;top:17%;background:#ffd23f;--r:-11deg;--d:.3s">A</span>
+                    <span class="zd" style="left:3.5%;top:66%;background:#e8412c;color:#f4eddb;--r:12deg;--d:.5s">!</span>
+                    <span class="zd" style="right:3%;top:80%;background:#7ec8f0;--r:9deg;--d:.7s">Z</span>
+                    <span class="zd" style="right:4%;top:24%;background:#ff4fa3;--r:-8deg;--d:.9s">?</span>
+                    <span class="zd" style="left:7%;top:88%;background:#7fd8be;--r:6deg;--d:1.1s">S</span>
+                    <svg class="zine-cassette" viewBox="0 0 230 130" aria-hidden="true">
+  <rect x="5" y="5" width="220" height="120" rx="12" fill="#7fd8be" stroke="#1b1a1f" stroke-width="5"/>
+  <rect x="35" y="27" width="160" height="36" rx="6" fill="#f4eddb"/>
+  <text x="115" y="52" text-anchor="middle" font-family="'Courier Prime',monospace" font-weight="700" font-size="20" fill="#1b1a1f">SIDE A: SELF</text>
+  <g class="reel"><circle cx="70" cy="93" r="20" fill="#f4eddb" stroke="#1b1a1f" stroke-width="4"/><path d="M70,78 V108 M57,85.5 L83,100.5 M57,100.5 L83,85.5" stroke="#1b1a1f" stroke-width="4"/></g>
+  <g class="reel"><circle cx="160" cy="93" r="20" fill="#f4eddb" stroke="#1b1a1f" stroke-width="4"/><path d="M160,78 V108 M147,85.5 L173,100.5 M147,100.5 L173,85.5" stroke="#1b1a1f" stroke-width="4"/></g>
+</svg>
+                </div>
+                <div class="zine-card-wrap">
+                    <span class="zine-tape zine-tape--tl" aria-hidden="true"></span>
+                    <span class="zine-tape zine-tape--br" aria-hidden="true"></span>
+                    <div class="zine-card">
+                        <div class="zine-strip">The SIS Zine &nbsp;/&nbsp; Issue #1 &nbsp;/&nbsp; <b>ACM Multimedia 2026</b> &nbsp;/&nbsp; arXiv 2607.12477</div>
+                        <svg class="zine-trail" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0,98 C34,98 58,62 97,6"/></svg>
+                        <div class="header-content">
+                            <h1 class="zine-title" aria-label="Self in Space: Benchmarking Self-Awareness and Spatial Cognition in UAV Embodied Intelligence">
+                                <span class="ransom-block">
+                                    <span class="ransom " aria-hidden="true"><span class="r" style="--bg:#e8412c;--fg:#f4eddb;--f:'Bangers';--s:0.98;--r:2.3deg;--y:-0.04em;--i:0">S</span><span class="r" style="--bg:#f4eddb;--fg:#1b1a1f;--f:'Bangers';--s:0.95;--r:2.0deg;--y:-0.00em;--i:1">E</span><span class="r" style="--bg:#7fd8be;--fg:#1b1a1f;--f:'Anton';--s:0.96;--r:2.3deg;--y:-0.04em;--i:2">L</span><span class="r" style="--bg:#e8412c;--fg:#f4eddb;--f:'Bangers';--s:0.89;--r:5.7deg;--y:-0.04em;--i:3">F</span><span class="r-sp"></span><span class="r" style="--bg:#ffd23f;--fg:#1b1a1f;--f:'Archivo Black';--s:0.95;--r:4.5deg;--y:0.02em;--i:4">I</span><span class="r" style="--bg:#f4eddb;--fg:#1b1a1f;--f:'Archivo Black';--s:1.03;--r:4.5deg;--y:0.02em;--i:5">N</span></span>
+                                    <span class="ransom ransom--big" aria-hidden="true"><span class="r" style="--bg:#ffd23f;--fg:#1b1a1f;--f:'Bangers';--s:0.88;--r:-1.5deg;--y:-0.03em;--i:6">S</span><span class="r" style="--bg:#f4eddb;--fg:#1b1a1f;--f:'Archivo Black';--s:0.93;--r:5.9deg;--y:0.03em;--i:7">P</span><span class="r" style="--bg:#ffd23f;--fg:#1b1a1f;--f:'Anton';--s:0.95;--r:-2.0deg;--y:0.03em;--i:8">A</span><span class="r" style="--bg:#f4eddb;--fg:#1b1a1f;--f:'Bangers';--s:0.90;--r:6.0deg;--y:0.03em;--i:9">C</span><span class="r" style="--bg:#e8412c;--fg:#f4eddb;--f:'Courier Prime';--s:0.91;--r:-4.7deg;--y:-0.02em;--i:10">E</span></span>
+                                </span>
+                                <span class="zine-subtitle" aria-hidden="true"><span>Benchmarking Self-Awareness &amp; Spatial Cognition</span><span>in UAV Embodied Intelligence</span></span>
+                            </h1>
+                        </div>
+                        <div class="zine-advisory" aria-hidden="true"><b>Parental</b><i>Advisory</i><u>Embodied Content</u></div>
+                        <div class="zine-burst" aria-hidden="true"><svg viewBox="-6 -6 212 212" aria-hidden="true"><polygon points="200.0,100.0 178.5,115.6 192.4,138.3 166.5,144.4 170.7,170.7 144.4,166.5 138.3,192.4 115.6,178.5 100.0,200.0 84.4,178.5 61.7,192.4 55.6,166.5 29.3,170.7 33.5,144.4 7.6,138.3 21.5,115.6 0.0,100.0 21.5,84.4 7.6,61.7 33.5,55.6 29.3,29.3 55.6,33.5 61.7,7.6 84.4,21.5 100.0,0.0 115.6,21.5 138.3,7.6 144.4,33.5 170.7,29.3 166.5,55.6 192.4,61.7 178.5,84.4" fill="#ffd23f" stroke="#1b1a1f" stroke-width="5" stroke-linejoin="round"/></svg><div class="burst-txt">NEW!<small>13 tasks</small></div></div>
+                    </div>
+                    <div class="zine-drone" aria-hidden="true"><svg viewBox="-215 -125 430 228" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round">
+  <defs><clipPath id="zd-body"><rect x="-78" y="-56" width="156" height="104" rx="34"/></clipPath></defs>
+  <g stroke="#1b1a1f" fill="none">
+    <path d="M-40,-8 L-128,-34 M40,-8 L128,-34" stroke-width="16"/>
+    <rect x="-141" y="-58" width="26" height="34" rx="6" fill="#9a98a3" stroke-width="4"/>
+    <rect x="115" y="-58" width="26" height="34" rx="6" fill="#9a98a3" stroke-width="4"/>
+    <ellipse cx="-128" cy="-62" rx="78" ry="13" fill="rgba(50,50,64,.18)" stroke="none"/>
+    <ellipse cx="128" cy="-62" rx="78" ry="13" fill="rgba(50,50,64,.18)" stroke="none"/>
+    <path class="blade" d="M-206,-62 H-50" stroke-width="7"/>
+    <path class="blade" d="M50,-62 H206" stroke-width="7"/>
+    <circle cx="-128" cy="-62" r="7" fill="#e8412c" stroke="none"/>
+    <circle cx="128" cy="-62" r="7" fill="#e8412c" stroke="none"/>
+    <path d="M18,-52 C22,-80 34,-86 36,-98" stroke-width="5"/>
+    <circle class="led" cx="36" cy="-102" r="9" fill="#e8412c" stroke-width="3"/>
+    <path d="M-30,44 L-52,78 H-70 M30,44 L52,78 H70" stroke-width="8"/>
+    <rect x="-72" y="-48" width="156" height="104" rx="34" fill="rgba(0,0,0,.25)" stroke="none"/>
+    <rect x="-78" y="-56" width="156" height="104" rx="34" fill="#ffd23f" stroke-width="6"/>
+    <rect x="-80" y="22" width="160" height="30" fill="rgba(0,0,0,.12)" stroke="none" clip-path="url(#zd-body)"/>
+    <g class="eye-lid">
+      <circle cx="-32" cy="-12" r="22" fill="#fff" stroke-width="4"/>
+      <circle cx="32" cy="-12" r="22" fill="#fff" stroke-width="4"/>
+      <circle cx="-36" cy="-8" r="10" fill="#1b1a1f" stroke="none"/>
+      <circle cx="28" cy="-8" r="10" fill="#1b1a1f" stroke="none"/>
+      <circle cx="-32" cy="-12" r="3.5" fill="#fff" stroke="none"/>
+      <circle cx="32" cy="-12" r="3.5" fill="#fff" stroke="none"/>
+    </g>
+    <circle cx="-58" cy="14" r="8" fill="rgba(255,115,140,.55)" stroke="none"/>
+    <circle cx="58" cy="14" r="8" fill="rgba(255,115,140,.55)" stroke="none"/>
+    <path d="M-10,19 Q0,30 10,19" stroke-width="4.5"/>
+    <rect x="-20" y="46" width="40" height="20" rx="6" fill="#9a98a3" stroke-width="4"/>
+    <circle cx="0" cy="72" r="16" fill="#1b1a1f" stroke-width="3"/>
+    <circle cx="0" cy="72" r="8" fill="#3a6ea5" stroke="none"/>
+    <circle cx="-4" cy="68" r="3" fill="#fff" stroke="none"/>
+  </g>
+</svg></div>
                 </div>
                 <ul class="cover-highlights">
                     <li>
@@ -1534,6 +1602,7 @@
                 </div>
             </div>
         </div>
+        <div class="zine-ticker" aria-hidden="true"><div class="zine-ticker-track"><span><b>1,646</b> real UAV videos</span><span><b>14.9</b> hours of flight</span><span><b>4,856</b> QA pairs</span><span><b>13</b> tasks</span><span><b>2</b> dimensions: <span class="sp">&nbsp;space&nbsp;</span>×<span class="sf">&nbsp;self</span></span><span><b>3</b> levels: perceive · remember · reason</span><span><b>26</b> MLLMs tested</span><span>Humans <b>&nbsp;91.7</b> vs best model <b>&nbsp;71.6</b></span><span>UAV navigation <b>&nbsp;71.2 → 92.2</b></span><span><b>1,646</b> real UAV videos</span><span><b>14.9</b> hours of flight</span><span><b>4,856</b> QA pairs</span><span><b>13</b> tasks</span><span><b>2</b> dimensions: <span class="sp">&nbsp;space&nbsp;</span>×<span class="sf">&nbsp;self</span></span><span><b>3</b> levels: perceive · remember · reason</span><span><b>26</b> MLLMs tested</span><span>Humans <b>&nbsp;91.7</b> vs best model <b>&nbsp;71.6</b></span><span>UAV navigation <b>&nbsp;71.2 → 92.2</b></span></div></div>
         <d-article>
             <div class="byline">
                 <div class="byline-container">
@@ -1581,6 +1650,21 @@
                     </div>
                 </div>
             </section> -->
+
+            <section id="promo-video">
+                <h1 class="text" data-en="The 60-Second Zine" data-zh="60 秒看懂这篇论文">The 60-Second Zine</h1>
+                <p class="text" data-en="No time for the full paper? Turn the sound on: one minute, one cartoon drone, and every number that matters — from the &lt;em&gt;space&lt;/em&gt; vs. &lt;em&gt;self&lt;/em&gt; gap to what motion cues fix." data-zh="没时间读完整篇论文？打开声音：一分钟、一架卡通无人机，带你看完所有关键数字——从&lt;em&gt;空间&lt;/em&gt;与&lt;em&gt;自我&lt;/em&gt;之间的差距，到运动线索带来的提升。">
+                    No time for the full paper? Turn the sound on: one minute, one cartoon drone, and every number that matters — from the <em>space</em> vs. <em>self</em> gap to what motion cues fix.
+                </p>
+                <div class="zine-video-frame text">
+                    <span class="zine-tape zine-tape--tl" aria-hidden="true"></span>
+                    <span class="zine-tape zine-tape--br" aria-hidden="true"></span>
+                    <span class="zine-stamp" aria-hidden="true">128 BPM · Sound on</span>
+                    <video controls playsinline preload="none" poster="./static/img/sis-promo-poster.jpg" aria-label="Self in Space: a 60-second animated summary of the paper">
+                        <source src="./static/videos/sis-promo.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </section>
 
             <section id="introduction">
                 <h1 class="text" data-en="Introduction" data-zh="简介">Introduction</h1>
@@ -2586,6 +2670,7 @@
         <div class="paper-site-counter-footer">
             <span>@2026 OneThree</span>
             <span class="paper-site-counter-value" data-site-views>Site views 457 · Visitors 105</span>
+            <span class="paper-site-credit" data-en="Visual style inspired by &lt;a href=&quot;https://domenic.me/we-didnt-start-the-scaling/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Domenic Denicola&lt;/a&gt; — thank you!" data-zh="视觉参考来自 &lt;a href=&quot;https://domenic.me/we-didnt-start-the-scaling/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Domenic Denicola&lt;/a&gt;，特此感谢！">Visual style inspired by <a href="https://domenic.me/we-didnt-start-the-scaling/" target="_blank" rel="noopener">Domenic Denicola</a> — thank you!</span>
         </div>
         <script>
             const bibtexCopyButton = document.querySelector('[data-copy-bibtex]');
