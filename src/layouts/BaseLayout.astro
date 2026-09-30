@@ -124,6 +124,45 @@ const previewImage = new URL(image, siteUrl).toString();
       }, { threshold: 0.28 });
 
       revealScenes.forEach((scene) => revealObserver.observe(scene));
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+      // Cards and section headings rise in as they enter the viewport, staggered per row.
+      const revealItems = document.querySelectorAll('.card, .section-head');
+      if (revealItems.length && !reducedMotion) {
+        document.documentElement.classList.add('reveal-ready');
+        const itemObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const siblings = el.parentElement ? Array.from(el.parentElement.children).filter((node) => !node.hidden) : [el];
+            el.style.setProperty('--reveal-delay', `${Math.min(siblings.indexOf(el), 5) * 90}ms`);
+            el.classList.add('is-in');
+            itemObserver.unobserve(el);
+            // drop the stagger once it has played so hover and filtering stay snappy
+            window.setTimeout(() => el.style.removeProperty('--reveal-delay'), 1400);
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px' });
+        revealItems.forEach((item) => itemObserver.observe(item));
+      }
+
+      // Cards lean slightly toward the pointer.
+      if (finePointer && !reducedMotion) {
+        document.querySelectorAll('.card').forEach((card) => {
+          card.addEventListener('pointermove', (event) => {
+            const rect = card.getBoundingClientRect();
+            const x = (event.clientX - rect.left) / rect.width - 0.5;
+            const y = (event.clientY - rect.top) / rect.height - 0.5;
+            card.style.setProperty('--tilt-x', `${(-y * 5).toFixed(2)}deg`);
+            card.style.setProperty('--tilt-y', `${(x * 6).toFixed(2)}deg`);
+          });
+          card.addEventListener('pointerleave', () => {
+            card.style.removeProperty('--tilt-x');
+            card.style.removeProperty('--tilt-y');
+          });
+        });
+      }
     </script>
     <script is:inline src="/assets/scripts/supabase-counter.js"></script>
   </body>

@@ -14,9 +14,16 @@ const filterText = [item.data.platform, ...item.data.tags].join('|').toLowerCase
 <a class="card" href={href} data-collection-card data-search={searchText} data-filters={filterText}>
   <span class="card-media">
     <img class="card-image" src={item.data.image} alt="" loading="lazy" />
+    <span class="tag-pill">{tag}</span>
   </span>
-  <span class="tag-pill">{tag}</span>
-  <h3>{item.data.title}</h3>
-  <p>{item.data.description}</p>
-  <span class="card-meta">{item.data.platform}</span>
+  <span class="card-body">
+    <h3>{item.data.title}</h3>
+    <p>{item.data.description}</p>
+    <span class="card-foot">
+      <span class="card-meta">{item.data.platform}</span>
+      <span class="card-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 12h13M12.5 6.5 18 12l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </span>
+    </span>
+  </span>
 </a>

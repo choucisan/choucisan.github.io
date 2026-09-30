@@ -3944,3 +3944,250 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   .about-portfolio-card h4 { font-size: 24px; }
   .about-contact { margin-top: 8px; }
 }
+
+/* ==========================================================================
+   Card surfaces with hover lift and scroll reveal.
+   ========================================================================== */
+
+/* ---- cards ---- */
+.card-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+  align-items: stretch;
+}
+
+/* exactly two cards: let them share the row instead of leaving a hole */
+.card-grid:has(> .card:first-child:nth-last-child(2)) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card-grid:has(> .card:first-child:nth-last-child(2)) .card-image { aspect-ratio: 1.9 / 1; }
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.56);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), 0 10px 30px rgba(30, 31, 30, 0.045);
+  transform: perspective(1100px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(var(--lift, 0px));
+  transition:
+    transform 520ms cubic-bezier(.16, .84, .24, 1),
+    box-shadow 520ms cubic-bezier(.16, .84, .24, 1),
+    background-color 300ms ease,
+    border-color 300ms ease,
+    opacity 800ms ease var(--reveal-delay, 0ms),
+    translate 900ms cubic-bezier(.16, .84, .24, 1) var(--reveal-delay, 0ms);
+}
+
+.card[hidden] { display: none; }
+
+.card:hover,
+.card:focus-visible {
+  --lift: -8px;
+  border-color: rgba(56, 97, 150, 0.3);
+  background: #fff;
+  box-shadow: inset 0 1px 0 #fff, 0 34px 70px rgba(30, 31, 30, 0.14);
+}
+
+.card:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+
+.card-media {
+  position: relative;
+  border-radius: 20px;
+}
+
+.card-media .tag-pill {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  min-height: 30px;
+  margin: 0;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  background: rgba(30, 31, 30, 0.55);
+  -webkit-backdrop-filter: blur(10px) saturate(1.3);
+  backdrop-filter: blur(10px) saturate(1.3);
+}
+
+.card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 18px 8px 0;
+}
+
+.card h3 {
+  margin: 0 0 10px;
+  font-size: clamp(18px, 1.35vw, 22px);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+}
+
+.card p {
+  display: -webkit-box;
+  margin: 0 0 18px;
+  overflow: hidden;
+  font-size: 15.5px;
+  line-height: 1.58;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+}
+
+.card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.card-meta {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.card-arrow {
+  display: grid;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink);
+  transition: transform 420ms cubic-bezier(.16, .84, .24, 1), background-color 260ms ease, color 260ms ease, border-color 260ms ease;
+}
+
+.card-arrow svg { width: 16px; height: 16px; }
+
+.card:hover .card-arrow,
+.card:focus-visible .card-arrow {
+  border-color: var(--ink);
+  color: var(--cream);
+  background: var(--ink);
+  transform: translateX(4px) rotate(-45deg);
+}
+
+/* ---- scroll reveal (class added by the layout script, so no-JS still shows everything) ---- */
+.reveal-ready .card:not(.is-in),
+.reveal-ready .section-head:not(.is-in) {
+  opacity: 0;
+  translate: 0 34px;
+}
+
+.section-head {
+  transition: opacity 800ms ease, translate 900ms cubic-bezier(.16, .84, .24, 1);
+}
+
+@media (max-width: 860px) {
+  .card-grid,
+  .card-grid:has(> .card:first-child:nth-last-child(2)) { grid-template-columns: 1fr; }
+  .card-grid:has(> .card:first-child:nth-last-child(2)) .card-image { aspect-ratio: 1.48 / 1; }
+}
+
+@media (min-width: 861px) and (max-width: 1080px) {
+  .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { transform: none; }
+  .reveal-ready .card:not(.is-in),
+  .reveal-ready .section-head:not(.is-in) { opacity: 1; translate: none; }
+}
+
+/* ==========================================================================
+   About page: name above the intro, compact contact grid, readable map title.
+   ========================================================================== */
+.about-profile-intro h3 {
+  font-size: clamp(28px, 2.4vw, 38px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.about-profile-intro h3 { margin-bottom: 14px; }
+
+/* contact: two compact columns, the figure reads first */
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  max-width: 780px;
+}
+
+.contact-card {
+  min-height: 74px;
+  padding: 12px 16px;
+  border-radius: 22px;
+  gap: 14px;
+}
+
+.contact-icon-wrap { width: 48px; height: 48px; border-radius: 15px; }
+.contact-icon { width: 30px; height: 30px; }
+.contact-icon-gmail { width: 34px; }
+.contact-icon-hf,
+.contact-icon-modelscope,
+.contact-icon-xhs { width: 34px; height: 34px; }
+
+.contact-copy {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 5px;
+}
+
+.contact-name {
+  order: 2;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(30, 31, 30, 0.56);
+}
+
+.contact-stat {
+  order: 1;
+  max-width: 100%;
+  overflow: hidden;
+  color: rgba(30, 31, 30, 0.9);
+  font-size: clamp(16px, 1.3vw, 19px);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* the map sits on the pale end of the page gradient, so its title needs ink, not cream */
+.about-visitor-map-label { color: #27466f; }
+
+@media (max-width: 860px) {
+  .about-profile-intro h3 { font-size: clamp(28px, 6vw, 34px); }
+  .contact-links { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .contact-card { min-height: 70px; padding: 10px 12px; }
+  .contact-copy { gap: 5px; }
+  .contact-name { font-size: 12px; }
+}
+
+@media (max-width: 560px) {
+  .about-profile-intro h3 { font-size: 30px; }
+  .contact-links { grid-template-columns: 1fr; }
+  /* all four tabs fit: no hidden horizontal scroll */
+  .about-portfolio-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: visible;
+  }
+  .about-portfolio-tabs button { min-width: 0; flex: none; padding: 0 2px; font-size: 15px; }
+}
