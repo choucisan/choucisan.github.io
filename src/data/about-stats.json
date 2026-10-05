@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-10-04T14:29:50.602Z",
+  "updatedAt": "2026-10-05T09:26:17.966Z",
   "github": {
     "stars": 241,
     "repos": 33,
     "source": "https://github.com/choucisan?tab=repositories"
   },
   "googleScholar": {
-    "citations": 7,
+    "citations": 8,
     "source": "https://scholar.google.com/citations?user=MLkojp4AAAAJ&hl=en",
-    "display": "7"
+    "display": "8"
   },
   "semanticScholar": {
     "citations": 5,
@@ -27,8 +27,8 @@
     "monthlySource": "https://huggingface.co/api/datasets?author=choucsan&limit=1000&full=true"
   },
   "modelscope": {
-    "downloads": 14791040,
-    "totalDownloads": 14791040,
+    "downloads": 14791055,
+    "totalDownloads": 14791055,
     "projects": 16,
     "models": 2,
     "datasets": 14,
