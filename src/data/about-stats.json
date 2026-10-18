@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-17T15:26:12.097Z",
+  "updatedAt": "2026-10-18T15:34:34.066Z",
   "github": {
     "stars": 193,
     "repos": 33,
@@ -21,14 +21,14 @@
   "huggingface": {
     "downloads": 2574,
     "totalDownloads": 2574,
-    "monthlyDownloads": 14082,
+    "monthlyDownloads": 14933,
     "projects": 15,
     "source": "https://huggingface.co/choucsan",
     "monthlySource": "https://huggingface.co/api/datasets?author=choucsan&limit=1000&full=true"
   },
   "modelscope": {
-    "downloads": 21203851,
-    "totalDownloads": 21203851,
+    "downloads": 21232673,
+    "totalDownloads": 21232673,
     "projects": 16,
     "models": 2,
     "datasets": 14,
