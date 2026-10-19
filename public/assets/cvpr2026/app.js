@@ -6,6 +6,8 @@ const labels = {
     papers: 'papers',
     showing: 'Showing',
     noResults: 'No matching papers.',
+    loadError: 'Failed to load CVPR 2026 papers.',
+    unsupportedCompression: 'Please update your browser to support gzip decompression.',
     active: 'Active',
     categories: 'Categories',
     abstract: 'Abstract',
@@ -27,6 +29,8 @@ const labels = {
     papers: '篇论文',
     showing: '当前显示',
     noResults: '没有匹配的论文。',
+    loadError: 'CVPR 2026 论文数据加载失败。',
+    unsupportedCompression: '当前浏览器不支持 gzip 解压，请更新浏览器。',
     active: '当前',
     categories: '分类',
     abstract: '摘要',
@@ -362,12 +366,28 @@ const updateCvprHeader = () => {
 updateCvprHeader();
 window.addEventListener('scroll', updateCvprHeader, { passive: true });
 
-fetch('/assets/cvpr2026/cvpr2026meta.json')
-  .then((response) => response.json())
+Promise.all([
+  fetch('/assets/cvpr2026/cvpr2026meta.csv.gz'),
+  import('/assets/cvpr2026/data.js')
+])
+  .then(async ([response, { parsePapersCsv }]) => {
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    let csv;
+    if (bytes[0] === 0x1f && bytes[1] === 0x8b) {
+      if (typeof DecompressionStream === 'undefined') throw new Error(labels[currentLang].unsupportedCompression);
+      const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+      csv = await new Response(stream).text();
+    } else {
+      csv = new TextDecoder().decode(bytes);
+    }
+    return parsePapersCsv(csv);
+  })
   .then((data) => {
     papers = Array.isArray(data) ? data : [];
     render();
   })
-  .catch(() => {
-    els.resultSummary.textContent = 'Failed to load CVPR 2026 papers.';
+  .catch((error) => {
+    els.count.textContent = labels[currentLang].loadError;
+    els.resultSummary.textContent = `${labels[currentLang].loadError} ${error.message}`;
   });

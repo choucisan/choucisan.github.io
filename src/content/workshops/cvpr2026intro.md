@@ -33,4 +33,6 @@ The platform organizes each paper with six structured dimensions:
 
 ## Data Source
 
-The visualizer is generated from `src/data/cvpr2026meta.jsonl`. During build, the JSONL file is synchronized into the visualization site so future additions are reflected automatically.
+The visualizer loads `cvpr2026meta.csv.gz`, a compressed CSV dataset containing all paper metadata and bilingual structured analyses. The browser decompresses the file locally and restores the original records before searching and rendering them.
+
+During development and build, `scripts/sync-cvpr2026-data.mjs` synchronizes `src/data/cvpr2026meta.csv.gz` into the visualization site. If the original `src/data/cvpr2026meta.jsonl` is present, it is converted automatically so future updates are reflected. Compressed-only builds are also supported. Nested objects, arrays, multilingual text, and BibTeX content are preserved without loss.

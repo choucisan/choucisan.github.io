@@ -7,3 +7,4 @@ www.callbaba.com/
 .env.local
 public/assets/gaokao2025/index.json
 public/assets/gaokao2025/*/
+public/assets/cvpr2026/cvpr2026meta.csv.gz

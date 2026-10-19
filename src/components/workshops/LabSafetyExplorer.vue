@@ -6,6 +6,20 @@
         <p class="lab-eyebrow">LAB SAFETY · QUESTION EXPLORER</p>
         <h1>北邮实验室安全<span>考试题库</span></h1>
         <p class="lab-lede">从一个关键词开始，把安全知识查清楚。<br />浏览题干、对照选项，按需展开参考答案。</p>
+        <nav class="lab-dataset-links" aria-label="数据集平台">
+          <a class="lab-dataset-link" href="https://huggingface.co/datasets/choucsan/Lab-Safety-QA" target="_blank" rel="noopener noreferrer">
+            <img src="/assets/icons/huggingface.svg" width="22" height="22" alt="" />
+            <span>Hugging Face</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4 10 14M10 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5" /></svg>
+            <span class="lab-sr-only">（新标签页打开）</span>
+          </a>
+          <a class="lab-dataset-link" href="https://modelscope.cn/datasets/choucisan/Lab-Safety-QA" target="_blank" rel="noopener noreferrer">
+            <img src="/assets/icons/modelscope.svg" width="22" height="22" alt="" />
+            <span>ModelScope</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4 10 14M10 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5" /></svg>
+            <span class="lab-sr-only">（新标签页打开）</span>
+          </a>
+        </nav>
         <div class="lab-hero-links">
           <span><i aria-hidden="true"></i> 关键词在本地检索</span>
           <a :href="dataUrl" download="lab-safety.csv.gz">下载题库 CSV.GZ <span aria-hidden="true">↗</span></a>
@@ -228,6 +242,11 @@ onUnmounted(() => controller?.abort());
 h1 { font-size: clamp(36px, 4.2vw, 52px); letter-spacing: -0.04em; line-height: 1.2; margin: 0; font-weight: 650; }
 h1 span { display: block; color: var(--blue); }
 .lab-lede { margin: 22px 0; color: var(--muted); font-size: 14px; line-height: 1.9; }
+.lab-dataset-links { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.lab-dataset-link { display: inline-flex; align-items: center; gap: 9px; min-height: 42px; padding: 9px 13px; border: 1px solid rgba(56, 97, 150, 0.16); border-radius: 11px; background: rgba(255, 255, 255, 0.72); color: var(--blue); font-size: 12px; font-weight: 600; line-height: 1.4; }
+.lab-dataset-link:hover { border-color: var(--blue); background: white; }
+.lab-dataset-link img { width: 22px; height: 22px; flex: none; object-fit: contain; }
+.lab-dataset-link svg { width: 13px; height: 13px; flex: none; margin-left: 2px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: 0.65; }
 .lab-hero-links { display: flex; flex-wrap: wrap; gap: 12px 22px; font-size: 12px; }
 .lab-hero-links > span { color: var(--muted); display: inline-flex; align-items: center; gap: 7px; }
 .lab-hero-links i { width: 6px; height: 6px; border-radius: 50%; background: #548777; }
