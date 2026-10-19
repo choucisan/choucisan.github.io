@@ -1,6 +1,8 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import LabSafetyExplorer from '../../components/workshops/LabSafetyExplorer.vue';
+import labSafetyDataUrl from '../../data/lab-safety.csv.gz?url';
 
 export async function getStaticPaths() {
   const workshopItems = (await getCollection('workshops')).filter((item) => !item.data.draft);
@@ -11,14 +13,17 @@ const { item } = Astro.props;
 const { Content } = await render(item);
 const isCvpr2026Intro = item.id === 'cvpr2026intro';
 const isGaokaoCompass = item.id === 'gaokao_compass';
+const isLabSafety = item.id === 'lab_safety';
 const date = item.data.pubDate.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric'
 });
 ---
-<BaseLayout title={`${item.data.title} | Workshops`} description={item.data.description} image={item.data.image} headerMode="glass" bodyClass={isCvpr2026Intro ? 'archive-body cvpr-explorer-body' : isGaokaoCompass ? 'archive-body gaokao-compass-body' : ''}>
-  {isCvpr2026Intro ? (
+<BaseLayout title={`${isLabSafety ? '北邮实验室安全考试题库' : item.data.title} | Workshops`} description={item.data.description} image={item.data.image} headerMode="glass" bodyClass={isCvpr2026Intro ? 'archive-body cvpr-explorer-body' : isGaokaoCompass ? 'archive-body gaokao-compass-body' : isLabSafety ? 'archive-body' : ''}>
+  {isLabSafety ? (
+    <LabSafetyExplorer dataUrl={labSafetyDataUrl} client:load />
+  ) : isCvpr2026Intro ? (
     <main class="cvpr-explorer-page">
       <section class="cvpr-explorer-hero">
         <img class="publication-cloud publication-cloud-left" src="/assets/hero/cloud-large.png" alt="" aria-hidden="true" />

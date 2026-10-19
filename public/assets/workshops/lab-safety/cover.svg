@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" fill="none">
+  <title>BUPT Laboratory Safety Examination Question Bank</title>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1200" y2="720" gradientUnits="userSpaceOnUse"><stop stop-color="#D3E4F1"/><stop offset="1" stop-color="#EEF1E6"/></linearGradient>
+    <linearGradient id="glass" x1="800" y1="190" x2="950" y2="570" gradientUnits="userSpaceOnUse"><stop stop-color="white" stop-opacity=".85"/><stop offset="1" stop-color="white" stop-opacity=".3"/></linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#background)"/>
+  <circle cx="1000" cy="80" r="290" fill="white" fill-opacity=".2"/>
+  <circle cx="110" cy="690" r="200" fill="white" fill-opacity=".18"/>
+  <rect x="84" y="88" width="166" height="34" rx="17" fill="#386196" fill-opacity=".1"/>
+  <text x="104" y="110" font-family="sans-serif" font-size="13" font-weight="600" letter-spacing="2" fill="#386196">WORKSHOPS</text>
+  <text x="84" y="204" font-family="sans-serif" font-size="50" font-weight="650" letter-spacing="-2" fill="#243849">BUPT Laboratory</text>
+  <text x="84" y="268" font-family="sans-serif" font-size="50" font-weight="650" letter-spacing="-2" fill="#243849">Safety Examination</text>
+  <text x="84" y="332" font-family="sans-serif" font-size="50" font-weight="650" letter-spacing="-2" fill="#386196">Question Bank</text>
+  <text x="88" y="375" font-family="sans-serif" font-size="22" fill="#61788A">Search. Learn. Stay safe.</text>
+  <text x="84" y="522" font-family="sans-serif" font-size="78" font-weight="600" letter-spacing="-4" fill="#243849">2,796</text>
+  <text x="88" y="560" font-family="sans-serif" font-size="15" letter-spacing="2" fill="#61788A">QUESTIONS · ONE SEARCH</text>
+  <rect x="800" y="180" width="276" height="370" rx="34" fill="url(#glass)" stroke="white" stroke-width="2"/>
+  <rect x="834" y="216" width="94" height="10" rx="5" fill="#C0D3E2"/>
+  <path d="M906 277h64m-56 0v58l-49 99c-11 23 3 43 27 43h92c24 0 38-20 27-43l-49-99v-58" stroke="#386196" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m890 399-21 42c-6 12 1 24 15 24h108c14 0 21-12 15-24l-21-42c-31 17-63-15-96 0Z" fill="#98B8CD"/>
+  <circle cx="926" cy="425" r="6" fill="white" fill-opacity=".8"/><circle cx="951" cy="446" r="4" fill="white" fill-opacity=".8"/>
+  <circle cx="1048" cy="508" r="40" fill="#386196"/>
+  <path d="m1033 508 10 10 20-21" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="88" y="658" font-family="sans-serif" font-size="13" letter-spacing="2" fill="#61788A">ONETHREE / LEARNING TOOLS</text>
+</svg>
