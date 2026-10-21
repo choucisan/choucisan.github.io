@@ -148,7 +148,9 @@ html body .lang-switch .lang-slider { background: var(--z-ink) !important; borde
 /* floating round buttons -> square stickers */
 html body .theme-toggle,
 html body .back-to-top,
-html body .visitor-map-toggle {
+html body .visitor-map-toggle,
+html body .skin-toggle,
+html body .poster-toggle {
     border-radius: 0 !important;
     background: var(--z-yellow) !important;
     color: var(--z-ink) !important;
@@ -158,7 +160,9 @@ html body .visitor-map-toggle {
 }
 html body .theme-toggle:hover,
 html body .back-to-top:hover,
-html body .visitor-map-toggle:hover {
+html body .visitor-map-toggle:hover,
+html body .skin-toggle:hover,
+html body .poster-toggle:hover {
     transform: translate(-2px, -2px) rotate(-3deg) !important;
     box-shadow: 8px 8px 0 var(--z-ink) !important;
     background: var(--z-pink) !important;
@@ -949,4 +953,17 @@ html body .paper-site-credit a:hover { background: var(--z-pink); color: var(--z
 @media (max-width: 720px) {
     html body .paper-site-credit { flex-basis: 100%; }
     html body .paper-site-credit::before { display: none; }
+}
+
+/* promo video with edition switch (shared markup with the sky skin) */
+.sky-video {
+    width: min(980px, calc(100vw - 40px));
+    margin: 1.6rem 0 0 50%;
+    transform: translateX(-50%);
+}
+.sky-video .zine-video-frame { width: 100%; margin: 0; transform: rotate(-0.5deg); }
+html body .skin-toggle svg, html body .poster-toggle svg { color: var(--z-ink) !important; }
+@media (max-width: 720px) {
+    .sky-video { width: calc(100vw - 28px); }
+    .sky-video .zine-video-frame { transform: none; }
 }

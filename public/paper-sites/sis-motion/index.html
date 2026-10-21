@@ -12,7 +12,7 @@
         <meta property="og:image" content="https://choucisan.github.io/paper-sites/sis-motion/static/img/og-cover.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Self in Space: a punk-zine title card with a cartoon drone" />
+        <meta property="og:image:alt" content="Self in Space: a cartoon plane flying through a blue sky" />
         <meta property="og:title" content="Self in Space: Benchmarking Self-Awareness and Spatial Cognition in UAV Embodied Intelligence" />
         <meta property="og:description" content="SIS-Bench evaluates self-awareness and spatial cognition in aerial understanding through a perception-memory-reasoning hierarchy." />
 
@@ -1412,8 +1412,105 @@
         <link rel="stylesheet"
               href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5.7.3/index.css">
 
-        <!-- zine skin: must stay last so it overrides the template styles -->
-        <link rel="stylesheet" href="./static/css/zine.css">
+        <!-- Two skins: "sky" (poster / promo video look, default) and "zine". Both sheets stay last so they
+             override the template; the inactive one is disabled. -->
+        <link rel="stylesheet" href="./static/css/sky.css" id="skin-sky">
+        <link rel="stylesheet" href="./static/css/zine.css" id="skin-zine">
+        <style>
+            html[data-skin="sky"] .zine-only,
+            html[data-skin="zine"] .sky-only { display: none !important; }
+            .skin-toggle {
+                position: fixed;
+                right: 2rem;
+                bottom: 9rem;
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 3rem;
+                height: 3rem;
+                padding: 0;
+                cursor: pointer;
+            }
+            .skin-toggle svg { width: 1.25rem; height: 1.25rem; }
+            /* poster gallery: left-side button + modal */
+            .poster-toggle {
+                position: fixed;
+                left: 2rem;
+                bottom: 9rem;
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 3rem;
+                height: 3rem;
+                padding: 0;
+                cursor: pointer;
+            }
+            .poster-toggle svg { width: 1.2rem; height: 1.2rem; }
+            .poster-modal { position: fixed; inset: 0; z-index: 3000; display: grid; place-items: center; padding: 24px; }
+            .poster-modal[hidden] { display: none; }
+            .poster-backdrop { position: absolute; inset: 0; border: 0; background: rgba(7, 25, 54, 0.62); cursor: pointer; }
+            .poster-dialog {
+                position: relative;
+                width: min(1080px, 100%);
+                max-height: calc(100vh - 48px);
+                overflow: auto;
+                padding: 28px;
+                border-radius: 28px;
+                background: #fff;
+                color: #0f2a52;
+                box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+            }
+            .poster-dialog-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+            .poster-dialog-head h2 { margin: 0 !important; padding: 0 !important; font-size: 1.5rem !important; }
+            .poster-dialog-head h2::before { display: none !important; }
+            .poster-close {
+                display: grid; place-items: center; flex: none;
+                width: 40px; height: 40px; border: 0; border-radius: 50%;
+                background: #eef5ff; color: #0f2a52; font-size: 1.4rem; line-height: 1; cursor: pointer;
+            }
+            .poster-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+            .poster-card { display: flex; flex-direction: column; gap: 12px; width: auto !important; min-width: 0; margin: 0 !important; padding: 0 !important; }
+            .poster-card figcaption { margin: 0 !important; font-size: 1rem !important; text-align: left !important; }
+            .poster-card a.poster-thumb { display: block; overflow: hidden; border-radius: 18px; background: #eef5ff; box-shadow: 0 12px 30px rgba(10, 58, 133, 0.16); }
+            .poster-card img { display: block; width: 100%; height: auto; aspect-ratio: 2384 / 3370; object-fit: cover; transition: transform 300ms ease; }
+            .poster-card a.poster-thumb:hover img { transform: scale(1.03); }
+            .poster-card figcaption { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-weight: 700; }
+            .poster-actions { display: flex; gap: 8px; }
+            .poster-actions a {
+                display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px;
+                border-radius: 999px; background: #eef5ff; color: #0f2a52 !important;
+                font-size: 0.88rem; font-weight: 700; text-decoration: none !important; white-space: nowrap;
+            }
+            .poster-actions a.is-primary { background: #2f7cf6; color: #fff !important; }
+            body.poster-open { overflow: hidden; }
+            html[data-skin="zine"] .poster-dialog { border-radius: 0; border: 4px solid #1b1a1f; box-shadow: 14px 14px 0 #1b1a1f; background: #f4eddb; color: #1b1a1f; }
+            html[data-skin="zine"] .poster-card a.poster-thumb { border-radius: 0; border: 3px solid #1b1a1f; box-shadow: 8px 8px 0 #1b1a1f; }
+            html[data-skin="zine"] .poster-actions a { border-radius: 0; border: 2px solid #1b1a1f; background: #fff; color: #1b1a1f !important; }
+            html[data-skin="zine"] .poster-actions a.is-primary { background: #ffd23f; }
+            html[data-skin="zine"] .poster-close { border-radius: 0; border: 2px solid #1b1a1f; background: #ffd23f; color: #1b1a1f; }
+            html.dark[data-skin="sky"] .poster-dialog { background: #0f2547; color: #e8f6ff; }
+            html.dark[data-skin="sky"] .poster-actions a:not(.is-primary), html.dark[data-skin="sky"] .poster-close { background: #16315c; color: #e8f6ff !important; }
+            @media (max-width: 720px) {
+                .poster-toggle { left: 1rem; bottom: 8.1rem; width: 2.5rem; height: 2.5rem; }
+                .poster-dialog { padding: 18px; border-radius: 22px; }
+                .poster-grid { grid-template-columns: 1fr; }
+            }
+
+            @media (max-width: 720px) {
+                .skin-toggle { right: 1rem; bottom: 8.1rem; width: 2.5rem; height: 2.5rem; }
+            }
+        </style>
+        <script>
+            (function applySavedSkin() {
+                var skin = 'sky';
+                try { if (localStorage.getItem('sis-skin') === 'zine') skin = 'zine'; } catch (e) {}
+                document.documentElement.setAttribute('data-skin', skin);
+                document.getElementById('skin-sky').disabled = skin !== 'sky';
+                document.getElementById('skin-zine').disabled = skin !== 'zine';
+            })();
+        </script>
 
     </head>
     <body>
@@ -1436,6 +1533,8 @@
                     <li><a href="#sis-motion" data-en="SIS-Motion" data-zh="SIS-Motion 方法">SIS-Motion</a></li>
                     <li><a href="#conclusion" data-en="Conclusion" data-zh="结论">Conclusion</a></li>
                     <li><a href="#faq" data-en="FAQ" data-zh="问答">FAQ</a></li>
+                    <li><a href="#" role="button" data-open-posters data-en="Posters" data-zh="海报">Posters</a></li>
+                    <li><a href="#" role="button" data-skin-toggle data-en="Style" data-zh="风格">Style</a></li>
                 </ul>
 
                 <div class="nav-actions">
@@ -1459,6 +1558,50 @@
         <button class="back-to-top" aria-label="Back to top">
             <i class="fas fa-arrow-up"></i>
             <span class="fallback-icon" style="display:none;">⬆</span>
+        </button>
+
+        <button class="poster-toggle" type="button" data-open-posters aria-label="View posters" title="Posters">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm0 2v9.6l3.3-3.3a1 1 0 0 1 1.4 0l3.3 3.3 1.3-1.3a1 1 0 0 1 1.4 0L18 13.6V4H6Zm9 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM6 16.4V20h12v-3.6l-2-2-1.3 1.3a1 1 0 0 1-1.4 0L10 12.4l-4 4Z"/></svg>
+        </button>
+
+        <div class="poster-modal" data-poster-modal hidden>
+            <button class="poster-backdrop" type="button" aria-label="Close posters" data-close-posters></button>
+            <div class="poster-dialog" role="dialog" aria-modal="true" aria-labelledby="poster-dialog-title">
+                <div class="poster-dialog-head">
+                    <h2 id="poster-dialog-title" data-en="Posters" data-zh="海报">Posters</h2>
+                    <button class="poster-close" type="button" aria-label="Close posters" data-close-posters>&times;</button>
+                </div>
+                <div class="poster-grid">
+                    <figure class="poster-card">
+                        <a class="poster-thumb" href="./static/posters/sis-sky-poster.jpg" target="_blank" rel="noopener">
+                            <img src="./static/posters/sis-sky-preview.webp" alt="Self in Space poster, sky edition" loading="lazy">
+                        </a>
+                        <figcaption>
+                            <span data-en="Sky edition" data-zh="天空版">Sky edition</span>
+                            <span class="poster-actions">
+                                <a href="./static/posters/sis-sky-poster.jpg" target="_blank" rel="noopener" data-en="Full size" data-zh="查看大图">Full size</a>
+                                <a class="is-primary" href="./static/posters/sis-sky-poster.jpg" download="Self-in-Space-poster-sky.jpg" data-en="Download" data-zh="下载">Download</a>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    <figure class="poster-card">
+                        <a class="poster-thumb" href="./static/posters/sis-bench-poster.jpg" target="_blank" rel="noopener">
+                            <img src="./static/posters/sis-bench-preview.webp" alt="Self in Space academic poster" loading="lazy">
+                        </a>
+                        <figcaption>
+                            <span data-en="Academic edition" data-zh="学术版">Academic edition</span>
+                            <span class="poster-actions">
+                                <a href="./static/posters/sis-bench-poster.jpg" target="_blank" rel="noopener" data-en="Full size" data-zh="查看大图">Full size</a>
+                                <a class="is-primary" href="./static/posters/sis-bench-poster.jpg" download="Self-in-Space-poster-academic.jpg" data-en="Download" data-zh="下载">Download</a>
+                            </span>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+
+        <button class="skin-toggle" type="button" data-skin-toggle aria-label="Switch page style" title="Switch style: Sky / Zine">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 0 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.8-1.7 1.7-1.7H16a5 5 0 0 0 5-5c0-4-4-7.2-9-7.2Zm-5 9.2a1.4 1.4 0 1 1 0-2.8 1.4 1.4 0 0 1 0 2.8Zm2.6-4a1.4 1.4 0 1 1 0-2.8 1.4 1.4 0 0 1 0 2.8Zm4.8 0a1.4 1.4 0 1 1 0-2.8 1.4 1.4 0 0 1 0 2.8Zm2.6 4a1.4 1.4 0 1 1 0-2.8 1.4 1.4 0 0 1 0 2.8Z"/></svg>
         </button>
 
         <button class="visitor-map-toggle" type="button" aria-label="Open visitor map" title="Visitor map" data-open-paper-map>
@@ -1490,8 +1633,13 @@
             </div>
         </div>
 
-        <div class="header-wrapper zine-hero" id="cover">
+        <div class="header-wrapper sky-hero zine-hero" id="cover">
+            <div class="sky-sun sky-only" aria-hidden="true"></div>
+            <img class="sky-only sky-cloud sky-cloud--a" src="./static/img/sky/cloud.webp" alt="" aria-hidden="true">
+            <img class="sky-only sky-cloud sky-cloud--b" src="./static/img/sky/cloud.webp" alt="" aria-hidden="true">
+            <img class="sky-only sky-cloud sky-cloud--c" src="./static/img/sky/cloud-wisp.webp" alt="" aria-hidden="true">
             <div class="header-container" id="header-container">
+                <div class="zine-only">
                 <div class="zine-deco" aria-hidden="true">
                     <span class="zd" style="left:1.5%;top:17%;background:#ffd23f;--r:-11deg;--d:.3s">A</span>
                     <span class="zd" style="left:3.5%;top:66%;background:#e8412c;color:#f4eddb;--r:12deg;--d:.5s">!</span>
@@ -1560,6 +1708,21 @@
   </g>
 </svg></div>
                 </div>
+                </div>
+                <svg class="sky-route sky-only" viewBox="0 0 1200 420" preserveAspectRatio="none" aria-hidden="true"><path d="M-20 360C260 330 540 120 820 150S1060 230 1140 170"/></svg>
+                <img class="sky-plane sky-only" src="./static/img/sky/plane-4.webp" alt="" aria-hidden="true">
+                <div class="header-content sky-only">
+                    <div class="sky-topline">
+                        <span class="sky-chip">ACM Multimedia 2026</span>
+                        <span class="sky-chip sky-chip--ghost">arXiv 2607.12477</span>
+                    </div>
+                    <h1 class="sky-title" aria-label="Self in Space: Benchmarking Self-Awareness and Spatial Cognition in UAV Embodied Intelligence">
+                        <span class="sky-title-word" aria-hidden="true">Self in</span>
+                        <span class="sky-title-word" aria-hidden="true">Space</span>
+                        <span class="sky-subtitle" aria-hidden="true">Benchmarking Self-Awareness and Spatial Cognition<br>in UAV Embodied Intelligence</span>
+                    </h1>
+                    <p class="sky-quote" data-en="I can see the world around me, but do I truly understand &lt;b&gt;where I am&lt;/b&gt;, where I have been, and where I am going?" data-zh="我能看见周围的世界，但我真的知道&lt;b&gt;自己在哪里&lt;/b&gt;、去过哪里、又要去往哪里吗？">I can see the world around me, but do I truly understand <b>where I am</b>, where I have been, and where I am going?</p>
+                </div>
                 <ul class="cover-highlights">
                     <li>
                         <span class="highlight-number" aria-hidden="true">01</span>
@@ -1588,21 +1751,22 @@
                         <span>Code</span>
                     </a>
                     <a href="https://huggingface.co/collections/choucsan/self-in-space" class="button" target="_blank" rel="noreferrer">
-                        <span class="button-leading-icon" aria-hidden="true"><img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face logo"></span>
-                        <span>Collection</span>
+                        <span class="button-leading-icon" aria-hidden="true"><img src="./static/img/icons/huggingface.svg" alt="Hugging Face logo"></span>
+                        <span>Hugging Face</span>
                     </a>
                     <a href="https://www.modelscope.cn/collections/choucisan/Self-in-Space" class="button" target="_blank" rel="noreferrer">
-                        <span class="button-leading-icon" aria-hidden="true"><img src="./static/img/icons/modelscope-color.svg" alt="Hugging Face logo"></span>
-                        <span>Collection</span>
+                        <span class="button-leading-icon" aria-hidden="true"><img src="./static/img/icons/modelscope-color.svg" alt="ModelScope logo"></span>
+                        <span>ModelScope</span>
                     </a>
-                    <span class="button" aria-label="Page views">
+                    <span class="button button-stat" aria-label="Page views">
                         <span class="button-leading-icon" aria-hidden="true"><i class="fas fa-eye"></i></span>
                         <span data-page-views data-page-views-label="View">View —</span>
                     </span>
                 </div>
             </div>
+            <img class="sky-city sky-only" src="./static/img/sky/city.webp" alt="" aria-hidden="true">
         </div>
-        <div class="zine-ticker" aria-hidden="true"><div class="zine-ticker-track"><span><b>1,646</b> real UAV videos</span><span><b>14.9</b> hours of flight</span><span><b>4,856</b> QA pairs</span><span><b>13</b> tasks</span><span><b>2</b> dimensions: <span class="sp">&nbsp;space&nbsp;</span>×<span class="sf">&nbsp;self</span></span><span><b>3</b> levels: perceive · remember · reason</span><span><b>26</b> MLLMs tested</span><span>Humans <b>&nbsp;91.7</b> vs best model <b>&nbsp;71.6</b></span><span>UAV navigation <b>&nbsp;71.2 → 92.2</b></span><span><b>1,646</b> real UAV videos</span><span><b>14.9</b> hours of flight</span><span><b>4,856</b> QA pairs</span><span><b>13</b> tasks</span><span><b>2</b> dimensions: <span class="sp">&nbsp;space&nbsp;</span>×<span class="sf">&nbsp;self</span></span><span><b>3</b> levels: perceive · remember · reason</span><span><b>26</b> MLLMs tested</span><span>Humans <b>&nbsp;91.7</b> vs best model <b>&nbsp;71.6</b></span><span>UAV navigation <b>&nbsp;71.2 → 92.2</b></span></div></div>
+        <div class="sky-ticker zine-ticker" aria-hidden="true"><div class="sky-ticker-track zine-ticker-track"><span><b>1,646</b> real UAV videos</span><span><b>14.9</b> hours of flight</span><span><b>4,856</b> QA pairs</span><span><b>13</b> tasks</span><span><b>2</b> dimensions: <span class="sp">&nbsp;space&nbsp;</span>×<span class="sf">&nbsp;self</span></span><span><b>3</b> levels: perceive · remember · reason</span><span><b>26</b> MLLMs tested</span><span>Humans <b>&nbsp;91.7</b> vs best model <b>&nbsp;71.6</b></span><span>UAV navigation <b>&nbsp;71.2 → 92.2</b></span><span><b>1,646</b> real UAV videos</span><span><b>14.9</b> hours of flight</span><span><b>4,856</b> QA pairs</span><span><b>13</b> tasks</span><span><b>2</b> dimensions: <span class="sp">&nbsp;space&nbsp;</span>×<span class="sf">&nbsp;self</span></span><span><b>3</b> levels: perceive · remember · reason</span><span><b>26</b> MLLMs tested</span><span>Humans <b>&nbsp;91.7</b> vs best model <b>&nbsp;71.6</b></span><span>UAV navigation <b>&nbsp;71.2 → 92.2</b></span></div></div>
         <d-article>
             <div class="byline">
                 <div class="byline-container">
@@ -1652,17 +1816,19 @@
             </section> -->
 
             <section id="promo-video">
-                <h1 class="text" data-en="The 60-Second Zine" data-zh="60 秒看懂这篇论文">The 60-Second Zine</h1>
-                <p class="text" data-en="No time for the full paper? Turn the sound on: one minute, one cartoon drone, and every number that matters — from the &lt;em&gt;space&lt;/em&gt; vs. &lt;em&gt;self&lt;/em&gt; gap to what motion cues fix." data-zh="没时间读完整篇论文？打开声音：一分钟、一架卡通无人机，带你看完所有关键数字——从&lt;em&gt;空间&lt;/em&gt;与&lt;em&gt;自我&lt;/em&gt;之间的差距，到运动线索带来的提升。">
-                    No time for the full paper? Turn the sound on: one minute, one cartoon drone, and every number that matters — from the <em>space</em> vs. <em>self</em> gap to what motion cues fix.
+                <h1 class="text" data-en="The 60-Second Flight" data-zh="60 秒看懂这篇论文">The 60-Second Flight</h1>
+                <p class="text" data-en="No time for the full paper? Turn the sound on: one minute, one cartoon plane, and every number that matters — from the &lt;em&gt;space&lt;/em&gt; vs. &lt;em&gt;self&lt;/em&gt; gap to what motion cues fix." data-zh="没时间读完整篇论文？打开声音：一分钟、一架卡通飞机，带你看完所有关键数字——从&lt;em&gt;空间&lt;/em&gt;与&lt;em&gt;自我&lt;/em&gt;之间的差距，到运动线索带来的提升。">
+                    No time for the full paper? Turn the sound on: one minute, one cartoon plane, and every number that matters — from the <em>space</em> vs. <em>self</em> gap to what motion cues fix.
                 </p>
-                <div class="zine-video-frame text">
-                    <span class="zine-tape zine-tape--tl" aria-hidden="true"></span>
-                    <span class="zine-tape zine-tape--br" aria-hidden="true"></span>
-                    <span class="zine-stamp" aria-hidden="true">128 BPM · Sound on</span>
-                    <video controls playsinline preload="none" poster="./static/img/sis-promo-poster.jpg" aria-label="Self in Space: a 60-second animated summary of the paper">
-                        <source src="./static/videos/sis-promo.mp4" type="video/mp4">
-                    </video>
+                <div class="sky-video text">
+                    <div class="sky-video-frame zine-video-frame">
+                        <span class="zine-only zine-tape zine-tape--tl" aria-hidden="true"></span>
+                        <span class="zine-only zine-tape zine-tape--br" aria-hidden="true"></span>
+                        <span class="zine-only zine-stamp" aria-hidden="true">128 BPM · Sound on</span>
+                        <video controls playsinline preload="none" poster="./static/img/sis-promo-sky-poster.jpg" aria-label="Self in Space: a 60-second animated summary of the paper" data-video-player>
+                            <source src="./static/videos/sis-promo-sky.mp4" type="video/mp4">
+                        </video>
+                    </div>
                 </div>
             </section>
 
@@ -2670,8 +2836,59 @@
         <div class="paper-site-counter-footer">
             <span>@2026 OneThree</span>
             <span class="paper-site-counter-value" data-site-views>Site views 457 · Visitors 105</span>
-            <span class="paper-site-credit" data-en="Visual style inspired by &lt;a href=&quot;https://domenic.me/we-didnt-start-the-scaling/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Domenic Denicola&lt;/a&gt; — thank you!" data-zh="视觉参考来自 &lt;a href=&quot;https://domenic.me/we-didnt-start-the-scaling/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Domenic Denicola&lt;/a&gt;，特此感谢！">Visual style inspired by <a href="https://domenic.me/we-didnt-start-the-scaling/" target="_blank" rel="noopener">Domenic Denicola</a> — thank you!</span>
+            <span class="paper-site-credit" data-en="Zine edition video inspired by &lt;a href=&quot;https://domenic.me/we-didnt-start-the-scaling/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Domenic Denicola&lt;/a&gt; — thank you!" data-zh="拼贴版视频的视觉参考来自 &lt;a href=&quot;https://domenic.me/we-didnt-start-the-scaling/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Domenic Denicola&lt;/a&gt;，特此感谢！">Zine edition video inspired by <a href="https://domenic.me/we-didnt-start-the-scaling/" target="_blank" rel="noopener">Domenic Denicola</a> — thank you!</span>
         </div>
+        <script>
+            // Poster gallery modal.
+            (() => {
+                const modal = document.querySelector('[data-poster-modal]');
+                if (!modal) return;
+                let opener = null;
+                const open = (event) => {
+                    event?.preventDefault();
+                    opener = event?.currentTarget || null;
+                    document.querySelector('.nav-links.active')?.classList.remove('active');
+                    modal.hidden = false;
+                    document.body.classList.add('poster-open');
+                    modal.querySelector('.poster-close')?.focus();
+                };
+                const close = () => {
+                    modal.hidden = true;
+                    document.body.classList.remove('poster-open');
+                    opener?.focus();
+                };
+                document.querySelectorAll('[data-open-posters]').forEach((el) => el.addEventListener('click', open));
+                modal.querySelectorAll('[data-close-posters]').forEach((el) => el.addEventListener('click', close));
+                document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !modal.hidden) close(); });
+            })();
+            // Page style: flip between the sky and zine skins and remember the choice.
+            // Each skin has its own promo video.
+            const PROMO = {
+                sky: ['./static/videos/sis-promo-sky.mp4', './static/img/sis-promo-sky-poster.jpg'],
+                zine: ['./static/videos/sis-promo.mp4', './static/img/sis-promo-poster.jpg'],
+            };
+            const setPromo = (skin) => {
+                const player = document.querySelector('[data-video-player]');
+                if (!player) return;
+                const [src, poster] = PROMO[skin] || PROMO.sky;
+                if (player.getAttribute('src') === src) return;
+                player.pause();
+                player.querySelectorAll('source').forEach((node) => node.remove());
+                player.poster = poster;
+                player.setAttribute('src', src);
+                player.load();
+            };
+            setPromo(document.documentElement.getAttribute('data-skin'));
+            document.querySelectorAll('[data-skin-toggle]').forEach((el) => el.addEventListener('click', (event) => {
+                event.preventDefault();
+                const next = document.documentElement.getAttribute('data-skin') === 'zine' ? 'sky' : 'zine';
+                document.documentElement.setAttribute('data-skin', next);
+                document.getElementById('skin-sky').disabled = next !== 'sky';
+                document.getElementById('skin-zine').disabled = next !== 'zine';
+                try { localStorage.setItem('sis-skin', next); } catch (e) {}
+                setPromo(next);
+            }));
+        </script>
         <script>
             const bibtexCopyButton = document.querySelector('[data-copy-bibtex]');
             const bibtexCode = document.querySelector('#bibtex-code');
