@@ -3945,6 +3945,327 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
   .about-contact { margin-top: 8px; }
 }
 
+/* Slides */
+.slides-page {
+  min-height: 100vh;
+}
+
+.slides-library {
+  padding: 0 0 112px;
+  background: transparent;
+}
+
+.slides-library-head {
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid rgba(30, 31, 30, 0.16);
+}
+
+.slides-library-head h2 {
+  margin: 0;
+  color: #315b47;
+  font-family: "Faire Octave", Georgia, "Times New Roman", serif;
+  font-size: 31px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.slides-library-head p {
+  margin: 0;
+  color: rgba(30, 31, 30, 0.54);
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.slides-list {
+  display: grid;
+  gap: 20px;
+}
+
+.slides-card {
+  --slide-accent: #386196;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  overflow: hidden;
+  border: 1px solid rgba(30, 31, 30, 0.14);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.64);
+  box-shadow: 0 18px 42px rgba(42, 57, 65, 0.09);
+}
+
+.slides-card-coral {
+  --slide-accent: #c96f52;
+}
+
+.slides-cover {
+  position: relative;
+  align-self: center;
+  margin: 18px;
+  overflow: hidden;
+  min-height: 0;
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(30, 31, 30, 0.16);
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 12px 26px rgba(30, 31, 30, 0.12);
+}
+
+.slides-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 320ms ease;
+}
+
+.slides-cover:hover img,
+.slides-cover:focus-visible img {
+  transform: scale(1.012);
+}
+
+.slides-cover:focus-visible {
+  outline: 2px solid var(--slide-accent);
+  outline-offset: -4px;
+}
+
+.slides-cover > span {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  min-height: 29px;
+  padding: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.46);
+  border-radius: 4px;
+  color: #fff;
+  background: rgba(30, 31, 30, 0.76);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-size: 11px;
+  font-weight: 760;
+  letter-spacing: 0;
+}
+
+.slides-card-content {
+  min-width: 0;
+  min-height: 286px;
+  padding: 25px 29px 24px;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid rgba(30, 31, 30, 0.1);
+}
+
+.slides-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(30, 31, 30, 0.54);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.slides-card-meta span:first-child {
+  color: var(--slide-accent);
+}
+
+.slides-card-meta span + span::before,
+.slides-card-meta time::before {
+  content: "·";
+  margin-right: 10px;
+  color: rgba(30, 31, 30, 0.28);
+}
+
+.slides-card h2 {
+  margin: 14px 0 0;
+  color: #315b47;
+  font-family: "Faire Octave", Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.07;
+  letter-spacing: 0;
+}
+
+.slides-card-content > p {
+  margin: 12px 0 0;
+  display: -webkit-box;
+  overflow: hidden;
+  color: rgba(30, 31, 30, 0.68);
+  font-size: 14px;
+  line-height: 1.55;
+  letter-spacing: 0;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+.slides-card-footer {
+  margin-top: 14px;
+  padding-top: 0;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.slides-topics {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 7px;
+  list-style: none;
+}
+
+.slides-topics li {
+  min-height: 26px;
+  padding: 0 9px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid color-mix(in srgb, var(--slide-accent) 32%, transparent);
+  border-radius: 4px;
+  color: color-mix(in srgb, var(--slide-accent) 84%, #1e1f1e);
+  background: color-mix(in srgb, var(--slide-accent) 8%, #faf9f1);
+  font-size: 10px;
+  font-weight: 740;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.slides-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.slides-download {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.slides-download {
+  padding: 0 14px;
+  color: #fff;
+  background: var(--slide-accent);
+}
+
+.slides-download small {
+  padding-left: 9px;
+  border-left: 1px solid rgba(255, 255, 255, 0.34);
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 10px;
+  letter-spacing: 0;
+}
+
+.slides-download svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.slides-download:hover,
+.slides-download:focus-visible {
+  filter: brightness(0.92);
+  outline: none;
+}
+
+@media (min-width: 861px) and (max-width: 1080px) {
+  .nav {
+    grid-template-columns: 1fr auto;
+  }
+
+  .nav-links {
+    display: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .slides-library {
+    padding: 0 0 82px;
+  }
+
+  .slides-card {
+    grid-template-columns: 1fr;
+  }
+
+  .slides-cover {
+    width: calc(100% - 36px);
+    min-height: 0;
+    margin: 18px;
+    aspect-ratio: 16 / 9;
+  }
+
+  .slides-card-content {
+    min-height: 0;
+    padding: 25px 26px 26px;
+    border-top: 1px solid rgba(30, 31, 30, 0.1);
+    border-left: 0;
+  }
+
+  .slides-actions {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .slides-library-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .slides-card-content {
+    padding: 22px 18px 20px;
+  }
+
+  .slides-card-meta {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .slides-card h2 {
+    font-size: 29px;
+  }
+
+  .slides-topics {
+    gap: 5px;
+  }
+
+  .slides-topics li {
+    min-height: 24px;
+    padding: 0 5px;
+    font-size: 9px;
+  }
+
+  .slides-card-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .slides-download {
+    width: 100%;
+  }
+}
+
 /* ==========================================================================
    Card surfaces with hover lift and scroll reveal.
    ========================================================================== */

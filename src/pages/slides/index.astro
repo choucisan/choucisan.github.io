@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const slideDecks = [
+  {
+    number: '01',
+    kind: 'Paper Reading',
+    title: 'InternVideo3: Agentify Foundation Models with Multimodal Contextual Reasoning',
+    description:
+      'A technical walkthrough of InternVideo3, covering visual-agent reasoning, M²LA cache compression, staged long-video training, benchmark results, and efficient agentic inference.',
+    topics: ['Visual Agents', 'Long-Video Understanding', 'Efficient Attention'],
+    pages: 25,
+    date: 'Oct 2026',
+    size: '5.6 MB',
+    cover: '/assets/slides/internvideo3-cover.jpg',
+    file: '/slides/InternVideo3.pdf?v=20261023',
+    filename: 'InternVideo3.pdf',
+    tone: 'blue'
+  },
+  {
+    number: '02',
+    kind: 'Research Introduction',
+    title: 'Abductive Reasoning in Deep Learning',
+    description:
+      'An introduction to abductive reasoning from philosophy and scientific discovery to its use in language, knowledge graphs, images, videos, and questions of AI cognition.',
+    topics: ['Abductive Reasoning', 'Multimodal Learning', 'AI & Cognition'],
+    pages: 36,
+    date: 'Jun 2025',
+    size: '5.6 MB',
+    cover: '/assets/slides/abr4dl-cover.jpg',
+    file: '/slides/ABR4DL.pdf?v=20261023',
+    filename: 'ABR4DL.pdf',
+    tone: 'coral'
+  }
+];
+---
+<BaseLayout
+  title="Slides | OneThree"
+  description="Research talks, paper readings, and technical walkthroughs on multimodal intelligence, video understanding, and reasoning."
+  image="/assets/slides/internvideo3-cover.jpg"
+  headerMode="glass"
+  bodyClass="archive-body slides-body"
+>
+  <main class="slides-page collection-archive">
+    <section class="slides-hero collection-hero">
+      <img class="collection-cloud collection-cloud-left" src="/assets/hero/cloud-large.png" alt="" aria-hidden="true" />
+      <img class="collection-cloud collection-cloud-right" src="/assets/hero/cloud-large.png" alt="" aria-hidden="true" />
+      <div class="container collection-hero-inner">
+        <h1 class="collection-title">Slides, talks, and research walkthroughs</h1>
+        <p class="collection-lede">Paper readings, technical presentations, and evolving research ideas in a visual format.</p>
+        <div class="collection-birds" aria-hidden="true">
+          <img src="/assets/hero/goose-left.png" alt="" />
+          <img src="/assets/hero/goose-main.png" alt="" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section slides-library collection-results" aria-labelledby="slides-library-title">
+      <div class="container">
+        <div class="slides-library-head">
+          <h2 id="slides-library-title">Presentation library</h2>
+          <p>{slideDecks.length} decks · PDF · Downloadable</p>
+        </div>
+
+        <div class="slides-list">
+          {slideDecks.map((deck) => (
+            <article class={`slides-card slides-card-${deck.tone}`}>
+              <a class="slides-cover" href={deck.file} target="_blank" rel="noreferrer" aria-label={`Open ${deck.title}`}>
+                <img src={deck.cover} alt={`${deck.title} cover`} loading="lazy" />
+                <span>{deck.pages} slides</span>
+              </a>
+
+              <div class="slides-card-content">
+                <div class="slides-card-meta">
+                  <span>{deck.number}</span>
+                  <span>{deck.kind}</span>
+                  <time>{deck.date}</time>
+                </div>
+                <h2>{deck.title}</h2>
+                <p>{deck.description}</p>
+
+                <div class="slides-card-footer">
+                  <ul class="slides-topics" aria-label="Topics">
+                    {deck.topics.map((topic) => <li>{topic}</li>)}
+                  </ul>
+                  <div class="slides-actions">
+                    <a class="slides-download" href={deck.file} download={deck.filename}>
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14" />
+                      </svg>
+                      <span>Download PDF</span>
+                      <small>{deck.size}</small>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
