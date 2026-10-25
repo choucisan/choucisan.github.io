@@ -59,12 +59,25 @@ const slideDecks = [
       <div class="container">
         <div class="slides-library-head">
           <h2 id="slides-library-title">Presentation library</h2>
-          <p>{slideDecks.length} decks · PDF · Downloadable</p>
+          <p><span data-slides-count>{slideDecks.length}</span> decks · PDF · Downloadable</p>
+        </div>
+
+        <div class="slides-search-panel">
+          <label class="slides-search" for="slides-search">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10.8 18.1a7.3 7.3 0 1 1 0-14.6 7.3 7.3 0 0 1 0 14.6Zm5.2-2.1 4.5 4.5" />
+            </svg>
+            <input id="slides-search" type="search" placeholder={`Search ${slideDecks.length} slide decks...`} autocomplete="off" data-slides-search />
+          </label>
         </div>
 
         <div class="slides-list">
           {slideDecks.map((deck) => (
-            <article class={`slides-card slides-card-${deck.tone}`}>
+            <article
+              class={`slides-card slides-card-${deck.tone}`}
+              data-slides-card
+              data-search={[deck.title, deck.kind, deck.description, deck.date, ...deck.topics].join(' ').toLowerCase()}
+            >
               <a class="slides-cover" href={deck.file} target="_blank" rel="noreferrer" aria-label={`Open ${deck.title}`}>
                 <img src={deck.cover} alt={`${deck.title} cover`} loading="lazy" />
                 <span>{deck.pages} slides</span>
@@ -97,7 +110,30 @@ const slideDecks = [
             </article>
           ))}
         </div>
+        <p class="empty-results slides-empty-results" data-slides-empty hidden>No slide decks match your search yet.</p>
       </div>
     </section>
   </main>
+  <script>
+    const slidesSearch = document.querySelector('[data-slides-search]');
+    const slideCards = Array.from(document.querySelectorAll('[data-slides-card]'));
+    const slidesEmpty = document.querySelector('[data-slides-empty]');
+    const slidesCount = document.querySelector('[data-slides-count]');
+
+    const filterSlides = () => {
+      const query = slidesSearch?.value.trim().toLowerCase() ?? '';
+      let visibleCount = 0;
+
+      slideCards.forEach((card) => {
+        const isVisible = !query || (card.dataset.search ?? '').includes(query);
+        card.toggleAttribute('hidden', !isVisible);
+        if (isVisible) visibleCount += 1;
+      });
+
+      if (slidesEmpty) slidesEmpty.hidden = visibleCount !== 0;
+      if (slidesCount) slidesCount.textContent = String(visibleCount);
+    };
+
+    slidesSearch?.addEventListener('input', filterSlides);
+  </script>
 </BaseLayout>
