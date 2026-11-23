@@ -5,6 +5,22 @@ const slideDecks = [
   {
     number: '01',
     kind: 'Paper Reading',
+    title: 'WebGym: Scaling Training Environments for Visual Web Agents with Realistic Tasks',
+    description:
+      'A walkthrough of visual web agents and WebGym, covering accessibility trees, realistic browser tasks, online reinforcement learning from successful attempts, and generalization to new websites.',
+    topics: ['Web Agents', 'Online RL', 'Visual Reasoning'],
+    pages: 24,
+    date: 'Nov 2026',
+    size: '2.8 MB',
+    cover: '/assets/slides/webgym-cover.jpg',
+    file: '/slides/WebGym.pdf?v=20261123',
+    filename: 'WebGym.pdf',
+    paper: 'https://arxiv.org/abs/2601.02439v6',
+    tone: 'blue'
+  },
+  {
+    number: '02',
+    kind: 'Paper Reading',
     title: 'InternVideo3: Agentify Foundation Models with Multimodal Contextual Reasoning',
     description:
       'A technical walkthrough of InternVideo3, covering visual-agent reasoning, M²LA cache compression, staged long-video training, benchmark results, and efficient agentic inference.',
@@ -18,7 +34,7 @@ const slideDecks = [
     tone: 'blue'
   },
   {
-    number: '02',
+    number: '03',
     kind: 'Research Introduction',
     title: 'Abductive Reasoning in Deep Learning',
     description:
@@ -37,7 +53,7 @@ const slideDecks = [
 <BaseLayout
   title="Slides | OneThree"
   description="Research talks, paper readings, and technical walkthroughs on multimodal intelligence, video understanding, and reasoning."
-  image="/assets/slides/internvideo3-cover.jpg"
+  image="/assets/slides/webgym-cover.jpg"
   headerMode="glass"
   bodyClass="archive-body slides-body"
 >
@@ -104,6 +120,9 @@ const slideDecks = [
                       <span>Download PDF</span>
                       <small>{deck.size}</small>
                     </a>
+                    {deck.paper && (
+                      <a class="slides-paper" href={deck.paper} target="_blank" rel="noreferrer">Read paper</a>
+                    )}
                   </div>
                 </div>
               </div>

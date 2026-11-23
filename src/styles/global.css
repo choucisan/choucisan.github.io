@@ -4200,7 +4200,21 @@ body.cvpr-explorer-body.cvpr-nav-hidden .site-header {
 .slides-actions {
   flex: 0 0 auto;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 14px;
+}
+
+.slides-paper {
+  color: var(--slide-accent);
+  font-size: 13px;
+  font-weight: 800;
+  text-underline-offset: 3px;
+}
+
+.slides-paper:hover,
+.slides-paper:focus-visible {
+  text-decoration: underline;
 }
 
 .slides-download {
